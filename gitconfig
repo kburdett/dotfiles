@@ -1,0 +1,30 @@
+[core]
+    excludesfile = ~/.gitignore
+	symlinks = false
+	autocrlf = false
+[user]
+	email = kevin@kevinburdett.com
+	name = Kevin Burdett
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = true
+[format]
+	pretty = medium
+[push]
+	default = simple
+[alias]
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lrc = log -5
+	aa = add -A .
+	cp = cherry-pick
+	sq = show --quiet
+	pff = pull --ff-only
+	cm = commit -m
+	psuo = push --set-upstream origin
+	co = checkout
+	ca = commit --amend -C HEAD
+	cam = commit --amend -c HEAD
+	rp = repack -a -d --depth=500 --window=1000 -f
