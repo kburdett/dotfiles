@@ -13,6 +13,7 @@ set clipboard=unnamed	"yank to system clipboard by default
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set hidden
 
 " Key rebindings
 nmap <silent> ,/ :nohlsearch<CR>

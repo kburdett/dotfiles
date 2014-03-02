@@ -1,13 +1,21 @@
 set DIR=%~dp0
 
+rem bash setup
+del %USERPROFILE%\.bashrc
+del %USERPROFILE%\.inputrc
+mklink  %USERPROFILE%\.bashrc %DIR%bashrc
+mklink  %USERPROFILE%\.inputrc %DIR%inputrc
+
+rem vim setup
 del %USERPROFILE%\_vimrc
 del %USERPROFILE%\_gvimrc
 rmdir %USERPROFILE%\vimfiles
-del %USERPROFILE%\.gitconfig
-del %USERPROFILE%\.gitignore
-
 mklink  %USERPROFILE%\_vimrc %DIR%vimrc
 mklink  %USERPROFILE%\_gvimrc %DIR%gvimrc
 mklink /d %USERPROFILE%\vimfiles %DIR%vim
+
+rem git setup
+del %USERPROFILE%\.gitconfig
+del %USERPROFILE%\.gitignore
 mklink  %USERPROFILE%\.gitconfig %DIR%gitconfig
 mklink  %USERPROFILE%\.gitignore %DIR%gitignore

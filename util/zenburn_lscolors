@@ -1,0 +1,18 @@
+# HUMAN_FORMATTED_DATA
+# list one per line
+
+# basic filesystem elements
+no 00          # normal
+fi 00 35       # file
+di 00 32       # directory
+ln 01 36       # link
+pi 00 30 43    # pipe
+so 00 30 43    # socket
+bd 01 30 43    # block
+cd 01 30 43    # character
+or 01 05 37 41 # orphan symlink
+mi 01 05 37 41 # orphan symlink target
+ex 00 31       # executable
+
+# file masks
+# blob  code
