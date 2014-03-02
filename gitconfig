@@ -1,7 +1,5 @@
 [core]
     excludesfile = ~/.gitignore
-	symlinks = false
-	autocrlf = false
 [user]
 	email = kevin@kevinburdett.com
 	name = Kevin Burdett
