@@ -4,6 +4,7 @@ colorscheme zenburn
 
 " set the basics
 let mapleader=","
+set nocompatible
 set number
 set showmatch
 set laststatus=2
@@ -16,7 +17,7 @@ set expandtab
 " Key rebindings
 nmap <silent> ,/ :nohlsearch<CR>
 nnoremap <F5> :GundoToggle<CR>
-nnoremap Q <nop>
+nnoremap Q gq
 
 " disable swap and backup
 set nobackup
