@@ -1,9 +1,9 @@
 set DIR=%~dp0
 
 rem bash setup
-del %USERPROFILE%\.bashrc
+del %USERPROFILE%\.bash_profile
 del %USERPROFILE%\.inputrc
-mklink  %USERPROFILE%\.bashrc %DIR%bashrc
+mklink  %USERPROFILE%\.bash_profile %DIR%bash_profile
 mklink  %USERPROFILE%\.inputrc %DIR%inputrc
 
 rem vim setup
