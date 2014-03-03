@@ -48,6 +48,7 @@ set statusline+=\ %P    "percent through file
 
 command! Vimrc edit $MYVIMRC
 command! Gvimrc edit $MYGVIMRC
+command! Bashp edit ~/.bash_profile
 
 " OS dependent items
 if has("win32") || has("win16")
