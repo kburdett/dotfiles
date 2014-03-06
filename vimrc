@@ -1,9 +1,9 @@
 execute pathogen#infect()
+execute pathogen#helptags()
 
 if has("gui_running")
-    set t_Co=256
+    colorscheme twilight
 endif
-colorscheme zenburn
 
 " set the basics
 let mapleader=","
@@ -17,19 +17,42 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set hidden
+" disable swap and backup
+set nobackup
+set noswapfile
+" disable sound on errors
+set noerrorbells
+set visualbell
+
+" set the list chars
+set list
+if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8') && version >= 700
+  let &listchars = "tab:\u21e5\u00b7,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u26ad"
+  let &fillchars = "vert:\u259a,fold:\u00b7"
+else
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<
+endif
 
 " Key rebindings
 nmap <silent> ,/ :nohlsearch<CR>
 nnoremap <F5> :GundoToggle<CR>
 nnoremap Q gq
-
-" disable swap and backup
-set nobackup
-set noswapfile
-
-" disable sound on errors
-set noerrorbells
-set visualbell
+" rebind Alt-movement keys to move a block of text
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+" switch between window splits
+nmap <silent> <C-Up> :wincmd k<CR>
+nmap <silent> <C-Down> :wincmd j<CR>
+nmap <silent> <C-Left> :wincmd h<CR>
+nmap <silent> <C-Right> :wincmd l<CR>
+nnoremap <silent> <C-k> :wincmd k<CR>
+nnoremap <silent> <C-j> :wincmd j<CR>
+nnoremap <silent> <C-h> :wincmd h<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>
 
 " status line
 set statusline=
