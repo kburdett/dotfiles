@@ -17,6 +17,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set hidden
+set ignorecase
+set smartcase
 " disable swap and backup
 set nobackup
 set noswapfile
