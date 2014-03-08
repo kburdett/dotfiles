@@ -1,8 +1,10 @@
 execute pathogen#infect()
 execute pathogen#helptags()
 
-if has("gui_running")
-    colorscheme twilight
+if has("gui_running") || &t_Co >= "256"
+    colorscheme mustang
+else
+    " find a good color scheme for msys
 endif
 
 " set the basics
