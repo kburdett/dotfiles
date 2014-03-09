@@ -1,4 +1,20 @@
+####################
+# configuration
+####################
+# prompt
 source ~/dotfiles/util/git-prompt.sh
+export PS1="\[\e[00;32m\]\u@\h\[\e[m\] \[\e[00;33m\]\w\[\e[00;36m\]\$(__git_ps1)\[\e[m\] \$ "
+export LS_COLORS='no=00;00:fi=00;00:di=00;32:ln=00;36:pi=00;30;43:so=00;30;43:bd=00;34;43:cd=00;34;43:or=01;05;33;41:mi=01;05;33;41:ex=00;31:'
+# Export BSD colors as well
+export CLICOLORS=1
+export LSCOLORS=cxgxadadbxededbxbxcxcx
+
+# bash completion
+if [[ "$OSTYPE" == "darwin"* && -f $(brew --prefix)/etc/bash_completion ]]; then
+    # configure bash completion from the brew path
+    . $(brew --prefix)/etc/bash_completion
+fi
+
 
 ####################
 # aliases
