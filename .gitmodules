@@ -1,39 +1,39 @@
-[submodule "vim/bundle/vim-easymotion"]
-	path = vim/bundle/vim-easymotion
+[submodule "vim.symlink/bundle/vim-easymotion"]
+	path = vim.symlink/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
-[submodule "vim/bundle/vim-fugitive"]
-	path = vim/bundle/vim-fugitive
+[submodule "vim.symlink/bundle/vim-fugitive"]
+	path = vim.symlink/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/vim-ps1"]
-	path = vim/bundle/vim-ps1
+[submodule "vim.symlink/bundle/vim-ps1"]
+	path = vim.symlink/bundle/vim-ps1
 	url = https://github.com/PProvost/vim-ps1.git
-[submodule "vim/bundle/vim-repeat"]
-	path = vim/bundle/vim-repeat
+[submodule "vim.symlink/bundle/vim-repeat"]
+	path = vim.symlink/bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/vim-surround"]
-	path = vim/bundle/vim-surround
+[submodule "vim.symlink/bundle/vim-surround"]
+	path = vim.symlink/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/bundle/ctrlp.vim"]
-	path = vim/bundle/ctrlp.vim
+[submodule "vim.symlink/bundle/ctrlp.vim"]
+	path = vim.symlink/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/gundo.vim"]
-	path = vim/bundle/gundo.vim
+[submodule "vim.symlink/bundle/gundo.vim"]
+	path = vim.symlink/bundle/gundo.vim
 	url = http://github.com/sjl/gundo.vim.git
-[submodule "vim/bundle/vim-commentary"]
-	path = vim/bundle/vim-commentary
+[submodule "vim.symlink/bundle/vim-commentary"]
+	path = vim.symlink/bundle/vim-commentary
 	url = git://github.com/tpope/vim-commentary.git
-[submodule "vim/bundle/smarty-syntax"]
-	path = vim/bundle/smarty-syntax
+[submodule "vim.symlink/bundle/smarty-syntax"]
+	path = vim.symlink/bundle/smarty-syntax
 	url = https://github.com/vim-scripts/smarty-syntax.git
-[submodule "vim/bundle/vim-yankstack"]
-	path = vim/bundle/vim-yankstack
+[submodule "vim.symlink/bundle/vim-yankstack"]
+	path = vim.symlink/bundle/vim-yankstack
 	url = https://github.com/maxbrunsfeld/vim-yankstack.git
-[submodule "vim/bundle/vim-sensible"]
-	path = vim/bundle/vim-sensible
+[submodule "vim.symlink/bundle/vim-sensible"]
+	path = vim.symlink/bundle/vim-sensible
 	url = git://github.com/tpope/vim-sensible.git
-[submodule "vim/bundle/zenburn"]
-	path = vim/bundle/zenburn
+[submodule "vim.symlink/bundle/zenburn"]
+	path = vim.symlink/bundle/zenburn
 	url = https://github.com/jnurmine/Zenburn.git
-[submodule "vim/bundle/vim-json"]
-	path = vim/bundle/vim-json
+[submodule "vim.symlink/bundle/vim-json"]
+	path = vim.symlink/bundle/vim-json
 	url = https://github.com/elzr/vim-json.git

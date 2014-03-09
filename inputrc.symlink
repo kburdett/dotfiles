@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set editing-mode vi
+set bell-style visual
+set completion-ignore-case on
