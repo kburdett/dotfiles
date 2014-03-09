@@ -3,6 +3,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # bash setup
 ln -sfh $DIR/bash_profile ~/.bash_profile
+ln -sfh $DIR/bashrc ~/.bashrc
 ln -sfh $DIR/inputrc ~/.inputrc
 
 # vim setup
