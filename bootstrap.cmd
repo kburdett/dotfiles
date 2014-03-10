@@ -18,6 +18,14 @@ for %%f in (%dir%*vim*.symlink) do (
         mklink !target! %%f
         echo Linked %%f at !target!
         )
+        
+rem link clink_inputrc
+rem NOTE: This is a duplicate binding for inputrc
+set target=%LOCALAPPDATA%\clink\clink_inputrc
+set source=%dir%inputrc.symlink
+del !target!
+mklink !target! !source!
+echo Linked !source! at !target!
 
 rem link . directories
 for /D %%d in (%dir%*.symlink) do (
