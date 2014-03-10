@@ -57,11 +57,6 @@ alias .9='cd ../../../../../../../../..'
 alias .10='cd ../../../../../../../../../..'
 alias .11='cd ../../../../../../../../../../..'
 
-# grep aliases
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-
 # other aliases
 alias path='echo -e ${PATH//:/\\n}'
 alias ping='ping -c 5'
