@@ -1,40 +1,37 @@
 #!/bin/bash
 
-dotfiles=$HOME/dotfiles
-
-# source everything autoload
-for f in $dotfiles/bash/*; do
-    source $f 
-done
-
 # prompt
 export PS1="\[\e[00;32m\]\u@\h\[\e[m\] \[\e[00;33m\]\w\[\e[00;36m\]\$(__git_ps1)\[\e[m\] \$ "
 
-# ls colors
+# ls colors (GNU)
 export LS_COLORS='no=00;00:fi=00;00:di=00;32:ln=00;36:pi=00;30;43:so=00;30;43:bd=00;34;43:cd=00;34;43:or=01;05;33;41:mi=01;05;33;41:ex=00;31:'
-# export BSD colors as well
-export CLICOLORS=1
+# ls colors (BSD)
 export LSCOLORS=cxgxadadbxededbxbxcxcx
 
 # bash completion
-if [[ "$OSTYPE" == "darwin"* && -f $(brew --prefix)/etc/bash_completion ]]; then
+if [[ -n $(which brew) && -f $(brew --prefix)/etc/bash_completion ]]; then
     # configure bash completion from the brew path
-    . $(brew --prefix)/etc/bash_completion
+    source $(brew --prefix)/etc/bash_completion
+elif [[ -f /etc/bash_completion ]]; then
+    # configure bash completion from the standard path
+    source /etc/bash_completion
 fi
 
-
-# aliases
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    # Mac OSX uses BSD ls args
-    alias ls='ls -Gph'
-    alias ll='ls -Gphl'
-    alias la='ls -Gphal'
-else
-    # MinGW/Linux use GNU ls args
-    alias ls='ls -ph --color'
-    alias ll='ls -phl --color'
-    alias la='ls -phal --color'
-fi
+# ls aliases
+case $(uname -s) in
+    Darwin|FreeBSD|OpenBSD)
+        # BSD
+        alias ls='ls -Gph'
+        alias ll='ls -Gphl'
+        alias la='ls -Gphal'
+        ;;
+    *)
+        # GNU
+        alias ls='ls -ph --color'
+        alias ll='ls -phl --color'
+        alias la='ls -phal --color'
+        ;;
+esac
 
 # cd aliases
 alias ..='cd ..'
@@ -57,10 +54,9 @@ alias .9='cd ../../../../../../../../..'
 alias .10='cd ../../../../../../../../../..'
 alias .11='cd ../../../../../../../../../../..'
 
-# other aliases
+# misc aliases
 alias path='echo -e ${PATH//:/\\n}'
 alias ping='ping -c 5'
-alias fastping='ping -c 100 -s.2'
 alias ax='chmod a+x'
 alias src='source ~/.bash_profile'
 alias hig='history | grep'
