@@ -37,3 +37,6 @@
 [submodule "vim.symlink/bundle/vim-json"]
 	path = vim.symlink/bundle/vim-json
 	url = https://github.com/elzr/vim-json.git
+[submodule "vim.symlink/bundle/vim-unimpaired"]
+	path = vim.symlink/bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
