@@ -54,10 +54,13 @@ alias .9='cd ../../../../../../../../..'
 alias .10='cd ../../../../../../../../../..'
 alias .11='cd ../../../../../../../../../../..'
 
+# profile aliases
+alias src='source ~/.bash_profile'
+alias bashp='vim ~/.bash_profile ~/.bashrc'
+
 # misc aliases
 alias path='echo -e ${PATH//:/\\n}'
 alias ping='ping -c 5'
 alias ax='chmod a+x'
-alias src='source ~/.bash_profile'
 alias hig='history | grep'
 alias mkdir='mkdir -pv'
