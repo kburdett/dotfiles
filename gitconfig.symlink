@@ -26,3 +26,5 @@
 	ca = commit --amend -C HEAD
 	cam = commit --amend -c HEAD
 	rp = repack -a -d --depth=500 --window=1000 -f
+	mnff = merge --no-ff
+	st = status
