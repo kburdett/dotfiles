@@ -2,53 +2,65 @@ execute pathogen#infect()
 execute pathogen#helptags()
 
 if has("gui_running") || &t_Co >= "256"
-    colorscheme mustang
+	colorscheme mustang
 endif
 
 " set the basics
-let mapleader=","
 set nocompatible
 set number
 set showmatch
 set laststatus=2
 set showbreak=↪
-set clipboard=unnamed	"yank to system clipboard by default
-set tabstop=4
-set shiftwidth=4
-set expandtab
+set clipboard=unnamed   "yank to system clipboard by default
 set hidden
+set nrformats=
+" indentation
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
+" searching
+set incsearch
 set ignorecase
 set smartcase
-" disable swap and backup
+set hlsearch
+" swap and backup
 set nobackup
 set noswapfile
-" disable sound on errors
+" error bells
 set noerrorbells
 set visualbell
 
-" Key rebindings
-nmap <silent> ,/ :nohlsearch<CR>
+" key rebindings
+nnoremap <silent> <leader>/ :nohlsearch<CR>
 nnoremap <F5> :GundoToggle<CR>
-nnoremap Q gq
-" rebind Alt-movement keys to move a block of text
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
-" rebind mac alt-movement keys
+" cycle command history with completion on c-p/c-n
+cnoremap <C-p> <Up> 
+cnoremap <C-n> <Down>
+" kill the command ex mode key
+nnoremap Q <nop>
+
+" use alt j/k to move lines around
+" alt+j/k on mac inserts a character instead of registering the combo
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
 inoremap ∆ <Esc>:m .+1<CR>==gi
 inoremap ˚ <Esc>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
+" other OS's register the alt and can be bound directly
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
 " switch between window splits
-nmap <silent> <C-Up> :wincmd k<CR>
-nmap <silent> <C-Down> :wincmd j<CR>
-nmap <silent> <C-Left> :wincmd h<CR>
-nmap <silent> <C-Right> :wincmd l<CR>
+nnoremap <silent> <C-Up> :wincmd k<CR>
+nnoremap <silent> <C-Down> :wincmd j<CR>
+nnoremap <silent> <C-Left> :wincmd h<CR>
+nnoremap <silent> <C-Right> :wincmd l<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
 nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-h> :wincmd h<CR>
@@ -75,20 +87,19 @@ command! Bashp edit ~/.bash_profile
 command! Bashrc edit ~/.bashrc
 
 " OS dependent items
-if has("win32") || has("win16")
-    " Consolas FTW!
-    set gfn=Consolas
-
-    command! PrettyXml % !xmllint.exe % --format
+if has("win64") || has("win32") || has("win16")
+	set gfn=Consolas
+	command! PrettyXml % !xmllint.exe % --format
+elseif has("mac") || has("macunix")
+	set gfn=Monaco
+	command! PrettyXml % !xmllint % --format
 else
-    " Not windows... assume Mac OSX
-    set gfn=Monaco
-
-    command! PrettyXml % !xmllint % --format
+	" unspecified unix flavor...
+	command! PrettyXml % !xmllint % --format
 endif
 
 " auto source .vimrc on save
 augroup AutoReloadVimRC
-    autocmd!
-    autocmd BufWritePost $MYVIMRC so $MYVIMRC
+	autocmd!
+	autocmd BufWritePost $MYVIMRC so $MYVIMRC
 augroup END
