@@ -89,6 +89,7 @@ nnoremap <Leader>" viw<Esc>a"<Esc>bi"<Esc>el
 nnoremap <Leader>' viw<Esc>a'<Esc>bi'<Esc>el
 nnoremap <Leader>, mqA,<Esc>`q
 nnoremap <Leader>; mqA;<Esc>`q
+inoremap jk <Esc>
 
 " start new undo on insert mode changes
 inoremap <C-U> <C-G>u<C-U>
@@ -152,6 +153,7 @@ augroup AutoReloadVimRC
 	autocmd!
 	autocmd BufWritePost $MYVIMRC so $MYVIMRC
 augroup END
+
 
 
 " =============
