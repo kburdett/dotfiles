@@ -28,9 +28,6 @@
 [submodule "vim.symlink/bundle/vim-yankstack"]
 	path = vim.symlink/bundle/vim-yankstack
 	url = https://github.com/maxbrunsfeld/vim-yankstack.git
-[submodule "vim.symlink/bundle/vim-sensible"]
-	path = vim.symlink/bundle/vim-sensible
-	url = git://github.com/tpope/vim-sensible.git
 [submodule "vim.symlink/bundle/zenburn"]
 	path = vim.symlink/bundle/zenburn
 	url = https://github.com/jnurmine/Zenburn.git
@@ -40,3 +37,6 @@
 [submodule "vim.symlink/bundle/vim-unimpaired"]
 	path = vim.symlink/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "vim.symlink/bundle/vim-speeddating"]
+	path = vim.symlink/bundle/vim-speeddating
+	url = https://github.com/tpope/vim-speeddating.git

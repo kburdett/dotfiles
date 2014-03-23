@@ -1,79 +1,61 @@
 execute pathogen#infect()
 execute pathogen#helptags()
 
-if has("gui_running") || &t_Co >= 256
-	colorscheme mustang
+if has('autocmd')
+  filetype plugin indent on
+endif
+if has('syntax')
+  syntax enable
 endif
 
-" set the basics
-set nocompatible
-set number
-set showmatch
-set laststatus=2
-set showbreak=↪
+
+
+" =========
+"  Options
+" =========
+
+" editing
+set backspace=indent,eol,start
 set clipboard=unnamed   "yank to system clipboard by default
-set hidden
-set nrformats=
+set nrformats-=octal
+set fileformats-=mac
+set autoread
+
+" display
+set showmatch
+set number
+set showbreak=↪
+set showcmd
+set scrolloff=4
+set sidescrolloff=14
+set guifont=Monaco,Consolas,Courier\ New,Courier
+set noantialias
+
 " indentation
+set autoindent
+set shiftround
+set smarttab
+set noexpandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set noexpandtab
+
 " searching
 set incsearch
 set ignorecase
 set smartcase
 set hlsearch
+
 " swap and backup
 set nobackup
 set noswapfile
+
 " error bells
 set noerrorbells
 set visualbell
 
-" key rebindings
-inoremap jk <Esc>
-nnoremap <silent> <Leader>/ :nohlsearch<CR>
-nnoremap <Leader>" viw<Esc>a"<Esc>bi"<Esc>el
-nnoremap <Leader>' viw<Esc>a'<Esc>bi'<Esc>el
-nnoremap <Leader>, mqA,<Esc>`q
-nnoremap <Leader>; mqA;<Esc>`q
-
-" text object mappers
-onoremap ae :<c-u>normal! ggVG<CR>
-omap ie ae
-
-" cycle command history with completion on c-p/c-n
-cnoremap <C-p> <Up> 
-cnoremap <C-n> <Down>
-
-" kill the command ex mode key
-nnoremap Q <Nop>
-
-" use alt j/k to move lines around
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
-
-" switch between window splits
-nnoremap <silent> <C-Up> :wincmd k<CR>
-nnoremap <silent> <C-Down> :wincmd j<CR>
-nnoremap <silent> <C-Left> :wincmd h<CR>
-nnoremap <silent> <C-Right> :wincmd l<CR>
-nnoremap <silent> <C-k> :wincmd k<CR>
-nnoremap <silent> <C-j> :wincmd j<CR>
-nnoremap <silent> <C-h> :wincmd h<CR>
-nnoremap <silent> <C-l> :wincmd l<CR>
-
-" plugin bindings
-nnoremap <F5> :GundoToggle<CR>
-inoremap <C-N> <Esc>:Nuuid<CR>a
-nnoremap <Leader>n :Nuuid<CR>
-
 " status line
+set laststatus=2
 set statusline=
 set statusline=%t       "tail of the filename
 set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
@@ -88,6 +70,70 @@ set statusline+=\ %c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
 
+" misc
+set wildmenu
+set history=1000
+set tabpagemax=50
+set nocompatible
+set hidden
+set viminfo^=!
+set ttimeoutlen=200
+
+
+
+" ==============
+"  Key Bindings
+" ==============
+nnoremap <silent> <Leader>/ :nohlsearch<CR>
+nnoremap <Leader>" viw<Esc>a"<Esc>bi"<Esc>el
+nnoremap <Leader>' viw<Esc>a'<Esc>bi'<Esc>el
+nnoremap <Leader>, mqA,<Esc>`q
+nnoremap <Leader>; mqA;<Esc>`q
+
+" start new undo on insert mode changes
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
+
+" text object mappers
+onoremap ae :<C-U>normal! ggVG<CR>
+omap ie ae
+
+" cycle command history with completion on c-p/c-n
+cnoremap <C-P> <Up> 
+cnoremap <C-N> <Down>
+
+" kill the command ex mode key
+nnoremap Q <Nop>
+
+" use alt j/k to move lines around
+nnoremap <A-J> :m .+1<CR>==
+nnoremap <A-K> :m .-2<CR>==
+inoremap <A-J> <Esc>:m .+1<CR>==gi
+inoremap <A-K> <Esc>:m .-2<CR>==gi
+vnoremap <A-J> :m '>+1<CR>gv=gv
+vnoremap <A-K> :m '<-2<CR>gv=gv
+
+" switch between window splits
+nnoremap <silent> <C-Up> :wincmd k<CR>
+nnoremap <silent> <C-Down> :wincmd j<CR>
+nnoremap <silent> <C-Left> :wincmd h<CR>
+nnoremap <silent> <C-Right> :wincmd l<CR>
+nnoremap <silent> <C-K> :wincmd k<CR>
+nnoremap <silent> <C-J> :wincmd j<CR>
+nnoremap <silent> <C-H> :wincmd h<CR>
+nnoremap <silent> <C-L> :wincmd l<CR>
+
+" plugin bindings
+nnoremap <F5> :GundoToggle<CR>
+" inoremap <C-N> <Esc>:Nuuid<CR>a
+nnoremap <Leader>n :Nuuid<CR>
+vnoremap <Leader>n d:Nuuid<CR>
+
+
+
+" ===============
+" Custom Commands
+" ===============
 command! Vimrc edit $MYVIMRC
 command! Gvimrc edit $MYGVIMRC
 command! Bashp edit ~/.bash_profile
@@ -95,11 +141,7 @@ command! Bashrc edit ~/.bashrc
 
 " OS dependent items
 if has("win64") || has("win32") || has("win16")
-	set gfn=Consolas
 	command! PrettyXml % !xmllint.exe % --format
-elseif has("mac") || has("macunix")
-	set gfn=Monaco
-	command! PrettyXml % !xmllint % --format
 else
 	" unspecified unix flavor...
 	command! PrettyXml % !xmllint % --format
@@ -110,3 +152,18 @@ augroup AutoReloadVimRC
 	autocmd!
 	autocmd BufWritePost $MYVIMRC so $MYVIMRC
 augroup END
+
+
+" =============
+"  Colorscheme
+" =============
+
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux'
+  set t_Co=16
+endif
+
+if has("gui_running") || &t_Co >= 88
+	colorscheme mustang
+endif
+

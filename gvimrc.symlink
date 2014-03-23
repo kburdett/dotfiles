@@ -8,3 +8,8 @@ set lines=50 columns=200
 if has("gui_macvim")
 	set macmeta
 endif
+
+" Mostly for mac vim, shouldn't hurt for GVim though
+if &encoding ==# 'latin1'
+  set encoding=utf-8
+endif
