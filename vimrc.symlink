@@ -126,9 +126,6 @@ nnoremap <silent> <C-L> :wincmd l<CR>
 
 " plugin bindings
 nnoremap <F5> :GundoToggle<CR>
-" inoremap <C-N> <Esc>:Nuuid<CR>a
-nnoremap <Leader>n :Nuuid<CR>
-vnoremap <Leader>n d:Nuuid<CR>
 
 
 
