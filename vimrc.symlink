@@ -91,13 +91,13 @@ nnoremap <Leader>, mqA,<Esc>`q
 nnoremap <Leader>; mqA;<Esc>`q
 inoremap jk <Esc>
 
-" start new undo on insert mode changes
+" start new undo on insert mode deletes 
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 
-" text object mappers
+" map entire file text objects
+vnoremap ae :<C-U>silent! normal! ggVG<CR>
 onoremap ae :<C-U>normal! ggVG<CR>
-omap ie ae
 
 " cycle command history with completion on c-p/c-n
 cnoremap <C-P> <Up> 
