@@ -5,9 +5,13 @@ set guioptions-=R   " no right-hand scroll bar in split mode
 set guioptions-=L   " no left-hand scroll bar
 set lines=50 columns=200
 
-if has("gui_macvim")
+
+if has("mac") || has("macunix") || has("gui_macvim")
 	set macmeta
 	set noantialias
+	set guifont=Consolas:h14,Monaco,Courier_New,Courier
+elseif has("win16") || has("win32") || has("win64") || has("win32unix")
+	set guifont=Consolas:h10,Lucida\ Console,Courier_New,Courier
 endif
 
 " Mostly for mac vim, shouldn't hurt for GVim though

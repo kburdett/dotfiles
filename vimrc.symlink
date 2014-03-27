@@ -27,7 +27,6 @@ set number
 set showcmd
 set scrolloff=2
 set sidescrolloff=5
-set guifont=Consolas:h12,Monaco,Courier_New,Courier
 
 " indentation
 set autoindent
@@ -153,6 +152,7 @@ endif
 augroup AutoReloadVimRC
 	autocmd!
 	autocmd BufWritePost $MYVIMRC so $MYVIMRC
+	autocmd BufWritePost $MYGVIMRC so $MYGVIMRC
 augroup END
 
 
