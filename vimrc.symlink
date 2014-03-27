@@ -24,12 +24,10 @@ set autoread
 " display
 set showmatch
 set number
-set showbreak=↪
 set showcmd
-set scrolloff=4
-set sidescrolloff=14
-set guifont=Monaco,Consolas,Courier\ New,Courier
-set noantialias
+set scrolloff=2
+set sidescrolloff=5
+set guifont=Consolas:h12,Monaco,Courier_New,Courier
 
 " indentation
 set autoindent
@@ -78,6 +76,12 @@ set nocompatible
 set hidden
 set viminfo^=!
 set ttimeoutlen=200
+
+if !has('win32') && (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8')
+	let &listchars="tab:\u21e5 ,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u00b7"
+else
+	set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:+
+endif
 
 
 

@@ -7,9 +7,11 @@ set lines=50 columns=200
 
 if has("gui_macvim")
 	set macmeta
+	set noantialias
 endif
 
 " Mostly for mac vim, shouldn't hurt for GVim though
-if &encoding ==# 'latin1'
-  set encoding=utf-8
-endif
+set encoding=utf-8
+
+" this is a repeat from vimrc to force for GVim
+let &listchars="tab:\u21e5 ,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u00b7"
