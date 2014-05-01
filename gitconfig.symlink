@@ -1,33 +1,37 @@
 [core]
     excludesfile = ~/.gitignore
 [user]
-	email = kevin@kevinburdett.com
-	name = Kevin Burdett
+    email = kevin@kevinburdett.com
+    name = Kevin Burdett
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = true
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = true
 [format]
-	pretty = medium
+    pretty = medium
 [push]
-	default = simple
+    default = simple
 [alias]
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lrc = log -5
-	aa = add -A .
-	cp = cherry-pick
-	sq = show --quiet
-	pff = pull --ff-only
-	cm = commit -m
-	psuo = push --set-upstream origin
-	co = checkout
-	ca = commit --amend -C HEAD
-	cam = commit --amend -c HEAD
-	rp = repack -a -d --depth=500 --window=1000 -f
-	mnff = merge --no-ff
-	st = status
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lrc = log -5
+    aa = add -A
+    au = add -u
+    cp = cherry-pick
+    sq = show --quiet
+    pff = pull --ff-only
+    co = checkout
+    c = commit
+    ca = commit -a
+    cam = commit --amend
+    p = push
+    psuo = push -u origin
+    rp = repack -a -d --depth=500 --window=1000 -f
+    mnff = merge --no-ff
+    st = status
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+    clean = git-media-clean %f
+    smudge = git-media-smudge %f
+[diff]
+    renameLimit = 5000

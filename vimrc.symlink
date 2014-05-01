@@ -2,10 +2,10 @@ execute pathogen#infect()
 execute pathogen#helptags()
 
 if has('autocmd')
-  filetype plugin indent on
+    filetype plugin indent on
 endif
 if has('syntax')
-  syntax enable
+    syntax enable
 endif
 
 runtime! macros/matchit.vim
@@ -79,9 +79,9 @@ set viminfo^=!
 set ttimeoutlen=200
 
 if !has('win32') && (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8')
-	let &listchars="tab:\u21e5 ,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u00b7"
+    let &listchars="tab:\u21e5 ,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u00b7"
 else
-	set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:+
+    set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:+
 endif
 
 
@@ -132,9 +132,9 @@ command! PrettyJson % !python -m json.tool
 
 " auto source .vimrc on save
 augroup AutoReloadVimRC
-	autocmd!
-	autocmd BufWritePost $MYVIMRC so $MYVIMRC
-	autocmd BufWritePost $MYGVIMRC so $MYGVIMRC
+    autocmd!
+    autocmd BufWritePost $MYVIMRC so $MYVIMRC
+    autocmd BufWritePost $MYGVIMRC so $MYGVIMRC
 augroup END
 
 
@@ -145,10 +145,10 @@ augroup END
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux'
-  set t_Co=16
+    set t_Co=16
 endif
 
 if has("gui_running") || &t_Co >= 88
-	colorscheme mustang
+    colorscheme mustang
 endif
 

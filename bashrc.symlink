@@ -10,27 +10,27 @@ export LSCOLORS=cxgxadadbxededbxbxcxcx
 
 # bash completion
 if [[ -n $(which brew) && -f $(brew --prefix)/etc/bash_completion ]]; then
-	# configure bash completion from the brew path
-	source $(brew --prefix)/etc/bash_completion
+    # configure bash completion from the brew path
+    source $(brew --prefix)/etc/bash_completion
 elif [[ -f /etc/bash_completion ]]; then
-	# configure bash completion from the standard path
-	source /etc/bash_completion
+    # configure bash completion from the standard path
+    source /etc/bash_completion
 fi
 
 # ls aliases
 case $(uname -s) in
-	Darwin|FreeBSD|OpenBSD)
-		# BSD
-		alias ls='ls -Gph'
-		alias ll='ls -Gphl'
-		alias la='ls -Gphal'
-		;;
-	*)
-		# GNU
-		alias ls='ls -ph --color'
-		alias ll='ls -phl --color'
-		alias la='ls -phal --color'
-		;;
+    Darwin|FreeBSD|OpenBSD)
+        # BSD
+        alias ls='ls -Gph'
+        alias ll='ls -Gphl'
+        alias la='ls -Gphal'
+        ;;
+    *)
+        # GNU
+        alias ls='ls -ph --color'
+        alias ll='ls -phl --color'
+        alias la='ls -phal --color'
+        ;;
 esac
 
 # cd aliases
