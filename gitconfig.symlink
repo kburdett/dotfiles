@@ -23,9 +23,9 @@
     pff = pull --ff-only
     co = checkout
     c = commit
-    ca = commit -a
     cam = commit --amend
     p = push
+    pt = push --tags
     psuo = push -u origin
     rp = repack -a -d --depth=500 --window=1000 -f
     mnff = merge --no-ff
