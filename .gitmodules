@@ -43,3 +43,6 @@
 [submodule "vim.symlink/bundle/vim-nuuid"]
 	path = vim.symlink/bundle/vim-nuuid
 	url = https://github.com/kburdett/vim-nuuid.git
+[submodule "vim.symlink/bundle/vim-abolish"]
+	path = vim.symlink/bundle/vim-abolish
+	url = https://github.com/tpope/vim-abolish.git
