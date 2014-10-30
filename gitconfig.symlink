@@ -15,19 +15,18 @@
 [alias]
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lrc = log -5
+    lrc = log -5 --decorate
     aa = add -A
     cp = cherry-pick
     sq = show --quiet
     co = checkout
     c = commit
     cam = commit --amend
-    p = push
-    pt = push --tags
     psuo = push -u origin
     rp = repack -a -d --depth=500 --window=1000 -f
     mnff = merge --no-ff
     s = status -s
+    fp = fetch -p
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f
