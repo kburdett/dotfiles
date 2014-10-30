@@ -29,7 +29,7 @@
     psuo = push -u origin
     rp = repack -a -d --depth=500 --window=1000 -f
     mnff = merge --no-ff
-    st = status
+    s = status -s
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f
