@@ -17,10 +17,8 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lrc = log -5
     aa = add -A
-    au = add -u
     cp = cherry-pick
     sq = show --quiet
-    pff = pull --ff-only
     co = checkout
     c = commit
     cam = commit --amend
@@ -35,3 +33,5 @@
     smudge = git-media-smudge %f
 [diff]
     renameLimit = 5000
+[pull]
+    rebase = true
