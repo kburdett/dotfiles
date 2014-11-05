@@ -27,10 +27,10 @@
     mnff = merge --no-ff
     s = status -s
     fp = fetch -p
+    pff = pull --ff-only --no-rebase
+    pr = pull -r
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f
 [diff]
     renameLimit = 5000
-[pull]
-    rebase = true
