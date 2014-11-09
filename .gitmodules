@@ -13,9 +13,6 @@
 [submodule "vim.symlink/bundle/vim-surround"]
 	path = vim.symlink/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "vim.symlink/bundle/ctrlp.vim"]
-	path = vim.symlink/bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim.git
 [submodule "vim.symlink/bundle/gundo.vim"]
 	path = vim.symlink/bundle/gundo.vim
 	url = http://github.com/sjl/gundo.vim.git
@@ -43,6 +40,12 @@
 [submodule "vim.symlink/bundle/vim-nuuid"]
 	path = vim.symlink/bundle/vim-nuuid
 	url = https://github.com/kburdett/vim-nuuid.git
-[submodule "vim.symlink/bundle/vim-abolish"]
-	path = vim.symlink/bundle/vim-abolish
-	url = https://github.com/tpope/vim-abolish.git
+[submodule "vim.symlink/bundle/syntastic"]
+	path = vim.symlink/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim.symlink/bundle/vim2hs"]
+	path = vim.symlink/bundle/vim2hs
+	url = https://github.com/dag/vim2hs.git
+[submodule "vim.symlink/bundle/neco-ghc"]
+	path = vim.symlink/bundle/neco-ghc
+	url = https://github.com/eagletmt/neco-ghc.git
