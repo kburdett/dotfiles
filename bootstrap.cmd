@@ -43,4 +43,10 @@ rmdir /Q /S !target!
 mklink /d !target! !source!
 echo Linked directory !source! at !target!
 
+rem link ConEmu.xml
+set target=%USERPROFILE%\AppData\Roaming\ConEmu.xml
+set source=%Udir%ConEmu.xml
+mklink !target! !source!
+echo Linked !source! at !target!
+
 endlocal
