@@ -120,9 +120,9 @@ nnoremap <F5> :GundoToggle<CR>
 
 
 
-" ===============
-" Custom Commands
-" ===============
+" =================
+"  Custom Commands
+" =================
 command! Vimrc edit $MYVIMRC
 command! Gvimrc edit $MYGVIMRC
 command! Bashp edit ~/.bash_profile
@@ -153,3 +153,12 @@ if has("gui_running") || &t_Co >= 88
     colorscheme mustang
 endif
 
+
+
+" ======================
+"  Plugin Configuration
+" ======================
+au BufEnter *.hs compiler ghc
+if has("macunix")
+    let g:haddock_browser="/Applications/Safari.app/Contents/MacOS/Safari"
+endif

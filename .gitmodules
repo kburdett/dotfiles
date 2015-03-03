@@ -15,10 +15,10 @@
 	url = https://github.com/tpope/vim-surround.git
 [submodule "vim.symlink/bundle/gundo.vim"]
 	path = vim.symlink/bundle/gundo.vim
-	url = http://github.com/sjl/gundo.vim.git
+	url = https://github.com/sjl/gundo.vim.git
 [submodule "vim.symlink/bundle/vim-commentary"]
 	path = vim.symlink/bundle/vim-commentary
-	url = git://github.com/tpope/vim-commentary.git
+	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim.symlink/bundle/smarty-syntax"]
 	path = vim.symlink/bundle/smarty-syntax
 	url = https://github.com/vim-scripts/smarty-syntax.git
@@ -43,9 +43,9 @@
 [submodule "vim.symlink/bundle/syntastic"]
 	path = vim.symlink/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
-[submodule "vim.symlink/bundle/vim2hs"]
-	path = vim.symlink/bundle/vim2hs
-	url = https://github.com/dag/vim2hs.git
 [submodule "vim.symlink/bundle/neco-ghc"]
 	path = vim.symlink/bundle/neco-ghc
 	url = https://github.com/eagletmt/neco-ghc.git
+[submodule "vim.symlink/bundle/haskellmode-vim"]
+	path = vim.symlink/bundle/haskellmode-vim
+	url = https://github.com/lukerandall/haskellmode-vim.git
