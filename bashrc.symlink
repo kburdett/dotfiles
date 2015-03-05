@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # prompt
+source ~/dotfiles/util/git-prompt.sh
 export PS1="\[\e[00;32m\]\u@\h\[\e[m\] \[\e[00;33m\]\w\[\e[00;36m\]\$(__git_ps1)\[\e[m\] \$ "
 
 # ls colors (GNU)
