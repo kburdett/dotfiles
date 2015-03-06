@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2015-03-03 10:23:24" build="150215">
+		<key name=".Vanilla" modified="2015-03-06 10:32:33" build="150305">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -86,10 +86,19 @@
 			<value name="StoreTaskbarCommands" type="hex" data="00"/>
 			<value name="SaveCmdHistory" type="hex" data="01"/>
 			<value name="CmdLineHistory" type="multi">
+				<line data="{MSYS2 (Admin)}"/>
+				<line data="{MSYS2}"/>
+				<line data="{cmd (Admin)}"/>
+				<line data="{Group9}"/>
+				<line data="{Show ANSI colors}"/>
 				<line data="{Git bash}"/>
+				<line data="{cmd}"/>
+				<line data="{PowerShell}"/>
+				<line data="{Chocolatey (Admin)}"/>
+				<line data="{PowerShell (Admin)}"/>
 			</value>
 			<value name="SingleInstance" type="hex" data="01"/>
-			<value name="ShowHelpTooltips" type="hex" data="01"/>
+			<value name="ShowHelpTooltips" type="hex" data="00"/>
 			<value name="Multi" type="hex" data="01"/>
 			<value name="Multi.ShowButtons" type="hex" data="01"/>
 			<value name="Multi.NumberInCaption" type="hex" data="00"/>
@@ -136,13 +145,13 @@
 			<value name="UserScreenTransparent" type="hex" data="00"/>
 			<value name="ColorKeyTransparent" type="hex" data="00"/>
 			<value name="ColorKeyValue" type="dword" data="00010101"/>
-			<value name="UseCurrentSizePos" type="hex" data="01"/>
+			<value name="UseCurrentSizePos" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="0000051f"/>
 			<value name="ConWnd Width" type="dword" data="0000007d"/>
 			<value name="ConWnd Height" type="dword" data="00000023"/>
 			<value name="Cascaded" type="hex" data="01"/>
-			<value name="ConWnd X" type="dword" data="00000137"/>
-			<value name="ConWnd Y" type="dword" data="000000a8"/>
+			<value name="ConWnd X" type="dword" data="000000df"/>
+			<value name="ConWnd Y" type="dword" data="0000007a"/>
 			<value name="16bit Height" type="dword" data="00000000"/>
 			<value name="AutoSaveSizePos" type="hex" data="00"/>
 			<value name="IntegralSize" type="hex" data="00"/>
@@ -160,7 +169,7 @@
 			<value name="ConsoleFontWidth" type="dword" data="00000003"/>
 			<value name="ConsoleFontHeight" type="dword" data="00000005"/>
 			<value name="DefaultBufferHeight" type="dword" data="00001388"/>
-			<value name="AutoBufferHeight" type="hex" data="01"/>
+			<value name="AutoBufferHeight" type="hex" data="00"/>
 			<value name="CmdOutputCP" type="dword" data="00000000"/>
 			<value name="ComSpec.Type" type="hex" data="00"/>
 			<value name="ComSpec.Bits" type="hex" data="00"/>
@@ -538,18 +547,9 @@
 			<value name="DndLKey" type="hex" data="00"/>
 			<value name="DndRKey" type="hex" data="a2"/>
 			<value name="WndDragKey" type="dword" data="00121101"/>
-			<key name="Tasks" modified="2015-03-03 10:09:12" build="150215">
-				<value name="Count" type="dword" data="00000008"/>
-				<key name="Task1" modified="2015-03-03 10:09:12" build="150215">
-					<value name="Name" type="string" data="{cmd}"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="cmd.exe"/>
-					<value name="Active" type="dword" data="00000000"/>
-					<value name="Count" type="dword" data="00000001"/>
-					<value name="Flags" type="dword" data="00000000"/>
-				</key>
-				<key name="Task2" modified="2015-03-03 10:09:12" build="150215">
+			<key name="Tasks" modified="2015-03-06 10:31:47" build="150305">
+				<value name="Count" type="dword" data="00000004"/>
+				<key name="Task1" modified="2015-03-06 10:31:47" build="150305">
 					<value name="Name" type="string" data="{cmd (Admin)}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -558,16 +558,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task3" modified="2015-03-03 10:09:12" build="150215">
-					<value name="Name" type="string" data="{PowerShell}"/>
-					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
-					<value name="Cmd1" type="string" data="powershell.exe"/>
-					<value name="Active" type="dword" data="00000000"/>
-					<value name="Count" type="dword" data="00000001"/>
-					<value name="Flags" type="dword" data="00000000"/>
-				</key>
-				<key name="Task4" modified="2015-03-03 10:09:12" build="150215">
+				<key name="Task2" modified="2015-03-06 10:31:47" build="150305">
 					<value name="Name" type="string" data="{PowerShell (Admin)}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -576,7 +567,25 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task5" modified="2015-03-03 10:09:12" build="150215">
+				<key name="Task3" modified="2015-03-06 10:32:10" build="150305">
+					<value name="Name" type="string" data="{MSYS2 (Admin)}"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data=""/>
+					<value name="Cmd1" type="string" data="&quot;C:\msys64\usr\bin\mintty.exe&quot; -i /msys2.ico /usr/bin/bash --login -new_console:a"/>
+					<value name="Active" type="dword" data="00000000"/>
+					<value name="Count" type="dword" data="00000001"/>
+					<value name="Flags" type="dword" data="00000000"/>
+				</key>
+				<key name="Task4" modified="2015-03-06 10:32:10" build="150305">
+					<value name="Name" type="string" data="{Chocolatey (Admin)}"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data=""/>
+					<value name="Cmd1" type="string" data="*cmd /k Title Chocolatey &amp; &quot;%ConEmuBaseDir%\Addons\ChocolateyAbout.cmd&quot;"/>
+					<value name="Active" type="dword" data="00000000"/>
+					<value name="Count" type="dword" data="00000001"/>
+					<value name="Flags" type="dword" data="00000000"/>
+				</key>
+				<key name="Task5" modified="2015-03-06 10:21:41" build="150305">
 					<value name="Name" type="string" data="{Git bash}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -585,7 +594,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task6" modified="2015-03-03 10:09:12" build="150215">
+				<key name="Task6" modified="2015-03-06 10:21:41" build="150305">
 					<value name="Name" type="string" data="{cmd 64/32}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -595,7 +604,7 @@
 					<value name="Count" type="dword" data="00000002"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task7" modified="2015-03-03 10:09:12" build="150215">
+				<key name="Task7" modified="2015-03-06 10:21:41" build="150305">
 					<value name="Name" type="string" data="{Show ANSI colors}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -604,7 +613,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
-				<key name="Task8" modified="2015-03-03 10:09:12" build="150215">
+				<key name="Task8" modified="2015-03-06 10:21:41" build="150305">
 					<value name="Name" type="string" data="{Chocolatey (Admin)}"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -613,15 +622,24 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Flags" type="dword" data="00000000"/>
 				</key>
+				<key name="Task9" modified="2015-03-06 10:21:41" build="150305">
+					<value name="Name" type="string" data="{MSYS2}"/>
+					<value name="Flags" type="dword" data="00000000"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data=""/>
+					<value name="Cmd1" type="string" data="&quot;C:\msys64\usr\bin\mintty.exe&quot; -i /msys2.ico /usr/bin/bash --login -new_console:a"/>
+					<value name="Active" type="dword" data="00000000"/>
+					<value name="Count" type="dword" data="00000001"/>
+				</key>
 			</key>
-			<key name="Apps" modified="2015-03-03 10:09:12" build="150215">
+			<key name="Apps" modified="2015-03-06 10:32:10" build="150305">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
-			<key name="Colors" modified="2015-03-03 10:09:12" build="150215">
+			<key name="Colors" modified="2015-03-06 10:32:10" build="150305">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
 			<value name="ProcessCmdStart" type="hex" data="01"/>
-			<value name="Multi.ShowSearch" type="hex" data="01"/>
+			<value name="Multi.ShowSearch" type="hex" data="00"/>
 			<value name="Multi.CloseConfirmFlags" type="hex" data="04"/>
 			<value name="UseScrollLock" type="hex" data="01"/>
 			<value name="CTS.ForceLocale" type="dword" data="00000000"/>
@@ -635,6 +653,9 @@
 			<value name="Multi.GroupInput" type="dword" data="00005d47"/>
 			<value name="CloseZombiesKey" type="dword" data="00000000"/>
 			<value name="HighlightMouseSwitchX" type="dword" data="00005d58"/>
+			<value name="KillProcessKey" type="dword" data="00000000"/>
+			<value name="KillAllButShellKey" type="dword" data="00105b2e"/>
+			<value name="AffinityPriorityKey" type="dword" data="00005d41"/>
 		</key>
 	</key>
 </key>
