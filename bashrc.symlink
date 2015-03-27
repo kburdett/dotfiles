@@ -10,7 +10,7 @@ export LS_COLORS='no=00;00:fi=00;00:di=00;32:ln=00;36:pi=00;30;43:so=00;30;43:bd
 export LSCOLORS=cxgxadadbxededbxbxcxcx
 
 # bash completion
-if [[ -n $(which brew) && -f $(brew --prefix)/etc/bash_completion ]]; then
+if [[ $(uname -s) == 'Darwin' && -n $(which brew) && -f $(brew --prefix)/etc/bash_completion ]]; then
     # configure bash completion from the brew path
     source $(brew --prefix)/etc/bash_completion
 elif [[ -f /etc/bash_completion ]]; then
