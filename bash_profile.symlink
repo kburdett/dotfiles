@@ -3,7 +3,7 @@
 case $(uname -s) in
     Darwin)
         # move /usr/local/bin to the front for brew installed paths
-        export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+        export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.cabal/bin
         ;;
     MINGW32_NT*)
         # move Windows VIM and GIT to the front of the path
