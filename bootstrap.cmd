@@ -45,7 +45,8 @@ echo Linked directory !source! at !target!
 
 rem link ConEmu.xml
 set target=%USERPROFILE%\AppData\Roaming\ConEmu.xml
-set source=%Udir%ConEmu.xml
+set source=%dir%ConEmu.xml
+del !target!
 mklink !target! !source!
 echo Linked !source! at !target!
 
