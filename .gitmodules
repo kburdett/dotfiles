@@ -1,6 +1,3 @@
-[submodule "vim.symlink/bundle/vim-easymotion"]
-	path = vim.symlink/bundle/vim-easymotion
-	url = https://github.com/Lokaltog/vim-easymotion.git
 [submodule "vim.symlink/bundle/vim-fugitive"]
 	path = vim.symlink/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -13,18 +10,9 @@
 [submodule "vim.symlink/bundle/vim-surround"]
 	path = vim.symlink/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "vim.symlink/bundle/gundo.vim"]
-	path = vim.symlink/bundle/gundo.vim
-	url = https://github.com/sjl/gundo.vim.git
 [submodule "vim.symlink/bundle/vim-commentary"]
 	path = vim.symlink/bundle/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule "vim.symlink/bundle/smarty-syntax"]
-	path = vim.symlink/bundle/smarty-syntax
-	url = https://github.com/vim-scripts/smarty-syntax.git
-[submodule "vim.symlink/bundle/vim-yankstack"]
-	path = vim.symlink/bundle/vim-yankstack
-	url = https://github.com/maxbrunsfeld/vim-yankstack.git
 [submodule "vim.symlink/bundle/zenburn"]
 	path = vim.symlink/bundle/zenburn
 	url = https://github.com/jnurmine/Zenburn.git
@@ -40,9 +28,6 @@
 [submodule "vim.symlink/bundle/vim-nuuid"]
 	path = vim.symlink/bundle/vim-nuuid
 	url = https://github.com/kburdett/vim-nuuid.git
-[submodule "vim.symlink/bundle/syntastic"]
-	path = vim.symlink/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
 [submodule "vim.symlink/bundle/neco-ghc"]
 	path = vim.symlink/bundle/neco-ghc
 	url = https://github.com/eagletmt/neco-ghc.git

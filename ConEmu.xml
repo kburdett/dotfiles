@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2015-04-21 10:47:15" build="150420">
+		<key name=".Vanilla" modified="2015-07-30 13:54:35" build="150705">
 			<value name="StartType" type="hex" data="00"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -90,6 +90,9 @@
 				<line data="{Shells::cmd}"/>
 				<line data="{Shells::cmd (Admin)}"/>
 				<line data="{Bash::Git bash 2}"/>
+				<line data="{Scripts::Chocolatey (Admin)}"/>
+				<line data="{Shells::cmd 64/32}"/>
+				<line data="{Shells::PowerShell}"/>
 				<line data="{MSYS2 (Admin)}"/>
 				<line data="{MSYS2}"/>
 				<line data="{cmd (Admin)}"/>
