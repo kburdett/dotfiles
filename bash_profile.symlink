@@ -9,6 +9,10 @@ case $(uname -s) in
         # move Windows VIM and GIT to the front of the path
         export PATH="/c/Program Files (x86)/Vim/vim74:/c/Program Files (x86)/Git/bin:$PATH"
         ;;
+    MINGW64_NT*)
+        # move Windows VIM to the front of the path
+        export PATH="/c/Program Files (x86)/Vim/vim74:$PATH"
+        ;;
     CYGWIN_NT*)
         # any cygwin adjustments?
         ;;
