@@ -4,7 +4,7 @@ echo "Configuring keychain credential helper..."
 git config --system credential.helper osxkeychain
 
 echo "Configuring autoclrf..."
-git config --system core.autocrlf "true"
+git config --system core.autocrlf input
 
 echo "Configuring Beyond Compare 4"
 git config --system diff.tool bc3
