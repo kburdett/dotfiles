@@ -1,0 +1,93 @@
+# history
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY 
+
+# colors
+export CLICOLOR=1
+# ls colors (GNU)
+export LS_COLORS='no=00;00:fi=00;00:di=00;32:ln=00;36:pi=00;30;43:so=00;30;43:bd=00;34;43:cd=00;34;43:or=01;05;33;41:mi=01;05;33;41:ex=00;31:'
+# ls colors (BSD)
+export LSCOLORS=cxgxadadbxededbxbxcxcx
+# export LSCOLORS="Gxfxcxdxbxegedabagacad"
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='3;33'
+
+# editor
+bindkey -v
+export EDITOR='vim'
+export KEYTIMEOUT=1
+
+# completion
+zstyle :compinstall filename '~/.zshrc'
+autoload -Uz compinit && compinit
+
+# ls aliases
+case $(uname -s) in
+    Darwin|FreeBSD|OpenBSD)
+        # BSD
+        alias ls='ls -Gph'
+        alias ll='ls -Gphl'
+        alias la='ls -Gphal'
+        ;;
+    *)
+        # GNU
+        alias ls='ls -ph --color'
+        alias ll='ls -phl --color'
+        alias la='ls -phal --color'
+        ;;
+esac
+
+# cd aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+alias ........='cd ../../../../../../..'
+alias .........='cd ../../../../../../../..'
+alias ..........='cd ../../../../../../../../..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+alias .6='cd ../../../../../..'
+alias .7='cd ../../../../../../..'
+alias .8='cd ../../../../../../../..'
+alias .9='cd ../../../../../../../../..'
+alias .10='cd ../../../../../../../../../..'
+alias .11='cd ../../../../../../../../../../..'
+
+# profile aliases
+alias src='source ~/.zshrc'
+alias bashp='vim ~/.zshrc'
+
+# misc aliases
+alias path='echo -e ${PATH//:/\\n}'
+alias ping='ping -c 5'
+alias ax='chmod a+x'
+alias hig='history | grep'
+alias mkdir='mkdir -pv'
+
+# prompt
+setopt prompt_subst
+autoload -U colors && colors
+. ~/dotfiles/util/git-prompt.sh
+
+function vi_mode_prompt_info() {
+  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+}
+
+PROMPT='%{$fg[yellow]%}%~%{$fg[cyan]%}$(__git_ps1)%{$reset_color%} $ '
+MODE_INDICATOR="%{$fg_bold[yellow]%}[NORMAL]%{$reset_color%}%b"
+RPROMPT='$(vi_mode_prompt_info)'
+
+function zle-line-init zle-keymap-select {
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
