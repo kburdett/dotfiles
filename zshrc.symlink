@@ -5,6 +5,13 @@ SAVEHIST=1000
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY 
 
+#directory stack
+DIRSTACKSIZE=8
+setopt autopushd
+setopt pushdminus
+setopt pushdsilent
+setopt pushdtohome
+
 # colors
 export CLICOLOR=1
 # ls colors (GNU)
@@ -63,7 +70,7 @@ alias .11='cd ../../../../../../../../../../..'
 
 # profile aliases
 alias src='source ~/.zshrc'
-alias bashp='vim ~/.zshrc'
+alias zshp='vim ~/.zshrc ~/.zshenv'
 
 # misc aliases
 alias path='echo -e ${PATH//:/\\n}'
