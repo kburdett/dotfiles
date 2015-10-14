@@ -1,3 +1,5 @@
+source ~/dotfiles/conf/alias.sh
+
 # history
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -18,7 +20,6 @@ export CLICOLOR=1
 export LS_COLORS='no=00;00:fi=00;00:di=00;32:ln=00;36:pi=00;30;43:so=00;30;43:bd=00;34;43:cd=00;34;43:or=01;05;33;41:mi=01;05;33;41:ex=00;31:'
 # ls colors (BSD)
 export LSCOLORS=cxgxadadbxededbxbxcxcx
-# export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='3;33'
 
@@ -31,53 +32,9 @@ export KEYTIMEOUT=1
 zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit && compinit
 
-# ls aliases
-case $(uname -s) in
-    Darwin|FreeBSD|OpenBSD)
-        # BSD
-        alias ls='ls -Gph'
-        alias ll='ls -Gphl'
-        alias la='ls -Gphal'
-        ;;
-    *)
-        # GNU
-        alias ls='ls -ph --color'
-        alias ll='ls -phl --color'
-        alias la='ls -phal --color'
-        ;;
-esac
-
-# cd aliases
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
-alias .......='cd ../../../../../..'
-alias ........='cd ../../../../../../..'
-alias .........='cd ../../../../../../../..'
-alias ..........='cd ../../../../../../../../..'
-alias .2='cd ../..'
-alias .3='cd ../../..'
-alias .4='cd ../../../..'
-alias .5='cd ../../../../..'
-alias .6='cd ../../../../../..'
-alias .7='cd ../../../../../../..'
-alias .8='cd ../../../../../../../..'
-alias .9='cd ../../../../../../../../..'
-alias .10='cd ../../../../../../../../../..'
-alias .11='cd ../../../../../../../../../../..'
-
 # profile aliases
 alias src='source ~/.zshrc'
 alias zshp='vim ~/.zshrc ~/.zshenv'
-
-# misc aliases
-alias path='echo -e ${PATH//:/\\n}'
-alias ping='ping -c 5'
-alias ax='chmod a+x'
-alias hig='history | grep'
-alias mkdir='mkdir -pv'
 
 # prompt
 setopt prompt_subst
