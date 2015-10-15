@@ -92,19 +92,10 @@ endif
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 nnoremap <Leader>, mqA,<Esc>`q
 nnoremap <Leader>; mqA;<Esc>`q
-inoremap jk <Esc>
-
-" start new undo on insert mode deletes 
-inoremap <C-U> <C-G>u<C-U>
-inoremap <C-W> <C-G>u<C-W>
 
 " map entire file text objects
 vnoremap ae :<C-U>silent! normal! ggVG<CR>
 onoremap ae :<C-U>normal! ggVG<CR>
-
-" cycle command history with completion on c-p/c-n
-cnoremap <C-P> <Up> 
-cnoremap <C-N> <Down>
 
 " kill the command ex mode key
 nnoremap Q <Nop>
