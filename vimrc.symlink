@@ -138,7 +138,7 @@ if &t_Co == 8 && $TERM !~# '^linux'
 endif
 
 if has("gui_running") || &t_Co >= 88
-    colorscheme zenburn
+    colorscheme mustang
 endif
 
 
