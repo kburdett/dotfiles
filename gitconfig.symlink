@@ -16,21 +16,23 @@
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lrc = log -5 --decorate
-    aa = add -A
     cp = cherry-pick
     sq = show --quiet
     co = checkout
     c = commit
     cam = commit --amend
-    psuo = push -u origin
+    puo = push -u origin
     rp = repack -a -d --depth=500 --window=1000 -f
     mnff = merge --no-ff
     s = status -s
     fp = fetch -p
     pff = pull --ff-only --no-rebase
     pr = pull -r
+    dt = difftool
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f
 [diff]
     renameLimit = 5000
+[url "https://"]
+	insteadOf = git://
