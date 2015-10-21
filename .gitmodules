@@ -34,3 +34,6 @@
 [submodule "vim.symlink/bundle/haskellmode-vim"]
 	path = vim.symlink/bundle/haskellmode-vim
 	url = https://github.com/lukerandall/haskellmode-vim.git
+[submodule "vim.symlink/bundle/editorconfig-vim"]
+	path = vim.symlink/bundle/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim.git
