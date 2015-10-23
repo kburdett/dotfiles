@@ -16,3 +16,4 @@ WindowShortcuts=yes
 Transparency=off
 OpaqueWhenFocused=no
 PgUpDnScroll=yes
+CursorBlinks=no
