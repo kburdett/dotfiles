@@ -7,11 +7,11 @@ case $(uname -s) in
         ;;
     MINGW32_NT*)
         # move Windows VIM and GIT to the front of the path
-        export PATH="/c/Program Files (x86)/Vim/vim74:/c/Program Files (x86)/Git/bin:$PATH"
+        export PATH="/c/Program Files (x86)/Git/bin:$PATH"
         ;;
     MINGW64_NT*)
         # move Windows VIM to the front of the path
-        export PATH="/c/Program Files (x86)/Vim/vim74:$PATH"
+        export PATH="/c/Program Files (x86)/Git/bin:$PATH"
         ;;
     CYGWIN_NT*)
         # any cygwin adjustments?
