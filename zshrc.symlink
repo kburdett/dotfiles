@@ -1,4 +1,5 @@
 source ~/dotfiles/conf/alias.sh
+source ~/dotfiles/conf/nvm.sh
 
 # history
 HISTFILE=~/.histfile
