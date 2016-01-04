@@ -37,3 +37,6 @@
 [submodule "vim.symlink/bundle/editorconfig-vim"]
 	path = vim.symlink/bundle/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "antigen"]
+	path = antigen
+	url = https://github.com/zsh-users/antigen.git
