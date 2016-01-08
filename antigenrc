@@ -5,6 +5,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 
 antigen bundle docker
+antigen bundle docker-compose
 antigen bundle redis-cli
 
 antigen apply
