@@ -1,6 +1,8 @@
 source ~/dotfiles/conf/alias.sh
-source ~/dotfiles/conf/nvm.sh
 source ~/dotfiles/antigenrc
+if [[ -n $NVMSH ]]; then
+    source $NVMSH
+fi
 
 # history
 HISTFILE=~/.histfile

@@ -1,6 +1,7 @@
-#!/bin/bash
 source ~/dotfiles/conf/alias.sh
-source ~/dotfiles/conf/nvm.sh
+if [[ -n $NVMSH ]]; then
+    source $NVMSH
+fi
 
 # prompt
 source ~/dotfiles/util/git-prompt.sh
@@ -12,9 +13,9 @@ export LS_COLORS='no=00;00:fi=00;00:di=00;32:ln=00;36:pi=00;30;43:so=00;30;43:bd
 export LSCOLORS=cxgxadadbxededbxbxcxcx
 
 # bash completion
-if [[ $(uname -s) == 'Darwin' && -n $(command -v brew 2>/dev/null) && -f $(brew --prefix)/etc/bash_completion ]]; then
+if [[ -v $brew_prefix && -f $brew_prefix/etc/bash_completion ]]; then
     # configure bash completion from the brew path
-    source $(brew --prefix)/etc/bash_completion
+    source $brew_prefix/etc/bash_completion
 elif [[ -f /etc/bash_completion ]]; then
     # configure bash completion from the standard path
     source /etc/bash_completion

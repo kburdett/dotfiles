@@ -1,7 +1,3 @@
 #!/bin/bash
-source ~/dotfiles/conf/path.sh
+source ~/dotfiles/conf/env.sh
 
-# Set the homebrew token, not checked into dotfiles for obvious reasons :)
-if [ -f ~/.homebrew_api_token ]; then
-    export HOMEBREW_API_TOKEN="$(cat ~/.homebrew_api_token)"
-fi

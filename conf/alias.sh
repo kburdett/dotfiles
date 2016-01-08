@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # ls aliases
-case $(uname -s) in
-    Darwin|FreeBSD|OpenBSD)
-        # BSD
+case $OSTYPE in
+    darwin*|freebsd*|openbsd)
+		# BSD
         alias ls='ls -Gph'
         alias ll='ls -Gphl'
         alias la='ls -Gphal'
         ;;
     *)
-        # GNU
+        # Assume GNU
         alias ls='ls -ph --color'
         alias ll='ls -phl --color'
         alias la='ls -phal --color'
