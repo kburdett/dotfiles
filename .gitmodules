@@ -40,3 +40,9 @@
 [submodule "antigen"]
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
+[submodule "vim.symlink/bundle/vim-yaml"]
+	path = vim.symlink/bundle/vim-yaml
+	url = https://github.com/avakhov/vim-yaml
+[submodule "vim.symlink/bundle/Dockerfile.vim"]
+	path = vim.symlink/bundle/Dockerfile.vim
+	url = https://github.com/ekalinin/Dockerfile.vim.git
