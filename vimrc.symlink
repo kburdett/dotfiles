@@ -22,6 +22,7 @@ set clipboard=unnamed   "yank to system clipboard by default
 set nrformats-=octal
 set fileformats-=mac
 set autoread
+set mouse=a
 
 " display
 set showmatch
