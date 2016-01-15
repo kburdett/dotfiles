@@ -16,6 +16,7 @@ if [[ $OSTYPE == darwin* ]]; then
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     else
         echo "Homebrew already installed"
+    fi
 
     # install brew bundle
     if [[ ! $(brew bundle check) ]]; then
