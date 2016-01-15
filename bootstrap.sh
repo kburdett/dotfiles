@@ -6,3 +6,19 @@ for file in $dir/*.symlink; do
     filename=${file##*/}
     ln -sf $file ~/.${filename%.symlink}
 done
+
+# install homebrew
+if [[ $OSTYPE == darwin* && ! $(command -v brew 2>/dev/null) ]]; then
+    echo "Mac without homebrew?!?! Fixing..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+    echo "Homebrew already installed"
+fi
+
+# install brew bundle
+if [[ ! $(brew bundle check) ]]; then
+    echo "Found missing packages, installing Homebrew bundle"
+    brew bundle
+else
+    echo "Homebrew bundle reports all packages installed"
+fi
