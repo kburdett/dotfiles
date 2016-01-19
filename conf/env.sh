@@ -1,6 +1,6 @@
 # detect homebrew
 if [[ $(command -v brew 2>/dev/null) ]]; then
-    $brew_prefix = $(brew --prefix)
+    brew_prefix=$(brew --prefix)
 fi
 
 # Set the homebrew token, not checked into dotfiles for obvious reasons :)
