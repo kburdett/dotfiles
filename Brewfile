@@ -7,6 +7,7 @@ brew 'git'
 brew 'vim'
 brew 'macvim'
 brew 'cheat'
+brew 'wget'
 
 #runtimes
 brew 'python'
