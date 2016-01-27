@@ -151,3 +151,4 @@ au BufEnter *.hs compiler ghc
 if has("macunix")
     let g:haddock_browser="/Applications/Safari.app/Contents/MacOS/Safari"
 endif
+

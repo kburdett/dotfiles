@@ -1,0 +1,33 @@
+" Gutted VIMRC, for use with IdeaVim
+" https://github.com/JetBrains/ideavim
+
+
+" =========
+"  Options
+" =========
+" editing
+set clipboard=unnamed   "yank to system clipboard by default
+
+" display
+set showmatch
+set number
+set scrolloff=2
+set sidescrolloff=5
+
+" searching
+set ignorecase
+set smartcase
+set hlsearch
+
+" error bells
+set visualbell
+
+
+
+" ==============
+"  Key Bindings
+" ==============
+nnoremap <silent> <Leader>/ :nohlsearch<CR>
+nnoremap <Leader>, mqA,<Esc>`q
+nnoremap <Leader>; mqA;<Esc>`q
+
