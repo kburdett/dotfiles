@@ -45,3 +45,8 @@ alias hig='history | grep'
 alias mkdir='mkdir -pv'
 alias dh='dirs -v'
 alias celar='clear'
+
+# brew aliases
+alias bruo='brew update && brew outdated'
+alias brulc='brew upgrade && brew linkapps && brew cleanup'
+
