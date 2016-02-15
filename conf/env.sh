@@ -23,7 +23,5 @@ case $OSTYPE in
 esac
 
 # Setup NVM
-if [[ -n $brew_prefix && -f $brew_prefix/nvm.sh ]]; then
-    NVMSH=$brew_prefix/nvm.sh
-    export NVM_DIR=~/.nvm
-fi
+export NVM_DIR="~/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
