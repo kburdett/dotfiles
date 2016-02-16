@@ -4,7 +4,7 @@ if [[ $(command -v brew 2>/dev/null) ]]; then
 fi
 
 # Set the homebrew token, not checked into dotfiles for obvious reasons :)
-if [ -f ~/.homebrew_api_token ]; then
+if [[ -s ~/.homebrew_api_token ]]; then
     export HOMEBREW_API_TOKEN="$(cat ~/.homebrew_api_token)"
 fi
 
@@ -23,5 +23,9 @@ case $OSTYPE in
 esac
 
 # Setup NVM
-export NVM_DIR="~/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR=~/.nvm
+if [[ -s $NVM_DIR/nvm.sh ]]; then
+    echo "loading $NVM_DIR/nvm.sh"
+    source "$NVM_DIR/nvm.sh"
+fi
+
