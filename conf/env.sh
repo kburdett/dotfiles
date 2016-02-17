@@ -25,7 +25,6 @@ esac
 # Setup NVM
 export NVM_DIR=~/.nvm
 if [[ -s $NVM_DIR/nvm.sh ]]; then
-    echo "loading $NVM_DIR/nvm.sh"
     source "$NVM_DIR/nvm.sh"
 fi
 
