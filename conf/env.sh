@@ -1,5 +1,5 @@
 # detect homebrew
-if [[ $(command -v brew 2>/dev/null) ]]; then
+if [[ $(hash brew 2>/dev/null) ]]; then
     brew_prefix=$(brew --prefix)
 fi
 
