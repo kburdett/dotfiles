@@ -6,6 +6,11 @@ dm-activate () {
         return 99
     fi
 
+    if [[ -z $1 ]]; then
+        echo Machine name is required
+        return 99
+    fi
+
     if [[ "$(docker-machine active)" == "$1" ]]; then
         echo $1 is already the active host
         return 0
