@@ -1,3 +1,6 @@
+#!/bin/bash
+
+source ~/dotfiles/conf/docker.sh
 source ~/dotfiles/conf/alias.sh
 if [[ -n $NVMSH ]]; then
     source $NVMSH
@@ -24,3 +27,4 @@ fi
 # profile aliases
 alias src='source ~/.bash_profile'
 alias bashp='vim ~/.bash_profile ~/.bashrc'
+
