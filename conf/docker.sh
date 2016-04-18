@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dm-activate () {
-    if [[ ! $(hash docker-machine 2>/dev/null) ]]; then
+    if [[ $(hash docker-machine 2>/dev/null) ]]; then
         echo docker-machine is not installed
         return 99
     fi
