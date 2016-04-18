@@ -1,6 +1,11 @@
 #!/bin/bash
 
-set-dm () {
+dm-activate () {
+    if [[ ! $(hash docker-machine 2>/dev/null) ]]; then
+        echo docker-machine is not installed
+        return 99
+    fi
+
     if [[ "$(docker-machine active)" == "$1" ]]; then
         echo $1 is already the active host
         return 0
