@@ -22,6 +22,8 @@ set hlsearch
 " error bells
 set visualbell
 
+" enable surround commands
+set surround
 
 
 " ==============
