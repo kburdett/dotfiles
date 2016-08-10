@@ -1,7 +1,6 @@
-[include]
-    path = .gitconfig.identity
-    path = .gitconfig.local
-
+[user]
+    name = Kevin Burdett
+    email = kevin@kevinburdett.com 
 [core]
     excludesfile = ~/.gitignore
 [color]
@@ -59,3 +58,7 @@
     smudge = git-media-smudge %f
 [diff]
     renameLimit = 5000
+
+[include]
+    path = .gitconfig.local
+
