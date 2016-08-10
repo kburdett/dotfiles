@@ -1,8 +1,7 @@
 [core]
     excludesfile = ~/.gitignore
-[user]
-    email = kevin@kevinburdett.com
-    name = Kevin Burdett
+[include]
+    path = .identity.gitconfig
 [color]
     diff = auto
     status = auto
@@ -36,3 +35,5 @@
     renameLimit = 5000
 [url "https://"]
 	insteadOf = git://
+[include]
+    path = ~/.local.gitconfig
