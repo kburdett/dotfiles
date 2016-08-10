@@ -18,16 +18,41 @@
     cp = cherry-pick
     sq = show --quiet
     co = checkout
+    cob = checkout -b
     c = commit
     cam = commit --amend
-    puo = push -u origin
     rp = repack -a -d --depth=500 --window=1000 -f
     mnff = merge --no-ff
     s = status -s
+    dt = difftool 
+    po = push origin
+    puo = push -u origin
+    pom = push origin master
+    pod = push origin develop
+    pum = push upstream master
+    pud = push upstream develop
+
     fp = fetch -p
+    fpo = fetch -p origin
+    fpu = fetch -p upstream
+
     pff = pull --ff-only --no-rebase
+    pffom = pull --ff-only --no-rebase origin master
+    pffod = pull --ff-only --no-rebase origin develop
+    pffum = pull --ff-only --no-rebase upstream master
+    pffud = pull --ff-only --no-rebase upstream develop
+
     pr = pull -r
-    dt = difftool
+    prom = pull -r origin master
+    prod = pull -r origin develop
+    prum = pull -r upstream master
+    prud = pull -r upstream develop
+
+    rom = rebase origin/master
+    rod = rebase origin/develop
+    rum = rebase upstream/master
+    rud = rebase upstream/develop
+
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f
