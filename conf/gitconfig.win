@@ -1,0 +1,13 @@
+[credential]
+	helper = /c/devtools/git-credential-winstore.exe
+[core]
+	autocrlf = true
+[diff]
+	tool = bc3
+[difftool "bc3"]
+    path = c:/Program Files (x86)/Beyond Compare 4/bcomp.exe
+[merge]
+	tool = bc3
+[mergetool "bcs"]
+    path = c:/Program Files (x86)/Beyond Compare 4/bcomp.exe
+

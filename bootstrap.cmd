@@ -50,4 +50,11 @@ del !target!
 mklink !target! !source!
 echo Linked !source! at !target!
 
+rem link Windows gitconfig
+set target=%USERPROFILE%\.gitconfig.os
+set source=%dir%\conf\gitconfig.win
+del !target!
+mklink !target! !source!
+echo Linked !source! at !target!
+
 endlocal

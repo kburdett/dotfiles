@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Symlinking dotfiles"
+echo Symlinking dotfiles
 dir=~/dotfiles
 for file in $dir/*.symlink; do
     echo "Creating symlink to $file in home directory."
@@ -8,8 +8,8 @@ for file in $dir/*.symlink; do
     ln -sfn $file ~/.${filename%.symlink}
 done
 
-if [[! -s ~/.nvm/nvm.sh ]]; then
-    echo "Installing NVM"
+if [[ -z ~/.nvm/nvm.sh ]]; then
+    echo Installing NVM
     current=$(pwd)
     git clone https://github.com/creationix/nvm.git ~/.nvm
     cd ~/.nvm
@@ -17,3 +17,7 @@ if [[! -s ~/.nvm/nvm.sh ]]; then
     cd $current
 fi
 
+if [[ $OSTYPE == darwin* ]]; then
+    echo Symlinking OSX gitconfig
+    ln -sfn ~/dotfiles/conf/gitconfig.osx ~/.gitconfig.os
+fi

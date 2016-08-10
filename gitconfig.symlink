@@ -61,4 +61,5 @@
 
 [include]
     path = .gitconfig.local
+    path = .gitconfig.os
 
