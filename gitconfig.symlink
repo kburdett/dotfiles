@@ -1,7 +1,9 @@
+[include]
+    path = .gitconfig.identity
+    path = .gitconfig.local
+
 [core]
     excludesfile = ~/.gitignore
-[include]
-    path = .identity.gitconfig
 [color]
     diff = auto
     status = auto
@@ -51,14 +53,9 @@
     rom = rebase origin/master
     rod = rebase origin/develop
     rum = rebase upstream/master
-    rud = rebase upstream/develop
-
+    rud = rebase upstream/develop 
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f
 [diff]
     renameLimit = 5000
-[url "https://"]
-	insteadOf = git://
-[include]
-    path = ~/.local.gitconfig
