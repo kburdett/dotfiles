@@ -12,10 +12,7 @@
     pretty = medium
 [push]
     default = simple
-[alias]
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lrc = log -5 --decorate
+[alias] 
     cp = cherry-pick
     sq = show --quiet
     co = checkout
@@ -26,12 +23,17 @@
     mnff = merge --no-ff
     s = status -s
     dt = difftool 
+
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lrc = log -5 --decorate
+
     po = push origin
     puo = push -u origin
     pom = push origin master
     pod = push origin develop
     pum = push upstream master
-    pud = push upstream develop
+    pud = push upstream develop 
 
     fp = fetch -p
     fpo = fetch -p origin
