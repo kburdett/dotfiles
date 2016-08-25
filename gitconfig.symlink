@@ -15,14 +15,29 @@
 [alias] 
     cp = cherry-pick
     sq = show --quiet
-    co = checkout
-    cob = checkout -b
-    c = commit
-    cam = commit --amend
     rp = repack -a -d --depth=500 --window=1000 -f
     mnff = merge --no-ff
-    s = status -s
+    ss = status -sb
+
+    aa = add .
+
     dt = difftool 
+    dtc = difftool --cached
+    mt = mergetool 
+
+    co = checkout
+    cob = checkout -b
+
+    cm = commit
+    cmm = commit -m
+    cma = commit --amend
+
+    br = branch
+    brl = branch -vv
+    brr = branch -rvv
+    bra = branch -avv
+    brd = branch -dvv
+    brD = branch -Dvv
 
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
@@ -51,6 +66,7 @@
     prum = pull -r upstream master
     prud = pull -r upstream develop
 
+    ri = rebase -i
     rom = rebase origin/master
     rod = rebase origin/develop
     rum = rebase upstream/master
