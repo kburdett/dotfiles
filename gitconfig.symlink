@@ -3,6 +3,7 @@
     email = kevin@kevinburdett.com 
 [core]
     excludesfile = ~/.gitignore
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
     diff = auto
     status = auto
@@ -83,3 +84,8 @@
     path = .gitconfig.local
     path = .gitconfig.os
 
+[color "diff-highlight"]
+	oldNormal = red bold
+	newHighlight = green bold 22
+	oldHighlight = red bold 52
+	newNormal = green bold
