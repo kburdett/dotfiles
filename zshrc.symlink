@@ -1,8 +1,5 @@
 source ~/dotfiles/conf/docker.sh
 source ~/dotfiles/conf/alias.sh
-if [[ -n $NVMSH ]]; then
-    source $NVMSH
-fi 
 
 # history
 HISTFILE=~/.histfile
