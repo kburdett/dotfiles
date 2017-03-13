@@ -1,5 +1,29 @@
-execute pathogen#infect()
-execute pathogen#helptags()
+" =========
+"  Plugins
+" =========
+call plug#begin('~/.vim/plugged')
+
+Plug 'ekalinin/Dockerfile.vim' 
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'elzr/vim-json'
+Plug 'kburdett/vim-nuuid'
+Plug 'PProvost/vim-ps1'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'stephpy/vim-yaml'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+
+call plug#end()
+
+" Plugin Configuration 
+let g:airline_theme='solarized'
+
+
 
 if has('autocmd')
     filetype plugin indent on
@@ -54,30 +78,16 @@ set noswapfile
 set noerrorbells
 set visualbell
 
-" status line
-set laststatus=2
-set statusline=
-set statusline=%t       "tail of the filename
-set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-set statusline+=%y      "filetype
-set statusline+=%=      "left/right separator
-set statusline+=%{fugitive#statusline()}
-set statusline+=\ %c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
-
 " misc
 set wildmenu
+set ruler
 set history=1000
 set tabpagemax=50
 set nocompatible
 set hidden
 set viminfo^=!
-set ttimeoutlen=200
+set ttimeout
+set ttimeoutlen=100
 
 if !has('win32') && (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8')
     let &listchars="tab:\u21e5 ,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u00b7"
@@ -137,19 +147,7 @@ augroup END
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux'
     set t_Co=16
-endif
-
-if has("gui_running") || &t_Co >= 88
-    colorscheme mustang
-endif
-
-
-
-" ======================
-"  Plugin Configuration
-" ======================
-au BufEnter *.hs compiler ghc
-if has("macunix")
-    let g:haddock_browser="/Applications/Safari.app/Contents/MacOS/Safari"
-endif
+endif 
+set background=dark
+colorscheme solarized
 
