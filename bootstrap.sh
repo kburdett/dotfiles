@@ -3,7 +3,8 @@
 dir=$HOME/dotfiles
 
 echo Importing ENV configuration
-source $dir/conf/env.sh
+# shellcheck source=/dev/null
+source "$dir/conf/env.sh"
 
 echo Symlinking dotfiles
 for file in $dir/*.symlink; do
@@ -13,11 +14,12 @@ for file in $dir/*.symlink; do
 done
 
 # source bashrc here to bring in environment changes
-source $HOME/.bashrc
+# shellcheck source=/dev/null
+source "$HOME/.bashrc"
 
 xdg_config=${XDG_CONFIG_HOME-$HOME/.config}
-echo Symlinking XDG files to $xdg_config
-mkdir -p $xdg_config
+echo Symlinking XDG files to "$xdg_config"
+mkdir -p "$xdg_config"
 for xdg_dir in $dir/xdg/*; do
     target=$xdg_config/${xdg_dir##*/}
     echo "Creating $target => $xdg_dir"
@@ -25,7 +27,7 @@ for xdg_dir in $dir/xdg/*; do
 done
 
 if [[ $OSTYPE == darwin* ]]; then
-    echo Deploying OSX gitconfig extenians 
-    cp -f $dir/xdg/git/config.osx $dir/xdg/git/config.os 
+    echo Deploying OSX gitconfig extenians
+    cp -f "$dir/xdg/git/config.osx" "$dir/xdg/git/config.os"
 fi
 
