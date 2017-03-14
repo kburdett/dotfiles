@@ -132,14 +132,9 @@ nnoremap <silent> <C-L> :wincmd l<CR>
 " =================
 "  Custom Commands
 " =================
-command! Vimrc edit $MYVIMRC
-command! Gvimrc edit $MYGVIMRC
-command! Bashp edit ~/.bash_profile
-command! Bashrc edit ~/.bashrc
 command! PrettyXml % !xmllint % --format
 command! PrettyJson % !jq '.'
 command! MinJson % !jq '.' -c
-command! Pg2u %s:\\015\\012:\r:g
 
 " auto source .vimrc on save
 augroup AutoReloadVimRC
