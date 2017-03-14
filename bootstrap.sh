@@ -2,6 +2,9 @@
 
 dir=$HOME/dotfiles
 
+echo Importing ENV configuration
+source $dir/conf/env.sh
+
 echo Symlinking dotfiles
 for file in $dir/*.symlink; do
     echo "Creating symlink to $file in home directory."

@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /usr/bin/env bash
 
 source $HOME/dotfiles/conf/docker.sh
 source $HOME/dotfiles/conf/alias.sh
@@ -21,7 +21,13 @@ elif [[ -f /etc/bash_completion ]]; then
     source /etc/bash_completion
 fi
 
+# editor setup
+nvim=$(which nivm)
+nvim=$(which vim)
+export EDITOR="${nvim-$vim}"
+export VISUAL="${nvim-$vim}"
+
 # profile aliases
 alias src="source $HOME/.bash_profile"
-alias bashp="vim $HOME/.bash_profile $HOME/.bashrc"
+alias bashp="$EDITOR $HOME/.bash_profile $HOME/.bashrc"
 
