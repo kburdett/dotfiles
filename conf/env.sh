@@ -15,16 +15,14 @@ case $OSTYPE in
         if [[ -n $brew_prefix ]]; then
             export PATH="$brew_prefix/bin:$PATH"
         fi
+        # configure XDG
+        export XDG_CONFIG_HOME="$HOME/Library/Preferences"
+        export XDG_DATA_HOME="$HOME/Library"
+        export XDG_CACHE_HOME="$HOME/Library/Caches" 
         ;;
     msys|cygwin)
         # move Windows VIM and GIT to the front of the path
         export PATH="/c/Program Files (x86)/Git/bin:$PATH"
         ;;
 esac
-
-# Setup NVM
-export NVM_DIR=~/.nvm
-if [[ -s $NVM_DIR/nvm.sh ]]; then
-    source "$NVM_DIR/nvm.sh"
-fi
 

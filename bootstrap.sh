@@ -9,6 +9,9 @@ for file in $dir/*.symlink; do
     ln -sfn "$file" "$HOME/.${filename%.symlink}"
 done
 
+# source bashrc here to bring in environment changes
+source $HOME/.bashrc
+
 xdg_config=${XDG_CONFIG_HOME-$HOME/.config}
 echo Symlinking XDG files to $xdg_config
 mkdir -p $xdg_config
@@ -19,7 +22,7 @@ for xdg_dir in $dir/xdg/*; do
 done
 
 if [[ $OSTYPE == darwin* ]]; then
-    echo Symlinking OSX gitconfig
-    ln -sfn ~/dotfiles/conf/gitconfig.osx ~/.gitconfig.os
+    echo Deploying OSX gitconfig extenians 
+    cp -f $dir/xdg/git/config.osx $dir/xdg/git/config.os 
 fi
 
