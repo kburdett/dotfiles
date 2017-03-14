@@ -14,4 +14,9 @@ brew 'vim'
 brew 'macvim'
 brew 'cheat'
 brew 'wget'
+brew 'jq'
+
+#linters
+brew 'xmllint'
+brew 'shellchecker'
 
