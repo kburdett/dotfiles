@@ -16,10 +16,15 @@ Plug 'tpope/vim-unimpaired'
 Plug 'stephpy/vim-yaml'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'w0rp/ale'
+
+if has("gui_vimr")
+    Plug 'frankier/neovim-colors-solarized-truecolor-only'
+else 
+    Plug 'altercation/vim-colors-solarized'
+endif
 
 call plug#end()
 
@@ -107,8 +112,8 @@ nnoremap <silent> <C-L> :wincmd l<CR>
 " =================
 command! Vimrc edit $MYVIMRC
 command! Gvimrc edit $MYGVIMRC
-command! Bashp edit ~/.bash_profile
-command! Bashrc edit ~/.bashrc
+command! Bashp edit $HOME/.bash_profile
+command! Bashrc edit $HOME/.bashrc
 command! PrettyXml % !xmllint % --format
 command! PrettyJson % !jq '.'
 command! MinJson % !jq '.' -c
@@ -119,6 +124,16 @@ augroup AutoReloadVimRC
     autocmd BufWritePost $MYVIMRC so $MYVIMRC
     autocmd BufWritePost $MYGVIMRC so $MYGVIMRC
 augroup END
+
+
+
+" =============
+"  VimR
+" =============
+if has("gui_vimr")
+    set termguicolors
+    set title 
+endif
 
 
 
