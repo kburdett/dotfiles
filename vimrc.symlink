@@ -19,6 +19,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
+Plug 'evanmiller/nginx-vim-syntax'
 
 call plug#end()
 
