@@ -5,7 +5,7 @@ dir=~/dotfiles
 for file in $dir/*.symlink; do
     echo "Creating symlink to $file in home directory."
     filename=${file##*/}
-    ln -sfn $file ~/.${filename%.symlink}
+    ln -sfn "$file" "$HOME/.${filename%.symlink}"
 done
 
 if [[ $OSTYPE == darwin* ]]; then
