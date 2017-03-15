@@ -1,6 +1,0 @@
-[url "https://"]
-	insteadOf = git://
-
-[user]
-    email = kevin.burdett@pps.io
-    name = Kevin Burdett
