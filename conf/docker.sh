@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /usr/bin/env bash
 
 dm-activate () {
     if [[ $(hash docker-machine 2>/dev/null) ]]; then

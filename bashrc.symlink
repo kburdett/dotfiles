@@ -18,12 +18,11 @@ export LS_COLORS='no=00;00:fi=00;00:di=00;32:ln=00;36:pi=00;30;43:so=00;30;43:bd
 export LSCOLORS=cxgxadadbxededbxbxcxcx
 
 # bash completion
-if [[ -n $brew_prefix && -f "$brew_prefix/etc/bash_completion" ]]; then
-    # configure bash completion from the brew path
+# check brew path first
+if [[ -f "/usr/local/etc/bash_completion" ]]; then
     #shellcheck source=/dev/null
-    source $brew_prefix/etc/bash_completion
+    source /usr/local/etc/bash_completion
 elif [[ -f /etc/bash_completion ]]; then
-    # configure bash completion from the standard path
     #shellcheck source=/dev/null
     source /etc/bash_completion
 fi 
