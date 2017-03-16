@@ -1,5 +1,8 @@
+#! /usr/bin/env zsh
+
 source $HOME/dotfiles/conf/docker.sh
 source $HOME/dotfiles/conf/alias.sh
+source $HOME/dotfiles/conf/env.sh
 
 # history
 HISTFILE=$HOME/.histfile
@@ -26,7 +29,6 @@ export GREP_COLOR='3;33'
 
 # editor
 bindkey -v
-export EDITOR='nvim'
 export KEYTIMEOUT=1
 
 # completion

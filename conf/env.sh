@@ -4,9 +4,16 @@ if [[ $(hash brew 2>/dev/null) ]]; then
 fi
 
 # Set the homebrew token, not checked into dotfiles for obvious reasons :)
-if [[ -s ~/.homebrew_api_token ]]; then
-    export HOMEBREW_API_TOKEN="$(cat $HOME/.homebrew_api_token)"
+if [[ -s "$HOME/.homebrew_api_token" ]]; then 
+    HOMEBREW_API_TOKEN=$(cat "$HOME/.homebrew_api_token")
+    export HOMEBREW_API_TOKEN
 fi
+
+# editor setup
+nvim=$(which nivm)
+nvim=$(which vim)
+export EDITOR="${nvim-$vim}"
+export VISUAL="${nvim-$vim}"
 
 # Path modifications
 case $OSTYPE in

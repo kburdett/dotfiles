@@ -1,9 +1,14 @@
 #! /usr/bin/env bash
 
+#shellcheck source=/dev/null
 source $HOME/dotfiles/conf/docker.sh
+#shellcheck source=/dev/null
 source $HOME/dotfiles/conf/alias.sh
+#shellcheck source=/dev/null
+source $HOME/dotfiles/conf/env.sh
 
 # prompt
+#shellcheck source=/dev/null
 source $HOME/dotfiles/util/git-prompt.sh
 export PS1="\[\e[00;32m\]\u@\h\[\e[m\] \[\e[00;33m\]\w\[\e[00;36m\]\$(__git_ps1)\[\e[m\] \$ "
 
@@ -15,19 +20,15 @@ export LSCOLORS=cxgxadadbxededbxbxcxcx
 # bash completion
 if [[ -n $brew_prefix && -f "$brew_prefix/etc/bash_completion" ]]; then
     # configure bash completion from the brew path
+    #shellcheck source=/dev/null
     source $brew_prefix/etc/bash_completion
 elif [[ -f /etc/bash_completion ]]; then
     # configure bash completion from the standard path
+    #shellcheck source=/dev/null
     source /etc/bash_completion
-fi
-
-# editor setup
-nvim=$(which nivm)
-nvim=$(which vim)
-export EDITOR="${nvim-$vim}"
-export VISUAL="${nvim-$vim}"
+fi 
 
 # profile aliases
-alias src="source $HOME/.bash_profile"
-alias bashp="$EDITOR $HOME/.bash_profile $HOME/.bashrc"
+alias src='source $HOME/.bash_profile'
+alias bashp='$EDITOR $HOME/.bash_profile $HOME/.bashrc'
 
