@@ -19,6 +19,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'w0rp/ale'
+Plug 'jeetsukumaran/vim-buffergator'
 
 if has("gui_vimr")
     Plug 'frankier/neovim-colors-solarized-truecolor-only'
@@ -104,6 +105,9 @@ nnoremap <silent> <C-K> :wincmd k<CR>
 nnoremap <silent> <C-J> :wincmd j<CR>
 nnoremap <silent> <C-H> :wincmd h<CR>
 nnoremap <silent> <C-L> :wincmd l<CR>
+
+"Buffergator
+nnoremap <silent> <C-B> :BuffergatorToggle<CR>
 
 
 
