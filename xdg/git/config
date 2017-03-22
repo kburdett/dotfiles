@@ -78,8 +78,8 @@
     renameLimit = 5000
 
 [include]
-    path = config.local
-    path = config.os
+    path = ./config.local
+    path = ./config.os
 
 [color "diff-highlight"]
 	oldNormal = red bold
