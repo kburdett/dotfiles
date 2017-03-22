@@ -1,5 +1,7 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-source ~/dotfiles/conf/env.sh
-source ~/.bashrc
+#shellcheck source=/dev/null
+source "$HOME/dotfiles/conf/env.sh"
+#shellcheck source=/dev/null
+source "$HOME/.bashrc"
 
