@@ -44,8 +44,8 @@ setopt prompt_subst
 autoload -U colors && colors
 autoload -Uz vcs_info 
 zstyle ':vcs_info:*' enable git 
-zstyle ':vcs_info:*' formats  '%K{3}%F{11}%F{7}  %b %K{11}%F{3}%F{7}'
-zstyle ':vcs_info:*' actionformats '%K{3}%F{11}%F{7}  %b %K{5}%F{3}%F{7} %a %K{11}%F{5}%F{7}'
+zstyle ':vcs_info:*' formats  ' %K{3}%F{11}%F{7}  %b %K{11}%F{3}%F{7}'
+zstyle ':vcs_info:*' actionformats ' %K{3}%F{11}%F{7}  %b %K{5}%F{3}%F{7} %a %K{11}%F{5}%F{7}'
 
 function vi_mode_prompt_info() {
   echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
