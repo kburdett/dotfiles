@@ -20,7 +20,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'evanmiller/nginx-vim-syntax'
 Plug 'w0rp/ale'
 Plug 'jeetsukumaran/vim-buffergator'
-
+Plug 'chrisbra/csv.vim' 
+" temporary fix until VimR is fixed
 if has("gui_vimr")
     Plug 'frankier/neovim-colors-solarized-truecolor-only'
 else 
@@ -31,6 +32,8 @@ call plug#end()
 
 " airline
 let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 " NERD Tree
 map <C-n> :NERDTreeToggle<CR>
@@ -40,9 +43,11 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 " close NERD if it's the last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-
-
+" matchit!  
 runtime! macros/matchit.vim
+
+
+
 
 " =========
 "  Options
