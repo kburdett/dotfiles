@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dir=$HOME/dotfiles
+dir=$(pwd)
 
 echo Importing ENV configuration
 # shellcheck source=/dev/null
