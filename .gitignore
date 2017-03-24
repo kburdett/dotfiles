@@ -1,7 +1,7 @@
 .DS_Store
 .netrwhist
-vim.symlink/plugged
-xdg/nvim/plugged
-xdg/git/config.os
-xdg/git/config.local
+vim/.vim/plugged
+neovim/nvim/plugged
+git/git/config.os
+git/git/config.local
 
