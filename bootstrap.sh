@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 dir=$HOME/dotfiles
 
@@ -6,28 +6,14 @@ echo Importing ENV configuration
 # shellcheck source=/dev/null
 source "$dir/conf/env.sh"
 
-echo Symlinking dotfiles
-for file in $dir/*.symlink; do
-    echo "Creating symlink to $file in home directory."
-    filename=${file##*/}
-    ln -sfn "$file" "$HOME/.${filename%.symlink}"
-done
-
-# source bashrc here to bring in environment changes
-# shellcheck source=/dev/null
-source "$HOME/.bashrc"
-
-xdg_config=${XDG_CONFIG_HOME-$HOME/.config}
-echo Symlinking XDG files to "$xdg_config"
-mkdir -p "$xdg_config"
-for xdg_dir in $dir/xdg/*; do
-    target=$xdg_config/${xdg_dir##*/}
-    echo "Creating $target => $xdg_dir"
-    ln -sfn "$xdg_dir" "$target"
-done
+stow -Rt "$HOME" bash
+stow -Rt "$HOME" zsh
+stow -Rt "$HOME" vim
+stow -Rt "$XDG_CONFIG_HOME" neovim
+stow -Rt "$XDG_CONFIG_HOME" git
 
 if [[ $OSTYPE == darwin* ]]; then
     echo Deploying OSX gitconfig extenians
-    cp -f "$dir/xdg/git/config.osx" "$dir/xdg/git/config.os"
+    cp -f "$dir/git/git/config.osx" "$dir/git/git/config.os"
 fi
 

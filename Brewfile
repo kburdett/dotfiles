@@ -9,6 +9,7 @@ brew 'node'
 brew 'ruby'
 
 #tools
+brew 'stow'
 brew 'git'
 brew 'vim'
 brew 'macvim'
