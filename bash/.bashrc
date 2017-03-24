@@ -1,7 +1,5 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-#shellcheck source=/dev/null
-source $HOME/dotfiles/conf/docker.sh
 #shellcheck source=/dev/null
 source $HOME/dotfiles/conf/alias.sh
 #shellcheck source=/dev/null

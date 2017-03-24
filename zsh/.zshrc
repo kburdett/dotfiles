@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-source $HOME/dotfiles/conf/docker.sh
 source $HOME/dotfiles/conf/alias.sh
 source $HOME/dotfiles/conf/env.sh
 
