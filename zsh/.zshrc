@@ -60,14 +60,13 @@ setopt prompt_subst
 autoload -U colors && colors
 autoload -Uz vcs_info 
 zstyle ':vcs_info:*' enable git 
-zstyle ':vcs_info:*' formats  ' %K{3}%F{11}%F{7}  %b %k%F{3}%f'
-zstyle ':vcs_info:*' actionformats ' %K{3}%F{11}%F{7}  %b %K{1}%F{3}%F{7} %a %k%F{1}%f'
+zstyle ':vcs_info:*' formats  ' %F{green}(%b)'
+zstyle ':vcs_info:*' actionformats ' %F{green}(%b %F{red}%a%F{green})'
 
 precmd () { vcs_info }
 vi_mode_prompt_info() { echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}" } 
-create_prompt() { echo "%K{11}%F{7} %~ ${vcs_info_msg_0_:-"%k%F{11}%f"} " } 
-PROMPT='$(create_prompt)' 
-MODE_INDICATOR='%F{9}%K{9}%F{7}%B NORMAL %b%f%k'
+PROMPT='%F{yellow}%~${vcs_info_msg_0_} %F{yellow}$ %f' 
+MODE_INDICATOR='%F{red}%B --NORMAL--%b%f'
 RPROMPT='$(vi_mode_prompt_info)'
 
 function zle-line-init zle-keymap-select {
