@@ -60,12 +60,12 @@ setopt prompt_subst
 autoload -U colors && colors
 autoload -Uz vcs_info 
 zstyle ':vcs_info:*' enable git 
-zstyle ':vcs_info:*' formats  ' %F{green}(%b)'
-zstyle ':vcs_info:*' actionformats ' %F{green}(%b %F{red}%a%F{green})'
+zstyle ':vcs_info:*' formats  ' %F{cyan}(%b)'
+zstyle ':vcs_info:*' actionformats ' %F{cyan}(%b %F{yellow}%a%F{cyan})'
 
 precmd () { vcs_info }
 vi_mode_prompt_info() { echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}" } 
-PROMPT='%F{yellow}%~${vcs_info_msg_0_} %F{yellow}$ %f' 
+PROMPT='%F{green}%~${vcs_info_msg_0_} %f$ ' 
 MODE_INDICATOR='%F{red}%B --NORMAL--%b%f'
 RPROMPT='$(vi_mode_prompt_info)'
 
