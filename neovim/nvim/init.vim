@@ -120,12 +120,17 @@ nnoremap <silent> <C-B> :BuffergatorToggle<CR>
 "  Custom Commands
 " =================
 command! Vimrc edit $MYVIMRC
-command! Gvimrc edit $MYGVIMRC
-command! Bashp edit $HOME/.bash_profile
-command! Bashrc edit $HOME/.bashrc
 command! PrettyXml % !xmllint % --format
 command! PrettyJson % !jq '.'
 command! MinJson % !jq '.' -c
+
+function! s:PasteAsJson()
+    put
+    set ft=json
+    %!jq '.'
+endfunction 
+command! PJ call s:PasteAsJson()
+
 
 " auto source .vimrc on save
 augroup AutoReloadVimRC
