@@ -6,15 +6,9 @@ echo Importing ENV configuration
 # shellcheck source=/dev/null
 source "$dir/conf/env.sh"
 
-function stow_all {
-    sub=$1
-    destination=$2
-    for stow_dir in $sub/*; do
-        echo "Stowing $stow_dir -> $destination"
-	stow -R -d "$sub" -t "$destination" "$(basename $stow_dir)"
-    done 
-}
+echo Stowing home directory files
+stow -Rt "$HOME" home
 
-stow_all "home" "$HOME"
-stow_all "xdg" "$XDG_CONFIG_HOME"
+echo Stowing XDG config files
+stow -Rt "$XDG_CONFIG_HOME" xdg
 
