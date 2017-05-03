@@ -6,14 +6,15 @@ echo Importing ENV configuration
 # shellcheck source=/dev/null
 source "$dir/conf/env.sh"
 
-stow -Rt "$HOME" bash
-stow -Rt "$HOME" zsh
-stow -Rt "$HOME" vim
-stow -Rt "$XDG_CONFIG_HOME" neovim
-stow -Rt "$XDG_CONFIG_HOME" git
+function stow_all {
+    sub=$1
+    destination=$2
+    for stow_dir in $sub/*; do
+        echo "Stowing $stow_dir -> $destination"
+	stow -R -d "$sub" -t "$destination" "$(basename $stow_dir)"
+    done 
+}
 
-if [[ $OSTYPE == darwin* ]]; then
-    echo Deploying OSX gitconfig extenians
-    cp -f "$dir/git/git/config.osx" "$dir/git/git/config.os"
-fi
+stow_all "home" "$HOME"
+stow_all "xdg" "$XDG_CONFIG_HOME"
 
