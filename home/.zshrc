@@ -19,6 +19,7 @@ setopt pushdtohome
 
 # colors
 export CLICOLOR=1
+export KEYTIMEOUT=1
 # ls colors (GNU)
 export LS_COLORS='no=00;00:fi=00;00:di=00;32:ln=00;36:pi=00;30;43:so=00;30;43:bd=00;34;43:cd=00;34;43:or=01;05;33;41:mi=01;05;33;41:ex=00;31:'
 # ls colors (BSD)
@@ -27,8 +28,15 @@ export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='3;33'
 
 # editor
-bindkey -v
-export KEYTIMEOUT=1
+bindkey -v 
+# moving around in history
+bindkey -a 'gg' beginning-of-buffer-or-history
+bindkey -a 'g~' vi-oper-swap-case
+bindkey -a G end-of-buffer-or-history
+# fix backspace halting in insert mode
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^r' history-incremental-search-backward
 
 # completion
 # zstyle ':compinstall' filename '$HOME/.zshrc'
