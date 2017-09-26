@@ -17,7 +17,7 @@ Plug 'stephpy/vim-yaml'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-Plug 'evanmiller/nginx-vim-syntax'
+Plug 'vim-scripts/nginx.vim'
 Plug 'w0rp/ale'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'chrisbra/csv.vim' 
@@ -54,7 +54,7 @@ runtime! macros/matchit.vim
 " =========
 
 " editing
-set clipboard=unnamed   "yank to system clipboard by default
+set clipboard+=unnamedplus   "yank to system clipboard by default
 set fileformats-=mac
 set mouse=a
 
