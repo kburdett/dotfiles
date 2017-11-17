@@ -21,17 +21,12 @@ Plug 'vim-scripts/nginx.vim'
 Plug 'w0rp/ale'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'chrisbra/csv.vim' 
-" temporary fix until VimR is fixed
-if has("gui_vimr")
-    Plug 'frankier/neovim-colors-solarized-truecolor-only'
-else 
-    Plug 'altercation/vim-colors-solarized'
-endif
+Plug 'nanotech/jellybeans.vim'
 
 call plug#end()
 
 " airline
-let g:airline_theme='solarized'
+let g:airline_theme='jellybeans'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -142,16 +137,6 @@ augroup END
 
 
 " =============
-"  VimR
-" =============
-if has("gui_vimr")
-    set termguicolors
-    set title 
-endif
-
-
-
-" =============
 "  Colorscheme
 " =============
 
@@ -159,6 +144,9 @@ endif
 if &t_Co == 8 && $TERM !~# '^linux'
     set t_Co=16
 endif 
+if (has("termguicolors"))
+    set termguicolors
+endif
 set background=dark
-colorscheme solarized
+colorscheme jellybeans
 

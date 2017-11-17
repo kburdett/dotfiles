@@ -21,13 +21,12 @@ Plug 'evanmiller/nginx-vim-syntax'
 Plug 'w0rp/ale'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'chrisbra/csv.vim' 
-
-Plug 'altercation/vim-colors-solarized'
+Plug 'nanotech/jellybeans.vim'
 
 call plug#end()
 
 " airline
-let g:airline_theme='solarized'
+let g:airline_theme='jellybeans'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -170,6 +169,9 @@ augroup END
 if &t_Co == 8 && $TERM !~# '^linux'
     set t_Co=16
 endif 
+if (has("termguicolors"))
+    set termguicolors
+endif
 set background=dark
-colorscheme solarized
+colorscheme jellybeans
 
