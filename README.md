@@ -6,5 +6,7 @@ To install...
 ```bash
 cd ~
 git clone https://github.com/kburdett/dotfiles.git dotfiles
-~/dotfiles/bootstrap.sh
+cd dotfiles
+brew bundle
+./bootstrap.sh
 ```
