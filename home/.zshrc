@@ -3,6 +3,10 @@
 source $HOME/dotfiles/conf/alias.sh
 source $HOME/dotfiles/conf/env.sh
 
+# load NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 # history
 HISTFILE=$HOME/.histfile
 HISTSIZE=1000
@@ -10,7 +14,7 @@ SAVEHIST=1000
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY 
 
-#directory stack
+# directory stack
 DIRSTACKSIZE=8
 setopt autopushd
 setopt pushdminus
