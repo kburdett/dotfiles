@@ -20,12 +20,13 @@
 
     dt = difftool 
     dtc = difftool --cached
-    mt = mergetool 
+    mt = mergetool
 
     co = checkout
     cob = checkout -b
     cod = checkout develop
     com = checkout master
+    cos = checkout stable
 
     cm = commit
     cmm = commit -m
@@ -43,11 +44,14 @@
     lrc = log -5 --decorate
 
     po = push origin
+    pu = push upstream
     puo = push -u origin
     pom = push origin master
     pod = push origin develop
+    pos = push origin stable
     pum = push upstream master
     pud = push upstream develop 
+    pus = push upstream stable
 
     fp = fetch -p
     fpo = fetch -p origin
@@ -56,20 +60,26 @@
     pff = pull --ff-only --no-rebase
     pffom = pull --ff-only --no-rebase origin master
     pffod = pull --ff-only --no-rebase origin develop
+    pffos = pull --ff-only --no-rebase origin stable
     pffum = pull --ff-only --no-rebase upstream master
     pffud = pull --ff-only --no-rebase upstream develop
+    pffus = pull --ff-only --no-rebase upstream stable
 
     pr = pull -r
     prom = pull -r origin master
     prod = pull -r origin develop
+    pros = pull -r origin stable
     prum = pull -r upstream master
     prud = pull -r upstream develop
+    prus = pull -r upstream stable
 
     ri = rebase -i
     rom = rebase origin/master
     rod = rebase origin/develop
+    ros = rebase origin/stable
     rum = rebase upstream/master
-    rud = rebase upstream/develop 
+    rud = rebase upstream/develop
+    rus = rebase upstream/stable
 [filter "media"]
     clean = git-media-clean %f
     smudge = git-media-smudge %f
@@ -89,4 +99,4 @@
     instructionFormat = short
 [include]
     path = ~/dotfiles/xdg/git/config.local
-    path = ~/dotfiles/xdg/git/config.os 
+    path = ~/dotfiles/xdg/git/config.os
