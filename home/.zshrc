@@ -2,10 +2,7 @@
 
 source $HOME/dotfiles/conf/alias.sh
 source $HOME/dotfiles/conf/env.sh
-
-# load NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$HOME/dotfiles/conf/local.sh" ] && source "$HOME/dotfiles/conf/local.sh"
 
 # history
 HISTFILE=$HOME/.histfile

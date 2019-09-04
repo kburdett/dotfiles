@@ -4,6 +4,8 @@
 source $HOME/dotfiles/conf/alias.sh
 #shellcheck source=/dev/null
 source $HOME/dotfiles/conf/env.sh
+#shellcheck source=/dev/null
+[ -s "$HOME/dotfiles/conf/local.sh" ] && source "$HOME/dotfiles/conf/local.sh"
 
 # prompt
 #shellcheck source=/dev/null
@@ -29,7 +31,3 @@ fi
 alias src='source $HOME/.bash_profile'
 alias bashp='$EDITOR $HOME/.bash_profile $HOME/.bashrc'
 
-# load and configure NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"

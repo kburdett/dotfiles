@@ -4,4 +4,5 @@ home/.vim/plugged
 xdg/nvim/plugged
 xdg/git/config.os
 xdg/git/config.local
+conf/local.sh
 
