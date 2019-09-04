@@ -7,6 +7,8 @@
 " =========
 " editing
 set clipboard=unnamed   "yank to system clipboard by default
+set clipboard+=ideaput
+set ideajoin
 
 " display
 set showmatch
@@ -22,8 +24,12 @@ set hlsearch
 " error bells
 set visualbell
 
-" enable surround commands
+
+" =========
+"  Plugins
+" =========
 set surround
+set commentary
 
 
 " ==============
@@ -32,4 +38,3 @@ set surround
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 nnoremap <Leader>, mqA,<Esc>`q
 nnoremap <Leader>; mqA;<Esc>`q
-
