@@ -7,12 +7,14 @@ case $OSTYPE in
         alias ls='ls -Gph'
         alias ll='ls -Gphl'
         alias la='ls -Gphal'
+        alias listen-ports='lsof -PiTCP -sTCP:LISTEN'
         ;;
     *)
         # Assume GNU
         alias ls='ls -ph --color'
         alias ll='ls -phl --color'
         alias la='ls -phal --color'
+        alias listen-ports='netstat -lnp | grep -i "listen"'
         ;;
 esac
 
