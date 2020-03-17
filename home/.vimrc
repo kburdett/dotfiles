@@ -17,15 +17,17 @@ Plug 'stephpy/vim-yaml'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/nginx.vim'
 Plug 'w0rp/ale'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'chrisbra/csv.vim' 
 Plug 'nanotech/jellybeans.vim'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
 " airline
-let g:airline_theme='jellybeans'
+let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -171,6 +173,4 @@ endif
 if (has("termguicolors"))
     set termguicolors
 endif
-set background=dark
-colorscheme jellybeans
-
+colorscheme onedark

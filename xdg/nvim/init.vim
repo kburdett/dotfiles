@@ -22,11 +22,12 @@ Plug 'w0rp/ale'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'chrisbra/csv.vim' 
 Plug 'nanotech/jellybeans.vim'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
 " airline
-let g:airline_theme='jellybeans'
+let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -40,7 +41,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " matchit!  
 runtime! macros/matchit.vim
-
 
 
 
@@ -147,6 +147,5 @@ endif
 if (has("termguicolors"))
     set termguicolors
 endif
-set background=dark
-colorscheme jellybeans
+colorscheme onedark
 
