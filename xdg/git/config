@@ -95,8 +95,6 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f 
-[rebase]
-    instructionFormat = short
 [include]
     path = ~/dotfiles/xdg/git/config.local
     path = ~/dotfiles/xdg/git/config.os
