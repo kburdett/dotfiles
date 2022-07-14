@@ -3,6 +3,7 @@
 " =========
 call plug#begin('$XDG_CACHE_HOME/nvim/plugged')
 
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'ekalinin/Dockerfile.vim' 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -14,8 +15,6 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'stephpy/vim-yaml'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/nginx.vim'
 Plug 'w0rp/ale'
@@ -24,12 +23,16 @@ Plug 'chrisbra/csv.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'joshdick/onedark.vim'
 
+" Status line icons
+Plug 'kyazdani42/nvim-web-devicons'
+
 call plug#end()
 
-" airline
-let g:airline_theme='onedark'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+lua << END
+require('lualine').setup{
+    extensions = {'nerdtree', 'fugitive'}
+}
+END
 
 " NERD Tree
 map <C-n> :NERDTreeToggle<CR>
