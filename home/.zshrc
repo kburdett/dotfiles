@@ -6,8 +6,8 @@ source $HOME/dotfiles/conf/env.sh
 
 # history
 HISTFILE=$HOME/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=100000
+SAVEHIST=10000
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY 
 
