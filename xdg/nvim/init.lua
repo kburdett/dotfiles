@@ -1,33 +1,42 @@
 -- =========
 --  Plugins
 -- =========
-vim.call('plug#begin', '$XDG_CACHE_HOME/nvim/plugged')
 
-local Plug = vim.fn['plug#']
-Plug('nvim-lualine/lualine.nvim')
-Plug('nvim-tree/nvim-web-devicons')
-Plug('nvim-tree/nvim-tree.lua')
-Plug('romgrk/barbar.nvim')
-Plug('ekalinin/Dockerfile.vim') 
-Plug('tpope/vim-commentary')
-Plug('tpope/vim-fugitive')
-Plug('elzr/vim-json')
-Plug('kburdett/vim-nuuid')
-Plug('PProvost/vim-ps1')
-Plug('tpope/vim-repeat')
-Plug('tpope/vim-speeddating')
-Plug('tpope/vim-surround')
-Plug('tpope/vim-unimpaired')
-Plug('stephpy/vim-yaml')
-Plug('vim-scripts/nginx.vim')
-Plug('w0rp/ale')
-Plug('chrisbra/csv.vim') 
-Plug('joshdick/onedark.vim')
+-- init for lazy
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Status line icons
-Plug('kyazdani42/nvim-web-devicons')
-
-vim.call('plug#end')
+require("lazy").setup({
+    'nvim-lualine/lualine.nvim',
+    'nvim-tree/nvim-web-devicons',
+    'nvim-tree/nvim-tree.lua',
+    'romgrk/barbar.nvim',
+    'ekalinin/Dockerfile.vim',
+    'tpope/vim-commentary',
+    'tpope/vim-fugitive',
+    'elzr/vim-json',
+    'kburdett/vim-nuuid',
+    'PProvost/vim-ps1',
+    'tpope/vim-repeat',
+    'tpope/vim-speeddating',
+    'tpope/vim-surround',
+    'tpope/vim-unimpaired',
+    'stephpy/vim-yaml',
+    'vim-scripts/nginx.vim',
+    'w0rp/ale',
+    'chrisbra/csv.vim',
+    'joshdick/onedark.vim',
+})
 
 require('lualine').setup{
     extensions = {'nvim-tree', 'fugitive'}
