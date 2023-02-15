@@ -3,7 +3,7 @@
   "ale": { "branch": "master", "commit": "c3f9bccb8c04b01d5d0712b8691658af0b0ddb16" },
   "barbar.nvim": { "branch": "master", "commit": "2d53f49c21327da48f0447841027848f49e1fea4" },
   "csv.vim": { "branch": "master", "commit": "fb159987bb430bb61e07928d132e4487e54a82ef" },
-  "lazy.nvim": { "branch": "main", "commit": "c249ea376bcd3e5d121b79eac595837b7d0c73a4" },
+  "lazy.nvim": { "branch": "main", "commit": "e916f41df26e33b01f1b3ebe28881090da3a7281" },
   "lualine.nvim": { "branch": "master", "commit": "e99d733e0213ceb8f548ae6551b04ae32e590c80" },
   "nginx.vim": { "branch": "master", "commit": "152bbb2dc00c2df37049ccf75f68f294208c72cb" },
   "nvim-tree.lua": { "branch": "master", "commit": "08a0aa1a3b7411ee0a7887c8818528b1558cef96" },
