@@ -20,7 +20,7 @@ require("lazy").setup({
     'nvim-lualine/lualine.nvim',
     'nvim-tree/nvim-web-devicons',
     'nvim-tree/nvim-tree.lua',
-    'romgrk/barbar.nvim',
+    'kdheepak/tabline.nvim',
     'ekalinin/Dockerfile.vim',
     'tpope/vim-commentary',
     'tpope/vim-fugitive',
@@ -38,12 +38,11 @@ require("lazy").setup({
     'joshdick/onedark.vim',
 })
 
-require('lualine').setup{
+require('lualine').setup({
     extensions = {'nvim-tree', 'fugitive'}
-}
-
--- empty setup using defaults
-require("nvim-tree").setup()
+})
+require('tabline').setup()
+require('nvim-tree').setup()
 
 -- matchit!  
 vim.cmd.runtime('macros/matchit.vim');
@@ -114,24 +113,6 @@ vim.keymap.set('n', '<C-K>', ':wincmd k<CR>', opts)
 vim.keymap.set('n', '<C-J>', ':wincmd j<CR>', opts)
 vim.keymap.set('n', '<C-H>', ':wincmd h<CR>', opts)
 vim.keymap.set('n', '<C-L>', ':wincmd l<CR>', opts)
-
--- barbar commands
--- Goto buffer in position...
-vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
-vim.keymap.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
-vim.keymap.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
-vim.keymap.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
-vim.keymap.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
-vim.keymap.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
-vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
-vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
-vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
-vim.keymap.set('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
--- Pin/unpin buffer
-vim.keymap.set('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
--- Close buffer
-vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
-
 
 
 -- =================
