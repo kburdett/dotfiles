@@ -22,18 +22,15 @@ require("lazy").setup({
     'nvim-tree/nvim-tree.lua',
     'kdheepak/tabline.nvim',
     'ekalinin/Dockerfile.vim',
-    'tpope/vim-commentary',
-    'tpope/vim-fugitive',
+    'terrortylor/nvim-comment',
+    'lewis6991/gitsigns.nvim',
     'elzr/vim-json',
     'kburdett/vim-nuuid',
     'PProvost/vim-ps1',
-    'tpope/vim-repeat',
-    'tpope/vim-speeddating',
-    'tpope/vim-surround',
-    'tpope/vim-unimpaired',
+    'kylechui/nvim-surround',
     'stephpy/vim-yaml',
     'vim-scripts/nginx.vim',
-    'w0rp/ale',
+    'dense-analysis/ale',
     'chrisbra/csv.vim',
     'joshdick/onedark.vim',
 })
@@ -43,6 +40,9 @@ require('lualine').setup({
 })
 require('tabline').setup()
 require('nvim-tree').setup()
+require('nvim_comment').setup()
+require('nvim-surround').setup()
+require('gitsigns').setup()
 
 -- matchit!  
 vim.cmd.runtime('macros/matchit.vim');
