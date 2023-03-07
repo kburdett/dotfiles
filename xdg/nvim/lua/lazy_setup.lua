@@ -34,6 +34,10 @@ return {
     {'williamboman/mason-lspconfig.nvim', config = get_setup('mason-lspconfig')},
     {'neovim/nvim-lspconfig', config = get_setup('lspconfig')},
 
+    -- snippets
+    'L3MON4D3/LuaSnip',
+    'rafamadriz/friendly-snippets',
+
     -- completion
     {
         'hrsh7th/nvim-cmp',
@@ -43,6 +47,8 @@ return {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip'
         },
     },
 
