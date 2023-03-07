@@ -18,3 +18,8 @@ vim.keymap.set('n', '<C-J>', ':wincmd j<CR>', opts)
 vim.keymap.set('n', '<C-H>', ':wincmd h<CR>', opts)
 vim.keymap.set('n', '<C-L>', ':wincmd l<CR>', opts)
 
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
