@@ -22,7 +22,6 @@ return {
     'chrisbra/csv.vim',
     'stephpy/vim-yaml',
     'PProvost/vim-ps1',
-    'elzr/vim-json',
     'ekalinin/Dockerfile.vim',
     'vim-scripts/nginx.vim',
 
