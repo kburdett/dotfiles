@@ -1,3 +1,1 @@
-
- require('tabline').setup()
-
+require('tabline').setup()

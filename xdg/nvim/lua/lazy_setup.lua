@@ -1,45 +1,50 @@
-
-function get_setup(name)
-  return function()
-    require("setup." .. name)
-  end
+local get_setup = function(name)
+    return function()
+        require("setup/" .. name)
+    end
 end
 
 return {
+    -- colorschemes
+    {
+        'joshdick/onedark.vim',
+        lazy = false,
+        priority = 1000,
+        config = get_setup('onedark'),
+    },
 
     -- core
-    {'nvim-lualine/lualine.nvim', config = get_setup('lualine')},
-    'nvim-tree/nvim-web-devicons',
-    {'nvim-tree/nvim-tree.lua', config = get_setup('tree')},
-    {'kdheepak/tabline.nvim', config = get_setup('tabline')},
-    {'terrortylor/nvim-comment', config = get_setup('comment')},
-    {'lewis6991/gitsigns.nvim', config = get_setup('gitsigns')},
     'kburdett/vim-nuuid',
-    {'kylechui/nvim-surround', config = get_setup('surround')},
-    {'mhartington/formatter.nvim', config = get_setup('formatter')},
+    { 'kdheepak/tabline.nvim',             config = get_setup('tabline') },
+    { 'terrortylor/nvim-comment',          config = get_setup('comment') },
+    { 'lewis6991/gitsigns.nvim',           config = get_setup('gitsigns') },
+    { 'kylechui/nvim-surround',            config = get_setup('surround') },
+    { 'mhartington/formatter.nvim',        config = get_setup('formatter') },
+
+    -- ui
+    { 'nvim-lualine/lualine.nvim',         config = get_setup('lualine') },
+    { 'nvim-tree/nvim-web-devicons' },
+    { 'nvim-tree/nvim-tree.lua',           config = get_setup('tree') },
 
     -- filetypes
-    'chrisbra/csv.vim',
-    'stephpy/vim-yaml',
-    'PProvost/vim-ps1',
-    'ekalinin/Dockerfile.vim',
-    'vim-scripts/nginx.vim',
-
-    -- colorschemes
-    'joshdick/onedark.vim',
+    { 'chrisbra/csv.vim',                  ft = 'csv' },
+    { 'stephpy/vim-yaml',                  ft = { 'yaml', 'yml' } },
+    { 'PProvost/vim-ps1',                  ft = 'ps1' },
+    { 'ekalinin/Dockerfile.vim',           ft = 'Dockerfile' },
 
     -- lsp
-    {'williamboman/mason.nvim', config = get_setup('mason')},
-    {'williamboman/mason-lspconfig.nvim', config = get_setup('mason-lspconfig')},
-    {'neovim/nvim-lspconfig', config = get_setup('lspconfig')},
+    { 'williamboman/mason.nvim',           config = get_setup('mason') },
+    { 'williamboman/mason-lspconfig.nvim', config = get_setup('mason-lspconfig') },
+    { 'neovim/nvim-lspconfig',             config = get_setup('lspconfig') },
 
     -- snippets
-    'L3MON4D3/LuaSnip',
-    'rafamadriz/friendly-snippets',
+    { 'L3MON4D3/LuaSnip' },
+    { 'rafamadriz/friendly-snippets' },
 
     -- completion
     {
         'hrsh7th/nvim-cmp',
+        event = 'InsertEnter',
         config = get_setup('cmp'),
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
@@ -52,4 +57,3 @@ return {
     },
 
 }
-

@@ -1,4 +1,3 @@
 require('lualine').setup({
-     extensions = {'nvim-tree'}
+    extensions = { 'nvim-tree' }
 })
-

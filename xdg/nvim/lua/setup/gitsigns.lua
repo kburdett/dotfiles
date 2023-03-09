@@ -1,3 +1,1 @@
-
 require('gitsigns').setup()
-

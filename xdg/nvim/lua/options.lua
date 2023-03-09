@@ -33,4 +33,3 @@ vim.opt.ruler = true
 vim.opt.hidden = true
 vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 100
-
