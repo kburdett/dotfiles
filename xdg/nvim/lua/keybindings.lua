@@ -5,6 +5,10 @@ vim.keymap.set('n', '<Leader>/', ':nohlsearch<CR>', opts)
 vim.keymap.set('n', '<Leader>,', 'mqA,<Esc>`q', opts)
 vim.keymap.set('n', '<Leader>;', 'mqA;<Esc>`q', opts)
 
+-- Add empty lines before and after cursor line
+vim.keymap.set('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", opts)
+vim.keymap.set('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", opts)
+
 -- map entire file text objects
 vim.keymap.set('v', 'ae', ':<C-U>silent! normal! ggVG<CR>', opts)
 vim.keymap.set('o', 'ae', ':<C-U>normal! ggVG<CR>', opts)
