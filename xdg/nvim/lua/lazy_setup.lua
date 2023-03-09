@@ -1,6 +1,6 @@
 local get_setup = function(name)
     return function()
-        require("setup/" .. name)
+        require('setup/' .. name)
     end
 end
 
