@@ -29,5 +29,5 @@ require('lazy').setup({
 })
 
 require('options')
-require('keybindings')
+require('mappings')
 require('commands')
