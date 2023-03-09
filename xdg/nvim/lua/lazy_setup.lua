@@ -46,7 +46,6 @@ return {
     -- completion
     {
         'hrsh7th/nvim-cmp',
-        event = 'InsertEnter',
         cond = isNative,
         config = get_setup('cmp'),
         dependencies = {
