@@ -1,3 +1,5 @@
+vim.cmd('filetype plugin indent on')
+
 -- editing
 vim.opt.clipboard:append('unnamedplus') -- yank to system clipboard by default
 vim.opt.fileformats:remove('mac')
