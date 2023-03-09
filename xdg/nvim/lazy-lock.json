@@ -20,6 +20,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "4af94fec29f508159ceab5413383e5dedd6c24e3" },
   "onedark.nvim": { "branch": "master", "commit": "4497678c6b1847b663c4b23000d55f28a2f846ce" },
   "tabline.nvim": { "branch": "main", "commit": "5d76dc8616b4b7b892229cc05cd0f4cd0200077a" },
+  "toggleterm.nvim": { "branch": "main", "commit": "31d38d11390bcd35a568fcc65a79b7d6ec89de62" },
   "vim-nuuid": { "branch": "master", "commit": "6abc11a7943e5777c27b6271f3b6243f426d68fd" },
   "vim-ps1": { "branch": "master", "commit": "502590f90a21f0de2b7664d6d0dcc90e5bb28a9c" },
   "vim-yaml": { "branch": "master", "commit": "dce19542d5ec1663183b0f6844ec663b5d1f3d24" }

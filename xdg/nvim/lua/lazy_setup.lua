@@ -26,6 +26,7 @@ return {
     { 'nvim-lualine/lualine.nvim',         cond = isNative, config = get_setup('lualine') },
     { 'kdheepak/tabline.nvim',             cond = isNative, config = get_setup('tabline') },
     { 'nvim-tree/nvim-tree.lua',           cond = isNative, config = get_setup('tree') },
+    { 'akinsho/toggleterm.nvim',           cond = isNative, config = get_setup('toggleterm') },
 
     -- filetypes
     { 'chrisbra/csv.vim',                  ft = 'csv' },
