@@ -7,7 +7,7 @@ end
 return {
     -- colorschemes
     {
-        'joshdick/onedark.vim',
+        'navarasu/onedark.nvim',
         lazy = false,
         priority = 1000,
         config = get_setup('onedark'),
@@ -15,14 +15,12 @@ return {
 
     -- core
     'kburdett/vim-nuuid',
-    { 'kdheepak/tabline.nvim',             config = get_setup('tabline') },
-    { 'terrortylor/nvim-comment',          config = get_setup('comment') },
+    { 'echasnovski/mini.nvim',             config = get_setup('mini') },
     { 'lewis6991/gitsigns.nvim',           config = get_setup('gitsigns') },
-    { 'kylechui/nvim-surround',            config = get_setup('surround') },
-    { 'mhartington/formatter.nvim',        config = get_setup('formatter') },
 
     -- ui
     { 'nvim-lualine/lualine.nvim',         config = get_setup('lualine') },
+    { 'kdheepak/tabline.nvim',             config = get_setup('tabline') },
     { 'nvim-tree/nvim-web-devicons' },
     { 'nvim-tree/nvim-tree.lua',           config = get_setup('tree') },
 
