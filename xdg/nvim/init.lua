@@ -1,3 +1,6 @@
+-- set this first to avoid mapping issues
+vim.g.mapleader = ' '
+
 -- init for lazy
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
