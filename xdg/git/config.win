@@ -1,5 +1,3 @@
-[credential]
-	helper = /c/devtools/git-credential-winstore.exe
 [core]
 	autocrlf = true
 [diff]
