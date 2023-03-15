@@ -9,7 +9,7 @@
     pretty = medium
 [push]
     default = simple
-[alias] 
+[alias]
     cp = cherry-pick
     sq = show --quiet
     rp = repack -a -d --depth=500 --window=1000 -f
@@ -18,7 +18,7 @@
 
     aa = add .
 
-    dt = difftool 
+    dt = difftool
     dtc = difftool --cached
     mt = mergetool
 
@@ -84,7 +84,7 @@
     clean = git-media-clean %f
     smudge = git-media-smudge %f
 [diff]
-    renameLimit = 5000 
+    renameLimit = 5000
 [color "diff-highlight"]
 	oldNormal = red bold
 	newHighlight = green bold 22
@@ -94,7 +94,7 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f 
+	smudge = git-lfs smudge -- %f
 [include]
     path = ~/dotfiles/xdg/git/config.local
     path = ~/dotfiles/xdg/git/config.os
