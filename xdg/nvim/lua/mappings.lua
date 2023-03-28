@@ -5,11 +5,11 @@ vim.keymap.set('n', '<Leader>/', ':nohlsearch<CR>', opts)
 vim.keymap.set('n', '<Leader>,', 'mqA,<Esc>`q', opts)
 vim.keymap.set('n', '<Leader>;', 'mqA;<Esc>`q', opts)
 
--- Add empty lines before and after cursor line
-vim.keymap.set('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", opts)
-vim.keymap.set('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", opts)
+-- add empty lines before and after cursor line
+vim.keymap.set('n', '<Leader>O', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", opts)
+vim.keymap.set('n', '<Leader>o', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", opts)
 
--- map entire file text objects
+--- map entire file text objects
 vim.keymap.set('v', 'ae', ':<C-U>silent! normal! ggVG<CR>', opts)
 vim.keymap.set('o', 'ae', ':<C-U>normal! ggVG<CR>', opts)
 
@@ -22,7 +22,7 @@ vim.keymap.set('n', '<C-J>', ':wincmd j<CR>', opts)
 vim.keymap.set('n', '<C-H>', ':wincmd h<CR>', opts)
 vim.keymap.set('n', '<C-L>', ':wincmd l<CR>', opts)
 
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
+-- see `:help vim.diagnostic.*` for more details
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -35,3 +35,6 @@ vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], topts)
 vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], topts)
 vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], topts)
 vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], topts)
+
+-- reformat code
+vim.keymap.set('n', '<Leader>r', 'ggVGgq', opts);
