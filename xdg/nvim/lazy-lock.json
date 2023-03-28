@@ -23,5 +23,7 @@
   "toggleterm.nvim": { "branch": "main", "commit": "ed6c92d6708e5208360347f2281de99602061dc8" },
   "trouble.nvim": { "branch": "main", "commit": "2ae7237c2917d661f458443c9a88680f8ca2d7b2" },
   "vim-ps1": { "branch": "master", "commit": "502590f90a21f0de2b7664d6d0dcc90e5bb28a9c" },
+  "vim-textobj-entire": { "branch": "master", "commit": "64a856c9dff3425ed8a863b9ec0a21dbaee6fb3a" },
+  "vim-textobj-user": { "branch": "master", "commit": "41a675ddbeefd6a93664a4dc52f302fe3086a933" },
   "vim-yaml": { "branch": "master", "commit": "dce19542d5ec1663183b0f6844ec663b5d1f3d24" }
 }

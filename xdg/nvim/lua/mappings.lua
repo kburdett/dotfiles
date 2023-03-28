@@ -9,10 +9,6 @@ vim.keymap.set('n', '<Leader>;', 'mqA;<Esc>`q', opts)
 vim.keymap.set('n', '<Leader>O', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", opts)
 vim.keymap.set('n', '<Leader>o', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", opts)
 
---- map entire file text objects
-vim.keymap.set('v', 'ae', ':<C-U>silent! normal! ggVG<CR>', opts)
-vim.keymap.set('o', 'ae', ':<C-U>normal! ggVG<CR>', opts)
-
 -- kill the command ex mode key
 vim.keymap.set('n', 'Q', '<Nop>', opts);
 

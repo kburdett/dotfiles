@@ -17,6 +17,7 @@ return {
     },
 
     -- core
+    { 'kana/vim-textobj-entire',           dependencies = { 'kana/vim-textobj-user' } },
     { 'echasnovski/mini.nvim',             config = get_setup('mini') },
     { 'lewis6991/gitsigns.nvim',           cond = isNative,           config = get_setup('gitsigns') },
 
