@@ -29,10 +29,10 @@ return {
     { 'folke/trouble.nvim',                cond = isNative,           config = get_setup('trouble') },
 
     -- filetypes
-    { 'chrisbra/csv.vim',                  ft = 'csv' },
-    { 'stephpy/vim-yaml',                  ft = { 'yaml', 'yml' } },
-    { 'PProvost/vim-ps1',                  ft = 'ps1' },
-    { 'ekalinin/Dockerfile.vim',           ft = 'Dockerfile' },
+    { 'chrisbra/csv.vim',                  cond = isNative,           ft = 'csv' },
+    { 'stephpy/vim-yaml',                  cond = isNative,           ft = { 'yaml', 'yml' } },
+    { 'PProvost/vim-ps1',                  cond = isNative,           ft = 'ps1' },
+    { 'ekalinin/Dockerfile.vim',           cond = isNative,           ft = 'Dockerfile' },
 
     -- lsp
     { 'williamboman/mason.nvim',           cond = isNative,           config = get_setup('mason') },
