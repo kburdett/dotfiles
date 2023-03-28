@@ -33,3 +33,13 @@ Link-All -TargetPath $XdgDotfilesDir -LinkPath $Env:XDG_CONFIG_HOME
 Write-Host "Deploying dotfiles to ""$Env:USERPROFILE"""
 $HomeDotfilesDir = Join-Path -Path $DotfilesDir -ChildPath "home"
 Link-All -TargetPath $HomeDotfilesDir -LinkPath $Env:USERPROFILE
+
+
+# Use SetEnvironmentVariable to persist these for all applications
+Write-Host "Persisting XDG directories to User profile"
+
+# XDG directories setup
+[Environment]::SetEnvironmentVariable('XDG_CONFIG_HOME', $Env:XDG_CONFIG_HOME, 'User')
+[Environment]::SetEnvironmentVariable('XDG_DATA_HOME', $Env:XDG_DATA_HOME, 'User')
+[Environment]::SetEnvironmentVariable('XDG_STATE_HOME', $Env:XDG_STATE_HOME, 'User')
+[Environment]::SetEnvironmentVariable('XDG_CACHE_HOME', $Env:XDG_CACHE_HOME, 'User')

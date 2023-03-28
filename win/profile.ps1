@@ -5,6 +5,7 @@ $Env:VISUAL = "nvim"
 # XDG directories setup
 $Env:XDG_CONFIG_HOME = "$Env:APPDATA"
 $Env:XDG_DATA_HOME = "$Env:LOCALAPPDATA"
+$Env:XDG_STATE_HOME= "$Env:LOCALAPPDATA"
 $Env:XDG_CACHE_HOME = "$Env:TEMP"
 
 # Readline configuration
@@ -58,5 +59,3 @@ Set-Alias -Name '.10' Go-UpDir
 Function Go-Up11Dirs { Set-Location -Path ..\..\.. }
 Set-Alias -Name '............' Go-Up11Dirs
 Set-Alias -Name '.11' Go-UpDir
-
-
