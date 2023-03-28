@@ -1,6 +1,7 @@
 " Gutted VIMRC, for use with IdeaVim
 " https://github.com/JetBrains/ideavim
 
+let mapleader = " "
 
 " =========
 "  Options
@@ -38,3 +39,5 @@ set commentary
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 nnoremap <Leader>, mqA,<Esc>`q
 nnoremap <Leader>; mqA;<Esc>`q
+map <Leader>r <Action>(ReformatCode)
+
