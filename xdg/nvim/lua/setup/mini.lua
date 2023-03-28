@@ -2,13 +2,13 @@ require('mini.comment').setup() -- adds gc/gcc
 require('mini.surround').setup({
     mappings = {
         -- default bindings overload `s`, which I find annoying -_-
-        add = 'msa',            -- Add surrounding in Normal and Visual modes
+        add = '<leader>sa',            -- Add surrounding in Normal and Visual modes
         delete = 'ds',          -- Delete surrounding
-        find = 'msf',           -- Find surrounding (to the right)
-        find_left = 'msF',      -- Find surrounding (to the left)
-        highlight = 'msh',      -- Highlight surrounding
+        find = '<leader>sf',           -- Find surrounding (to the right)
+        find_left = '<leader>sF',      -- Find surrounding (to the left)
+        highlight = '<leader>sh',      -- Highlight surrounding
         replace = 'cs',         -- Replace surrounding
-        update_n_lines = 'msn', -- Update `n_lines`
+        update_n_lines = '<leader>sn', -- Update `n_lines`
     }
 })
 require('mini.pairs').setup()       -- automatically adds closing pairs (), [], {}, '', "", etc
