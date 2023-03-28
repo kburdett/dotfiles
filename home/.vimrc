@@ -1,27 +1,42 @@
+" ========
+"  Leader
+" ========
+let mapleader = ' '
+
+
 " =========
 "  Plugins
 " =========
 call plug#begin('~/.vim/plugged')
 
-Plug 'ekalinin/Dockerfile.vim' 
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'elzr/vim-json'
-Plug 'kburdett/vim-nuuid'
-Plug 'PProvost/vim-ps1'
+" core
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'stephpy/vim-yaml'
+Plug 'tpope/vim-fugitive'
+
+" UI
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/nginx.vim'
-Plug 'w0rp/ale'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'chrisbra/csv.vim' 
-Plug 'nanotech/jellybeans.vim'
+
+" LSP-ish
+Plug 'w0rp/ale'
+
+" Filetypes
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'elzr/vim-json'
+Plug 'PProvost/vim-ps1'
+Plug 'stephpy/vim-yaml'
+Plug 'vim-scripts/nginx.vim'
+Plug 'chrisbra/csv.vim'
+
+" Colorscheme
 Plug 'joshdick/onedark.vim'
 
 call plug#end()
@@ -116,12 +131,15 @@ endif
 "  Key Bindings
 " ==============
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
+
+
+" quick line endings
 nnoremap <Leader>, mqA,<Esc>`q
 nnoremap <Leader>; mqA;<Esc>`q
 
-" map entire file text objects
-vnoremap ae :<C-U>silent! normal! ggVG<CR>
-onoremap ae :<C-U>normal! ggVG<CR>
+" add empty lines before and after cursor line
+nnoremap <Leader>O <Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>
+nnoremap <Leader>o <Cmd>call append(line('.')    , repeat([''], v:count1))<CR>
 
 " kill the command ex mode key
 nnoremap Q <Nop>
@@ -132,8 +150,11 @@ nnoremap <silent> <C-J> :wincmd j<CR>
 nnoremap <silent> <C-H> :wincmd h<CR>
 nnoremap <silent> <C-L> :wincmd l<CR>
 
-"Buffergator
+" Buffergator
 nnoremap <silent> <C-B> :BuffergatorToggle<CR>
+
+" reformat code
+nnoremap <silent> <Leader>r ggVGgq
 
 
 
@@ -144,13 +165,13 @@ command! Vimrc edit $MYVIMRC
 command! Gvimrc edit $MYGVIMRC
 command! PrettyXml % !xmllint % --format
 command! PrettyJson % !jq '.'
-command! MinJson % !jq '.' -c 
+command! MinJson % !jq '.' -c
 
 function! s:PasteAsJson()
     put
     set ft=json
     %!jq '.'
-endfunction 
+endfunction
 command! PJ call s:PasteAsJson()
 
 " auto source .vimrc on save
@@ -169,7 +190,7 @@ augroup END
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux'
     set t_Co=16
-endif 
+endif
 if (has("termguicolors"))
     set termguicolors
 endif
