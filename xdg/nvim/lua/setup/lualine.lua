@@ -1,4 +1,4 @@
 require('lualine').setup({
-    extensions = { 'nvim-tree' },
+    extensions = { 'nvim-tree', 'trouble', 'lazy', 'toggleterm' },
     theme = 'onedark',
 })
