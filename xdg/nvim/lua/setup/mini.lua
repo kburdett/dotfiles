@@ -1,3 +1,5 @@
+local isNative = not vim.g.vscode
+
 require('mini.comment').setup() -- adds gc/gcc
 require('mini.surround').setup({
     mappings = {
@@ -12,8 +14,11 @@ require('mini.surround').setup({
     }
 })
 require('mini.pairs').setup()       -- automatically adds closing pairs (), [], {}, '', "", etc
-require('mini.trailspace').setup()  -- highlights trailing spaces
 require('mini.bracketed').setup()   -- adds forward/backword navigation bindings on []
 require('mini.splitjoin').setup()   -- adds gS for toggling joined/split line args
-require('mini.indentscope').setup() -- adds indent scope, including visualization
 require('mini.move').setup()        -- adds <M-h/l/j/k> binds to move lines around
+
+if (isNative) then
+    require('mini.indentscope').setup() -- adds indent scope, including visualization
+    require('mini.trailspace').setup()  -- highlights trailing spaces
+end
