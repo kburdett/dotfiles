@@ -34,6 +34,12 @@ Write-Host "Deploying dotfiles to ""$Env:USERPROFILE"""
 $HomeDotfilesDir = Join-Path -Path $DotfilesDir -ChildPath "home"
 Link-All -TargetPath $HomeDotfilesDir -LinkPath $Env:USERPROFILE
 
+# Symlink OS specific Git settings
+$DotfilesGitDir = Join-Path -Path $DotfilesDir -ChildPath "xdg" -AdditionalChildPath "git"
+$GitWinConfig = Join-Path -Path $DotfilesGitDir -ChildPath "config.win"
+$GitOSConfig = Join-Path -Path $DotfilesGitDir -ChildPath "config.os"
+Write-Host "Symlinking OS specific Git config ""$GitOSConfig"" --> ""$GitWinConfig"""
+New-Item -ItemType SymbolicLink -Path $GitOSConfig -Target $GitWinConfig -Force
 
 # Use SetEnvironmentVariable to persist these for all applications
 Write-Host "Persisting XDG directories to User profile"
