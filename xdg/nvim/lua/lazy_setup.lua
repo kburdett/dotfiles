@@ -41,7 +41,6 @@ return {
     { 'neovim/nvim-lspconfig',             cond = isNative,           config = get_setup('lspconfig') },
 
     -- snippets
-    { 'L3MON4D3/LuaSnip',                  cond = isNative },
     { 'rafamadriz/friendly-snippets',      cond = isNative },
 
     -- completion
