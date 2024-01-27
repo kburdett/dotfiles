@@ -50,7 +50,7 @@
     pod = push origin develop
     pos = push origin stable
     pum = push upstream master
-    pud = push upstream develop 
+    pud = push upstream develop
     pus = push upstream stable
 
     fp = fetch -p
