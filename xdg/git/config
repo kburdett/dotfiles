@@ -98,3 +98,4 @@
 [include]
     path = ~/dotfiles/xdg/git/config.local
     path = ~/dotfiles/xdg/git/config.os
+
