@@ -1,11 +1,19 @@
 [core]
 	autocrlf = true
-[diff]
-	tool = bc3
-[difftool "bc3"]
-    path = c:/Program Files (x86)/Beyond Compare 4/bcomp.exe
-[merge]
-	tool = bc3
-[mergetool "bcs"]
-    path = c:/Program Files (x86)/Beyond Compare 4/bcomp.exe
 
+[diff]
+    tool = winmerge
+[difftool "winmerge"]
+    cmd = "WinMergeU" -u -e \"$LOCAL\" \"$REMOTE\"
+    trustExitCode = true
+[difftool]
+    prompt = false
+
+[merge]
+    tool = winmerge
+[mergetool "winmerge"]
+    cmd = "WinMergeU" -u -e -fm -wl -dl \"Local\" -wr -dr \"Remote\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" -o \"$MERGED\"
+    trustExitCode = true
+    keepBackup = false
+[mergetool]
+    prompt = false
