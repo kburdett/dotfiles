@@ -25,7 +25,7 @@
     co = checkout
     cob = checkout -b
     cod = checkout develop
-    com = checkout master
+    com = checkout main
     cos = checkout stable
 
     cm = commit
@@ -46,10 +46,10 @@
     po = push origin
     pu = push upstream
     puo = push -u origin
-    pom = push origin master
+    pom = push origin main
     pod = push origin develop
     pos = push origin stable
-    pum = push upstream master
+    pum = push upstream main
     pud = push upstream develop
     pus = push upstream stable
 
@@ -58,26 +58,26 @@
     fpu = fetch -p upstream
 
     pff = pull --ff-only --no-rebase
-    pffom = pull --ff-only --no-rebase origin master
+    pffom = pull --ff-only --no-rebase origin main
     pffod = pull --ff-only --no-rebase origin develop
     pffos = pull --ff-only --no-rebase origin stable
-    pffum = pull --ff-only --no-rebase upstream master
+    pffum = pull --ff-only --no-rebase upstream main
     pffud = pull --ff-only --no-rebase upstream develop
     pffus = pull --ff-only --no-rebase upstream stable
 
     pr = pull -r
-    prom = pull -r origin master
+    prom = pull -r origin main
     prod = pull -r origin develop
     pros = pull -r origin stable
-    prum = pull -r upstream master
+    prum = pull -r upstream main
     prud = pull -r upstream develop
     prus = pull -r upstream stable
 
     ri = rebase -i
-    rom = rebase origin/master
+    rom = rebase origin/main
     rod = rebase origin/develop
     ros = rebase origin/stable
-    rum = rebase upstream/master
+    rum = rebase upstream/main
     rud = rebase upstream/develop
     rus = rebase upstream/stable
 [filter "media"]
