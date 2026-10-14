@@ -9,7 +9,7 @@ New-Item -ItemType SymbolicLink -Path $Profile.CurrentUserAllHosts -Target $Dotf
 # source the profile for XDG dirs
 & $Profile.CurrentUserAllHosts
 
-function Link-All {
+function New-SymlinkAll {
 
     param (
         [string]$TargetPath,
@@ -28,11 +28,11 @@ function Link-All {
 
 Write-Host "Deploying XDG configurations to ""$Env:XDG_CONFIG_HOME"""
 $XdgDotfilesDir = Join-Path -Path $DotfilesDir -ChildPath "xdg"
-Link-All -TargetPath $XdgDotfilesDir -LinkPath $Env:XDG_CONFIG_HOME
+New-SymlinkAll -TargetPath $XdgDotfilesDir -LinkPath $Env:XDG_CONFIG_HOME
 
 Write-Host "Deploying dotfiles to ""$Env:USERPROFILE"""
 $HomeDotfilesDir = Join-Path -Path $DotfilesDir -ChildPath "home"
-Link-All -TargetPath $HomeDotfilesDir -LinkPath $Env:USERPROFILE
+New-SymlinkAll -TargetPath $HomeDotfilesDir -LinkPath $Env:USERPROFILE
 
 # Symlink OS specific Git settings
 $DotfilesGitDir = Join-Path -Path $DotfilesDir -ChildPath "xdg" -AdditionalChildPath "git"
