@@ -20,6 +20,9 @@ Set-PSReadLineOption @PSReadLineOptions
 # Adjust tab completion to mimic ZSH
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
+# lualine-style prompt
+. "$HOME\dotfiles\win\prompt.ps1"
+
 # "compatibility" aliases... they don't do much but I type them out of habit
 Set-Alias -Name 'ls' Get-ChildItem
 Set-Alias -Name 'll' Get-ChildItem
