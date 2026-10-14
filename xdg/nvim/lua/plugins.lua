@@ -21,6 +21,20 @@ if vim.g.vscode then
     return
 end
 
+-- rebuild Tree-sitter parsers whenever nvim-treesitter is updated (they must match its queries)
+-- registered before vim.pack.add() so it also sees the plugin's first install
+vim.api.nvim_create_autocmd('PackChanged', {
+    group = vim.api.nvim_create_augroup('UserPackHooks', { clear = true }),
+    callback = function(ev)
+        if ev.data.spec.name == 'nvim-treesitter' and ev.data.kind == 'update' then
+            if not ev.data.active then
+                vim.cmd.packadd('nvim-treesitter')
+            end
+            vim.cmd('TSUpdate')
+        end
+    end,
+})
+
 vim.pack.add({
     -- colorscheme
     gh('navarasu/onedark.nvim'),
@@ -34,6 +48,7 @@ vim.pack.add({
 
     -- filetypes
     gh('chrisbra/csv.vim'),
+    { src = gh('nvim-treesitter/nvim-treesitter'), version = 'main' },
 
     -- lsp
     gh('neovim/nvim-lspconfig'),
@@ -46,6 +61,7 @@ require('setup/gitsigns')
 require('setup/lualine')
 require('setup/tree')
 require('setup/trouble')
+require('setup/treesitter')
 require('setup/lsp')
 require('setup/mason')
 require('setup/mason-lspconfig') -- must come after mason
