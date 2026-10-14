@@ -7,5 +7,5 @@ require('lualine').setup({
         lualine_a = { 'buffers' },
         lualine_z = { 'tabs' },
     },
-    extensions = { 'nvim-tree', 'trouble', 'toggleterm' },
+    extensions = { 'nvim-tree', 'trouble', 'quickfix' },
 })

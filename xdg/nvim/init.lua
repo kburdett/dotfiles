@@ -11,5 +11,8 @@ vim.g.loaded_zipPlugin = 1
 
 require('options')
 require('plugins')
+if not vim.g.vscode then
+    require('completion')
+end
 require('mappings')
 require('commands')

@@ -7,13 +7,28 @@
 --   grt type definition · gO document symbols · <C-s> (insert) signature help
 --   gq / <Leader>r format via LSP (formatexpr) · omnifunc (<C-x><C-o>)
 
-vim.lsp.config('*', {
-    capabilities = require('cmp_nvim_lsp').default_capabilities(),
-})
+-- letters, digits and _ trigger completion on every keypress
+local keyword_chars = {}
+for c in ('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'):gmatch('.') do
+    table.insert(keyword_chars, c)
+end
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspAttach', { clear = true }),
     callback = function(ev)
+        local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+
+        -- native LSP completion (see completion.lua for mappings)
+        if client:supports_method('textDocument/completion') then
+            local provider = client.server_capabilities.completionProvider
+            provider.triggerCharacters = vim.list.unique(
+                vim.list_extend(vim.deepcopy(provider.triggerCharacters or {}), keyword_chars)
+            )
+            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+            -- the server drives the menu here, so turn off buffer-word autocomplete
+            vim.bo[ev.buf].autocomplete = false
+        end
+
         local map = function(lhs, rhs, desc)
             vim.keymap.set('n', lhs, rhs, { buffer = ev.buf, silent = true, desc = desc })
         end

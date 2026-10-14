@@ -30,3 +30,12 @@ vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
 
 -- reformat whole buffer (uses the LSP formatter when one is attached)
 vim.keymap.set('n', '<Leader>r', 'ggVGgq', opts)
+
+-- "entire buffer" text object, e.g. yae, dae, =ae, vae
+vim.keymap.set('x', 'ae', '<Esc>ggVG', { silent = true, desc = 'Entire buffer' })
+vim.keymap.set('o', 'ae', ':<C-u>normal! ggVG<CR>', { silent = true, desc = 'Entire buffer' })
+
+-- toggle a terminal in a split along the bottom (replaces toggleterm)
+if not vim.g.vscode then
+    vim.keymap.set('n', '<Leader>t', function() require('terminal').toggle() end, { desc = 'Toggle terminal' })
+end

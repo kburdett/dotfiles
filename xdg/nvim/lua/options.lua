@@ -12,6 +12,21 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.splitkeep = 'screen' -- reduce scroll during window split
 
+-- show trailing whitespace as · and non-breaking spaces as ␣
+-- tabs stay invisible; :%s/\s\+$//e strips trailing whitespace
+vim.opt.list = true
+vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
+-- like mini.trailspace, hide it while typing so fresh indentation isn't flagged
+local trail_group = vim.api.nvim_create_augroup('UserTrailingSpace', { clear = true })
+vim.api.nvim_create_autocmd('InsertEnter', {
+    group = trail_group,
+    callback = function() vim.opt_local.listchars:remove('trail') end,
+})
+vim.api.nvim_create_autocmd('InsertLeave', {
+    group = trail_group,
+    callback = function() vim.opt_local.listchars:append({ trail = '·' }) end,
+})
+
 -- indentation
 vim.opt.shiftround = true
 vim.opt.expandtab = true

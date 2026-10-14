@@ -9,8 +9,6 @@ end
 
 -- core (also loaded inside vscode-neovim)
 vim.pack.add({
-    gh('kana/vim-textobj-user'),
-    gh('kana/vim-textobj-entire'),
     gh('nvim-mini/mini.nvim'),
     gh('johmsalas/text-case.nvim'),
 })
@@ -32,7 +30,6 @@ vim.pack.add({
     gh('nvim-tree/nvim-web-devicons'),
     gh('nvim-lualine/lualine.nvim'),
     gh('nvim-tree/nvim-tree.lua'),
-    gh('akinsho/toggleterm.nvim'),
     gh('folke/trouble.nvim'),
 
     -- filetypes
@@ -42,25 +39,13 @@ vim.pack.add({
     gh('neovim/nvim-lspconfig'),
     gh('mason-org/mason.nvim'),
     gh('mason-org/mason-lspconfig.nvim'),
-
-    -- completion & snippets
-    gh('hrsh7th/nvim-cmp'),
-    gh('hrsh7th/cmp-nvim-lsp'),
-    gh('hrsh7th/cmp-buffer'),
-    gh('hrsh7th/cmp-path'),
-    gh('hrsh7th/cmp-cmdline'),
-    gh('hrsh7th/cmp-vsnip'),
-    gh('hrsh7th/vim-vsnip'),
-    gh('rafamadriz/friendly-snippets'),
 })
 
 require('setup/onedark') -- colorscheme first
 require('setup/gitsigns')
 require('setup/lualine')
 require('setup/tree')
-require('setup/toggleterm')
 require('setup/trouble')
-require('setup/cmp')
 require('setup/lsp')
 require('setup/mason')
 require('setup/mason-lspconfig') -- must come after mason
