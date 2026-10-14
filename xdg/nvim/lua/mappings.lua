@@ -1,5 +1,5 @@
-local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<Leader>/', ':nohlsearch<CR>', opts)
+local opts = { silent = true }
+vim.keymap.set('n', '<Leader>/', '<Cmd>nohlsearch<CR>', opts)
 
 -- quick line endings
 vim.keymap.set('n', '<Leader>,', 'mqA,<Esc>`q', opts)
@@ -10,27 +10,23 @@ vim.keymap.set('n', '<Leader>O', "<Cmd>call append(line('.') - 1, repeat([''], v
 vim.keymap.set('n', '<Leader>o', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", opts)
 
 -- kill the command ex mode key
-vim.keymap.set('n', 'Q', '<Nop>', opts);
+vim.keymap.set('n', 'Q', '<Nop>', opts)
 
 -- switch between window splits
-vim.keymap.set('n', '<C-K>', ':wincmd k<CR>', opts)
-vim.keymap.set('n', '<C-J>', ':wincmd j<CR>', opts)
-vim.keymap.set('n', '<C-H>', ':wincmd h<CR>', opts)
-vim.keymap.set('n', '<C-L>', ':wincmd l<CR>', opts)
+vim.keymap.set('n', '<C-K>', '<Cmd>wincmd k<CR>', opts)
+vim.keymap.set('n', '<C-J>', '<Cmd>wincmd j<CR>', opts)
+vim.keymap.set('n', '<C-H>', '<Cmd>wincmd h<CR>', opts)
+vim.keymap.set('n', '<C-L>', '<Cmd>wincmd l<CR>', opts)
 
--- see `:help vim.diagnostic.*` for more details
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+-- diagnostics: [d / ]d (prev/next) and <C-w>d (float) are built in
+vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, opts)
 
--- terminal mappings
-local topts = { noremap = true, silent = true, buffer = 0 }
-vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], topts)
-vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], topts)
-vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], topts)
-vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], topts)
-vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], topts)
+-- terminal mappings (apply to every terminal buffer)
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], opts)
+vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
 
--- reformat code
-vim.keymap.set('n', '<Leader>r', 'ggVGgq', opts);
+-- reformat whole buffer (uses the LSP formatter when one is attached)
+vim.keymap.set('n', '<Leader>r', 'ggVGgq', opts)

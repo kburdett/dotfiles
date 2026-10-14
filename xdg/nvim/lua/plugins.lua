@@ -1,0 +1,82 @@
+-- Plugins are managed by the built-in vim.pack (Neovim 0.12+).
+--   :PackUpdate  fetch updates and review them (:w to apply, :q to discard)
+--   :PackClean   delete plugins on disk that are no longer listed here
+-- Installed revisions are pinned in nvim-pack-lock.json (keep it in version control).
+
+local gh = function(repo)
+    return 'https://github.com/' .. repo
+end
+
+-- core (also loaded inside vscode-neovim)
+vim.pack.add({
+    gh('kana/vim-textobj-user'),
+    gh('kana/vim-textobj-entire'),
+    gh('nvim-mini/mini.nvim'),
+    gh('johmsalas/text-case.nvim'),
+})
+
+require('setup/mini')
+require('setup/text-case')
+
+-- If running inside vscode-neovim, we don't want to load any other plugins
+if vim.g.vscode then
+    return
+end
+
+vim.pack.add({
+    -- colorscheme
+    gh('navarasu/onedark.nvim'),
+
+    -- ui
+    gh('lewis6991/gitsigns.nvim'),
+    gh('nvim-tree/nvim-web-devicons'),
+    gh('nvim-lualine/lualine.nvim'),
+    gh('nvim-tree/nvim-tree.lua'),
+    gh('akinsho/toggleterm.nvim'),
+    gh('folke/trouble.nvim'),
+
+    -- filetypes
+    gh('chrisbra/csv.vim'),
+
+    -- lsp
+    gh('neovim/nvim-lspconfig'),
+    gh('mason-org/mason.nvim'),
+    gh('mason-org/mason-lspconfig.nvim'),
+
+    -- completion & snippets
+    gh('hrsh7th/nvim-cmp'),
+    gh('hrsh7th/cmp-nvim-lsp'),
+    gh('hrsh7th/cmp-buffer'),
+    gh('hrsh7th/cmp-path'),
+    gh('hrsh7th/cmp-cmdline'),
+    gh('hrsh7th/cmp-vsnip'),
+    gh('hrsh7th/vim-vsnip'),
+    gh('rafamadriz/friendly-snippets'),
+})
+
+require('setup/onedark') -- colorscheme first
+require('setup/gitsigns')
+require('setup/lualine')
+require('setup/tree')
+require('setup/toggleterm')
+require('setup/trouble')
+require('setup/cmp')
+require('setup/lsp')
+require('setup/mason')
+require('setup/mason-lspconfig') -- must come after mason
+
+vim.api.nvim_create_user_command('PackUpdate', function()
+    vim.pack.update()
+end, { desc = 'Update plugins' })
+
+vim.api.nvim_create_user_command('PackClean', function()
+    local unused = vim.iter(vim.pack.get(nil, { info = false }))
+        :filter(function(p) return not p.active end)
+        :map(function(p) return p.spec.name end)
+        :totable()
+    if #unused == 0 then
+        vim.notify('No unused plugins')
+        return
+    end
+    vim.pack.del(unused)
+end, { desc = 'Delete plugins no longer in the config' })

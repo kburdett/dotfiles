@@ -1,36 +1,15 @@
 -- set this first to avoid mapping issues
 vim.g.mapleader = ' '
 
--- init for lazy
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        'git',
-        'clone',
-        '--filter=blob:none',
-        'https://github.com/folke/lazy.nvim.git',
-        '--branch=stable', -- latest stable release
-        lazypath,
-    })
-end
-vim.opt.rtp:prepend(lazypath)
-
-require('lazy').setup({
-    spec = 'lazy_setup',
-    performance = {
-        rtp = {
-            disabled_plugins = {
-                'gzip',
-                'netrwPlugin',
-                'tarPlugin',
-                'tohtml',
-                'tutor',
-                'zipPlugin',
-            },
-        },
-    },
-})
+-- disable unused built-in plugins
+vim.g.loaded_gzip = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_tutor_mode_plugin = 1
+vim.g.loaded_zipPlugin = 1
 
 require('options')
+require('plugins')
 require('mappings')
 require('commands')
