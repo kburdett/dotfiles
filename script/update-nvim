@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+arch=$(uname -m); [ "$arch" = "aarch64" ] && arch=arm64
+pkg="nvim-linux-${arch}"
+curl -fL -o /tmp/nvim.tar.gz \
+  "https://github.com/neovim/neovim/releases/latest/download/${pkg}.tar.gz"
+sudo rm -rf "/opt/${pkg}"
+sudo tar -C /opt -xzf /tmp/nvim.tar.gz
+sudo ln -sf "/opt/${pkg}/bin/nvim" /usr/local/bin/nvim
+rm /tmp/nvim.tar.gz
+nvim --version | head -n1
