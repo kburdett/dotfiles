@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Install or update the tree-sitter CLI from the latest GitHub release.
+set -euo pipefail
+
+case "$(uname -m)" in
+    x86_64)        arch=x64 ;;
+    aarch64|arm64) arch=arm64 ;;
+    *) echo "Unsupported architecture: $(uname -m)" >&2; exit 1 ;;
+esac
+
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
+curl -fL "https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-${arch}.gz" \
+    | gunzip > "$tmp"
+chmod +x "$tmp"
+
+# The prebuilt binary needs a recent glibc (2.39+, so Debian 13 or newer).
+# Make sure it runs here before replacing the installed copy.
+if ! version=$("$tmp" --version 2>&1); then
+    echo "The prebuilt tree-sitter CLI doesn't run on this system:" >&2
+    echo "  $version" >&2
+    echo "On Debian 12 (bookworm), build it with Rust instead: cargo install --locked tree-sitter-cli" >&2
+    exit 1
+fi
+
+sudo install -m 755 "$tmp" /usr/local/bin/tree-sitter
+tree-sitter --version
