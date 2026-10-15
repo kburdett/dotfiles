@@ -17,3 +17,9 @@
     keepBackup = false
 [mergetool]
     prompt = false
+
+[credential "https://github.com"]
+	helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
+[credential "https://gist.github.com"]
+	helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
+

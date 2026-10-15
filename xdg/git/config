@@ -101,3 +101,5 @@
 
 [init]
 	defaultBranch = main
+[credential "https://git.kevinburdett.com"]
+	provider = generic
