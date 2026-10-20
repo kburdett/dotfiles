@@ -32,15 +32,29 @@ config.
 
 ## Layout
 
-| Path              | Linked to                                        |
-| ----------------- | ------------------------------------------------ |
-| `home/*`          | `~` (Windows: `NPM_CONFIG_USERCONFIG` instead)   |
-| `xdg/*`           | `~/.config` (`%APPDATA%` on Windows)             |
-| `win/profile.ps1` | loaded by the PowerShell 7 and 5.1 profiles      |
-| `conf/`           | sourced by `.zshenv` / `.zshrc`                  |
-| `script/`         | `update-nvim`, `update-tree-sitter`              |
+| Path              | Linked to                                                              |
+| ----------------- | ---------------------------------------------------------------------- |
+| `home/*`          | `~` (Windows: `NPM_CONFIG_USERCONFIG` instead)                         |
+| `xdg/*`           | `~/.config` (`%APPDATA%` on Windows)                                   |
+| `win/profile.ps1` | loaded by the PowerShell 7 and 5.1 profiles                            |
+| `conf/`           | sourced by `.zshenv` / `.zshrc`                                        |
+| `script/`         | `update-nvim`, `update-tree-sitter`, `update-git-credential-libsecret` |
 
 Per-machine settings that aren't checked in: `xdg/git/config.local`, `conf/local.sh` (zsh) and
 `win/local.ps1` (PowerShell).
+
+## Git credentials
+
+HTTPS everywhere, with a credential helper per host and OS:
+
+|         | GitHub     | Forgejo (`git.kevinburdett.com`, access token)        |
+| ------- | ---------- | ----------------------------------------------------- |
+| Windows | GitHub CLI | Git Credential Manager (Windows Credential Manager)   |
+| WSL     | GitHub CLI | Windows' Git Credential Manager (shared with Windows) |
+| Debian  | GitHub CLI | libsecret (GNOME Keyring / KWallet)                   |
+
+Run `gh auth login` once for GitHub. For Forgejo, enter your username and a personal access
+token (Settings → Applications) the first time Git asks. The bootstrap scripts pick the files
+for the OS: `xdg/git/config.win`, or `config.linux` plus `config.wsl` / `config.debian`.
 
 A [Nerd Font](https://www.nerdfonts.com/) is needed for the prompt glyphs.

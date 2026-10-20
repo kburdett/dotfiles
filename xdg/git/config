@@ -51,8 +51,13 @@
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
 
+# Forgejo over HTTPS with a personal access token. The helper that stores it is set per OS:
+# Git Credential Manager on Windows (Git's system config) and WSL (config.wsl), libsecret on
+# native Debian (config.debian). These settings are only read by GCM: they stop it using
+# Forgejo's OAuth flow, whose 1-hour tokens make the first command after expiry fail
+# (https://codeberg.org/forgejo/forgejo/issues/2809).
 [credential "https://git.kevinburdett.com"]
-    oauthAuthorizeEndpoint = //   # makes GCM skip the OAuth flow
+    oauthAuthorizeEndpoint = //
     provider = generic
 
 [alias]

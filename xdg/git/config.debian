@@ -1,0 +1,8 @@
+# Native Debian only (not WSL), loaded after config.linux
+
+# Forgejo: keep the access token in the desktop keyring (GNOME Keyring or KWallet) through
+# Git's libsecret helper. Debian ships only its source, so script/update-git-credential-libsecret
+# builds it into ~/.local/bin (bootstrap.sh --packages runs it).
+[credential "https://git.kevinburdett.com"]
+    helper =
+    helper = !~/.local/bin/git-credential-libsecret

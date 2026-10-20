@@ -1,0 +1,9 @@
+# WSL only, loaded after config.linux
+
+# Forgejo: use Git Credential Manager from Git for Windows, so the access token lives in Windows
+# Credential Manager and is shared with Windows (enter it once on either side). GCM is a Windows
+# program and reads the Windows Git config, which has the same Forgejo settings from ./config.
+# GitHub keeps using the GitHub CLI from config.linux.
+[credential "https://git.kevinburdett.com"]
+    helper =
+    helper = !'/mnt/c/Program Files/Git/mingw64/bin/git-credential-manager.exe'
