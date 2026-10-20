@@ -1,5 +1,8 @@
+# Windows (Git for Windows)
+
 [core]
-	autocrlf = true
+    autocrlf = true
+    fsmonitor = true    # built-in file watcher: much faster status in big repos (Windows/macOS only)
 
 [diff]
     tool = winmerge
@@ -14,12 +17,15 @@
 [mergetool "winmerge"]
     cmd = "WinMergeU" -u -e -fm -wl -dl \"Local\" -wr -dr \"Remote\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" -o \"$MERGED\"
     trustExitCode = true
-    keepBackup = false
 [mergetool]
     prompt = false
+    keepBackup = false
 
+# GitHub over HTTPS through the GitHub CLI (run `gh auth login` once).
+# The empty helper clears Git Credential Manager (set in Git's system config) for these hosts.
 [credential "https://github.com"]
-	helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
+    helper =
+    helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
 [credential "https://gist.github.com"]
-	helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
-
+    helper =
+    helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential

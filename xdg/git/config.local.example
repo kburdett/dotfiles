@@ -1,3 +1,5 @@
+# Per-machine Git settings. The bootstrap scripts create config.local from your answers;
+# or copy this file to config.local and edit it. config.local is not checked in.
 [user]
-	email = me@mydomain.com
-	name = Kevin Burdett
+    name = Kevin Burdett
+    email = me@mydomain.com

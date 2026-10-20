@@ -95,6 +95,6 @@ _prompt_keymap_select() {
     zle reset-prompt
 }
 
-autoload -Uz add-zsh-hook
+autoload -Uz add-zsh-hook add-zle-hook-widget
 add-zsh-hook precmd _prompt_precmd
-zle -N zle-keymap-select _prompt_keymap_select
+add-zle-hook-widget keymap-select _prompt_keymap_select   # a hook, so other keymap-select hooks still run

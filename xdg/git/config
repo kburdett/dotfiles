@@ -1,14 +1,59 @@
+# Shared Git settings. OS-specific settings come from config.<os> (picked by the bootstrap
+# script through config.os), and per-machine settings such as [user] from config.local.
+# Global ignores live in ./ignore, Git's default location for them.
+
+[init]
+    defaultBranch = main
+
 [core]
-    excludesfile = ignore
-[color]
-    diff = auto
-    status = auto
-    branch = auto
-    interactive = true
-[format]
-    pretty = medium
+    untrackedCache = true
+
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+    renameLimit = 5000
+
+[commit]
+    verbose = true
+[help]
+    autocorrect = prompt
+
+[fetch]
+    prune = true
+[pull]
+    ff = only           # plain `git pull` never merges; use `git pr` / `git pull -r` to rebase
 [push]
-    default = simple
+    autoSetupRemote = true
+    followTags = true
+
+[merge]
+    conflictStyle = zdiff3
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+[rerere]
+    enabled = true
+    autoUpdate = true
+
+[filter "lfs"]
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+
+[credential "https://git.kevinburdett.com"]
+    provider = generic
+
 [alias]
     cp = cherry-pick
     sq = show --quiet
@@ -17,6 +62,7 @@
     ss = status -sb
 
     aa = add .
+    unstage = restore --staged
 
     dt = difftool
     dtc = difftool --cached
@@ -27,10 +73,13 @@
     cod = checkout develop
     com = checkout main
     cos = checkout stable
+    sw = switch
+    swc = switch -c
 
     cm = commit
     cmm = commit -m
     cma = commit --amend
+    cmane = commit --amend --no-edit
 
     br = branch
     brl = branch -vv
@@ -46,6 +95,7 @@
     po = push origin
     pu = push upstream
     puo = push -u origin
+    pfl = push --force-with-lease --force-if-includes
     pom = push origin main
     pod = push origin develop
     pos = push origin stable
@@ -80,26 +130,8 @@
     rum = rebase upstream/main
     rud = rebase upstream/develop
     rus = rebase upstream/stable
-[filter "media"]
-    clean = git-media-clean %f
-    smudge = git-media-smudge %f
-[diff]
-    renameLimit = 5000
-[color "diff-highlight"]
-	oldNormal = red bold
-	newHighlight = green bold 22
-	oldHighlight = red bold 52
-	newNormal = green bold
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-[include]
-    path = ~/dotfiles/xdg/git/config.local
-    path = ~/dotfiles/xdg/git/config.os
 
-[init]
-	defaultBranch = main
-[credential "https://git.kevinburdett.com"]
-	provider = generic
+# Relative paths resolve next to this file. Later files win, so local overrides everything.
+[include]
+    path = config.os
+    path = config.local

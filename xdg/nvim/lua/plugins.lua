@@ -26,7 +26,8 @@ end
 vim.api.nvim_create_autocmd('PackChanged', {
     group = vim.api.nvim_create_augroup('UserPackHooks', { clear = true }),
     callback = function(ev)
-        if ev.data.spec.name == 'nvim-treesitter' and ev.data.kind == 'update' then
+        -- (install.lua rebuilds them itself, and waits, when the bootstrap syncs plugins)
+        if ev.data.spec.name == 'nvim-treesitter' and ev.data.kind == 'update' and not vim.g.pack_sync then
             if not ev.data.active then
                 vim.cmd.packadd('nvim-treesitter')
             end

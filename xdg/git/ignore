@@ -1,0 +1,15 @@
+# Global ignores for every repository (Git reads $XDG_CONFIG_HOME/git/ignore by default)
+
+# editors
+*.swp
+*.swo
+*~
+.netrwhist
+
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Claude Code per-user settings
+.claude/settings.local.json

@@ -1,7 +1,23 @@
-[core]
-	autocrlf = input
-[credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = !/usr/bin/gh auth git-credential
+# Debian and WSL
 
+[core]
+    autocrlf = input
+
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[merge]
+    tool = nvimdiff
+[mergetool]
+    prompt = false
+    keepBackup = false
+
+# GitHub over HTTPS through the GitHub CLI (run `gh auth login` once).
+# The empty helper clears any helper set earlier (e.g. in /etc/gitconfig) for these hosts.
+[credential "https://github.com"]
+    helper =
+    helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+    helper =
+    helper = !gh auth git-credential

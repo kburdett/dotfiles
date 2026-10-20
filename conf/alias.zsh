@@ -1,22 +1,12 @@
-#! /usr/bin/env bash
+# Interactive aliases, sourced from ~/.zshrc. Assumes GNU coreutils (Debian / WSL).
 
-# ls aliases
-case $OSTYPE in
-    darwin*|freebsd*|openbsd)
-		# BSD
-        alias ls='ls -Gph'
-        alias ll='ls -Gphl'
-        alias la='ls -Gphal'
-        alias listen-ports='lsof -PiTCP -sTCP:LISTEN'
-        ;;
-    *)
-        # Assume GNU
-        alias ls='ls -ph --color'
-        alias ll='ls -phl --color'
-        alias la='ls -phal --color'
-        alias listen-ports='netstat -lnp | grep -i "listen"'
-        ;;
-esac
+# ls
+alias ls='ls -ph --color=auto'
+alias ll='ls -phl --color=auto'
+alias la='ls -phal --color=auto'
+
+# grep (GREP_OPTIONS is no longer read by grep)
+alias grep='grep --color=auto'
 
 # cd aliases
 alias ..='cd ..'
@@ -40,12 +30,20 @@ alias .10='cd ../../../../../../../../../..'
 alias .11='cd ../../../../../../../../../../..'
 
 # misc aliases
-alias path='echo -e ${PATH//:/\\n}'
+alias path='print -rl -- $path'
 alias ping='ping -c 5'
 alias ax='chmod a+x'
-alias hig='history | grep'
+alias hig='fc -l 1 | grep'   # search all history (plain `history` only lists the last 16)
 alias mkdir='mkdir -pv'
 alias dh='dirs -v'
 alias celar='clear'
-alias brewup='brew update && brew upgrade && brew cleanup'
+alias listen-ports='ss -ltnp'
 
+# profile aliases
+alias src='source $HOME/.zshrc'
+alias zshp='$EDITOR $HOME/.zshrc $HOME/.zshenv'
+
+# WSL: open files and folders with Windows
+if [[ -n $WSL_DISTRO_NAME ]]; then
+    alias open='explorer.exe'
+fi
