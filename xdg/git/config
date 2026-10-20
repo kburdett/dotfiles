@@ -52,6 +52,7 @@
     smudge = git-lfs smudge -- %f
 
 [credential "https://git.kevinburdett.com"]
+    oauthAuthorizeEndpoint = //   # makes GCM skip the OAuth flow
     provider = generic
 
 [alias]
