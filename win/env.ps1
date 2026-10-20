@@ -13,7 +13,10 @@ $Env:XDG_DATA_HOME = $Env:LOCALAPPDATA
 $Env:XDG_STATE_HOME = $Env:LOCALAPPDATA
 $Env:XDG_CACHE_HOME = $Env:TEMP
 
-# global npm packages live under the prefix set in ~/.npmrc (Windows npm puts them in the prefix itself)
+# npm reads the repo's .npmrc directly (Linux links it to ~/.npmrc instead)
+$Env:NPM_CONFIG_USERCONFIG = Join-Path $Env:DOTFILES 'home\.npmrc'
+
+# global npm packages live under the prefix set in .npmrc (Windows npm puts them in the prefix itself)
 $NpmBin = Join-Path $Env:XDG_DATA_HOME 'npm-packages'
 if (($Env:PATH -split ';') -notcontains $NpmBin) { $Env:PATH = "$NpmBin;$Env:PATH" }
 Remove-Variable NpmBin

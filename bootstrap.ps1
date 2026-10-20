@@ -3,12 +3,14 @@
 Set up these dotfiles on Windows. Safe to re-run at any time.
 
 .DESCRIPTION
-Links the PowerShell profile (for PowerShell 7 and Windows PowerShell 5.1), ~/.npmrc and the
-XDG configs (git, nvim) into place, saves the XDG and DOTFILES variables for the user, and
-installs the Neovim plugins, parsers and language servers.
+Points PowerShell 7 and Windows PowerShell 5.1 at the profile in this repo, links the XDG
+configs (git, nvim) into place, saves the XDG, DOTFILES and npm config variables for the user,
+and installs the Neovim plugins, parsers and language servers.
 Existing files that would be replaced are moved aside as <name>.bak.<timestamp>.
 
-Symbolic links need Developer Mode (Settings > System > For developers) or an elevated shell.
+Needs no admin rights or Developer Mode: folders are linked with directory junctions, the
+profiles are one-line files that load the repo's profile, and npm finds ~/.npmrc's settings
+through NPM_CONFIG_USERCONFIG.
 
 .PARAMETER Packages
 Also install Git, the GitHub CLI, Neovim, Node.js, WinMerge and PowerShell 7 with winget.
@@ -36,54 +38,45 @@ function Resolve-LinkTarget([IO.FileSystemInfo]$Item) {
     [IO.Path]::GetFullPath($target).TrimEnd('\')
 }
 
-# Fail with a clear message, before anything is moved, if this shell can't make symlinks.
-# Checked only when a link is actually needed, so re-runs with everything in place work anywhere.
-$script:CanSymlink = $null
-function Assert-CanSymlink {
-    if ($null -eq $script:CanSymlink) {
-        $probe = Join-Path ([IO.Path]::GetTempPath()) "dotfiles-symlink-probe-$PID"
-        try {
-            New-Item -ItemType SymbolicLink -Path $probe -Target $PSCommandPath | Out-Null
-            Remove-Item -LiteralPath $probe
-            $script:CanSymlink = $true
-        } catch {
-            $script:CanSymlink = $false
-        }
-    }
-    if (-not $script:CanSymlink) {
-        throw 'Cannot create symbolic links. Turn on Developer Mode (Settings > System > For developers) and use PowerShell 7, or run this from an elevated shell.'
+# Clear $Path for something new: a link is deleted (Delete() removes only the link, never the
+# target's contents), a real file or folder is moved aside
+function Clear-Path([IO.FileSystemInfo]$Item) {
+    if (-not $Item) { return }
+    if ($Item.LinkType) {
+        $Item.Delete()
+    } else {
+        $backup = "$($Item.FullName).bak.$(Get-Date -Format yyyyMMddHHmmss)"
+        Move-Item -LiteralPath $Item.FullName -Destination $backup
+        Write-Host "  backup  $($Item.FullName) -> $backup"
     }
 }
 
-# Point $Path at $Target, leaving it alone if it already does
-function Set-Link([string]$Target, [string]$Path) {
+# Point the folder $Path at $Target with a directory junction, leaving it alone if it already
+# points there (a junction, or a symlink made by older bootstraps)
+function Set-Junction([string]$Target, [string]$Path) {
     $item = Get-Item -LiteralPath $Path -Force -ErrorAction SilentlyContinue
     if ($item -and $item.LinkType -and
         (Resolve-LinkTarget $item) -eq [IO.Path]::GetFullPath($Target).TrimEnd('\')) {
         Write-Host "  ok      $Path"
         return
     }
-    Assert-CanSymlink
-    if ($item -and $item.LinkType) {
-        # a link pointing somewhere else. Delete() removes only the link, never the target's contents
-        $item.Delete()
-    } elseif ($item) {
-        $backup = "$Path.bak.$(Get-Date -Format yyyyMMddHHmmss)"
-        Move-Item -LiteralPath $Path -Destination $backup
-        Write-Host "  backup  $Path -> $backup"
-    }
-    $parent = Split-Path -Parent $Path
-    if (-not (Test-Path $parent)) { New-Item -ItemType Directory -Path $parent | Out-Null }
-    New-Item -ItemType SymbolicLink -Path $Path -Target $Target | Out-Null
+    Clear-Path $item
+    New-Item -ItemType Junction -Path $Path -Target $Target | Out-Null
     Write-Host "  linked  $Path -> $Target"
 }
 
-# Link every entry of $Source into $Destination
-function Set-ChildLinks([string]$Source, [string]$Destination, [string[]]$Exclude = @()) {
-    foreach ($child in Get-ChildItem -LiteralPath $Source -Force) {
-        if ($child.Name -in $Exclude) { continue }
-        Set-Link -Target $child.FullName -Path (Join-Path $Destination $child.Name)
+# Write $Content to $Path, leaving it alone if it's already there
+function Set-FileContent([string]$Path, [string]$Content) {
+    $item = Get-Item -LiteralPath $Path -Force -ErrorAction SilentlyContinue
+    if ($item -and -not $item.LinkType -and [IO.File]::ReadAllText($Path) -eq $Content) {
+        Write-Host "  ok      $Path"
+        return
     }
+    Clear-Path $item
+    $parent = Split-Path -Parent $Path
+    if (-not (Test-Path $parent)) { New-Item -ItemType Directory -Path $parent | Out-Null }
+    [IO.File]::WriteAllText($Path, $Content)
+    Write-Host "  wrote   $Path"
 }
 
 # Save a user environment variable for all new processes (skipped when unchanged: saving is slow)
@@ -111,36 +104,29 @@ if ($Packages) {
     $Env:PATH = [Environment]::GetEnvironmentVariable('PATH', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('PATH', 'User')
 }
 
-Write-Step 'Linking the PowerShell profile'
+Write-Step 'Setting up the PowerShell profiles'
+# each edition's profile just loads the one in the repo (replaces symlinks from older bootstraps)
 $documents = [Environment]::GetFolderPath('MyDocuments')
-$profileSource = Join-Path $DotfilesDir 'win\profile.ps1'
+$profileSource = (Join-Path $DotfilesDir 'win\profile.ps1') -replace "'", "''"
+$profileStub = "# Generated by bootstrap.ps1: load the profile from the dotfiles repo`n. '$profileSource'`n"
 foreach ($edition in 'PowerShell', 'WindowsPowerShell') {
-    Set-Link -Target $profileSource -Path (Join-Path $documents "$edition\profile.ps1")
+    Set-FileContent -Path (Join-Path $documents "$edition\profile.ps1") -Content $profileStub
 }
 
-Write-Step "Linking dotfiles into $HOME"
-Set-ChildLinks -Source (Join-Path $DotfilesDir 'home') -Destination $HOME -Exclude '.zshrc', '.zshenv'
-
 Write-Step "Linking configs into $Env:XDG_CONFIG_HOME"
-Set-ChildLinks -Source (Join-Path $DotfilesDir 'xdg') -Destination $Env:XDG_CONFIG_HOME
+foreach ($child in Get-ChildItem -LiteralPath (Join-Path $DotfilesDir 'xdg') -Directory) {
+    Set-Junction -Target $child.FullName -Path (Join-Path $Env:XDG_CONFIG_HOME $child.Name)
+}
 
 Write-Step 'Saving environment variables for the user'
-foreach ($name in 'DOTFILES', 'XDG_CONFIG_HOME', 'XDG_DATA_HOME', 'XDG_STATE_HOME', 'XDG_CACHE_HOME') {
+foreach ($name in 'DOTFILES', 'XDG_CONFIG_HOME', 'XDG_DATA_HOME', 'XDG_STATE_HOME', 'XDG_CACHE_HOME', 'NPM_CONFIG_USERCONFIG') {
     Set-UserEnv $name ([Environment]::GetEnvironmentVariable($name))
 }
 
 Write-Step 'Configuring Git'
-# config.os pulls in the settings for this OS; a regular file, so it needs no symlink
-$osConfig = Join-Path $DotfilesDir 'xdg\git\config.os'
-$osInclude = "# Generated by bootstrap.ps1`n[include]`n`tpath = config.win`n"
-$osItem = Get-Item -LiteralPath $osConfig -Force -ErrorAction SilentlyContinue
-if ($osItem -and -not $osItem.LinkType -and [IO.File]::ReadAllText($osConfig) -eq $osInclude) {
-    Write-Host "  ok      $osConfig"
-} else {
-    if ($osItem) { $osItem.Delete() }   # older bootstraps made this a symlink
-    [IO.File]::WriteAllText($osConfig, $osInclude)
-    Write-Host "  wrote   $osConfig"
-}
+# config.os pulls in the settings for this OS
+Set-FileContent -Path (Join-Path $DotfilesDir 'xdg\git\config.os') `
+    -Content "# Generated by bootstrap.ps1`n[include]`n`tpath = config.win`n"
 
 $localConfig = Join-Path $DotfilesDir 'xdg\git\config.local'
 if (Test-Path $localConfig) {

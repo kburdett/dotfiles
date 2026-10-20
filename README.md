@@ -16,8 +16,8 @@ git clone https://github.com/kburdett/dotfiles.git ~/dotfiles
 
 ## Windows
 
-Symbolic links need Developer Mode (Settings > System > For developers) with PowerShell 7,
-or an elevated shell.
+No admin rights or Developer Mode needed: config folders are linked with directory junctions,
+and the PowerShell 7 / Windows PowerShell profiles are one-line files that load `win/profile.ps1`.
 
 ```powershell
 git clone https://github.com/kburdett/dotfiles.git $HOME\dotfiles
@@ -34,9 +34,9 @@ config.
 
 | Path              | Linked to                                        |
 | ----------------- | ------------------------------------------------ |
-| `home/*`          | `~`                                              |
+| `home/*`          | `~` (Windows: `NPM_CONFIG_USERCONFIG` instead)   |
 | `xdg/*`           | `~/.config` (`%APPDATA%` on Windows)             |
-| `win/profile.ps1` | the PowerShell 7 and Windows PowerShell profiles |
+| `win/profile.ps1` | loaded by the PowerShell 7 and 5.1 profiles      |
 | `conf/`           | sourced by `.zshenv` / `.zshrc`                  |
 | `script/`         | `update-nvim`, `update-tree-sitter`              |
 

@@ -1,5 +1,5 @@
-# PowerShell profile (PowerShell 7 and Windows PowerShell 5.1). bootstrap.ps1 links this file
-# into both profile locations and saves the repo path in the DOTFILES user variable.
+# PowerShell profile (PowerShell 7 and Windows PowerShell 5.1). bootstrap.ps1 writes a one-line
+# profile for each edition that loads this file, and saves the repo path in the DOTFILES user variable.
 $DotfilesDir = if ($Env:DOTFILES) { $Env:DOTFILES } else { Join-Path $HOME 'dotfiles' }
 . (Join-Path $DotfilesDir 'win\env.ps1')
 
