@@ -22,6 +22,13 @@ Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 
+# ls colors to match LS_COLORS in .zshrc (PowerShell 7.2+ only)
+if ($PSStyle) {
+    $PSStyle.FileInfo.Directory    = $PSStyle.Foreground.Blue
+    $PSStyle.FileInfo.SymbolicLink = $PSStyle.Foreground.Cyan
+    $PSStyle.FileInfo.Executable   = $PSStyle.Foreground.Green
+}
+
 # lualine-style prompt
 . (Join-Path $DotfilesDir 'win\prompt.ps1')
 

@@ -14,8 +14,8 @@ typeset -gA _prompt_colors=(
     normal '#98c379'   # green
     fg     '#abb2bf'
     bg     '#282c34'
-    b      '#3e4452'   # cwd block
-    c      '#2c323c'   # git block
+    b      '#3b3f4c'   # cwd block (onedark.nvim bg3)
+    c      '#31353f'   # git block (onedark.nvim bg1)
     yellow '#e5c07b'   # operation in progress
 )
 typeset -g _prompt_sep=$'\xee\x82\xb0'     # U+E0B0 powerline arrow (UTF-8 bytes work in any locale)

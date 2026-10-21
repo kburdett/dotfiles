@@ -29,7 +29,9 @@ setopt PUSHD_SILENT
 setopt PUSHD_TO_HOME
 
 # --- colors ----------------------------------------------------------------------------------
-export LS_COLORS='no=00;00:fi=00;00:di=00;32:ln=00;36:pi=00;30;43:so=00;30;43:bd=00;34;43:cd=00;34;43:or=01;05;33;41:mi=01;05;33;41:ex=00;31:'
+# ANSI colors so they follow the terminal's OneDark palette: blue dirs, cyan links, green executables.
+# ow/tw keep WSL's world-writable /mnt/c folders from showing as blue on green.
+export LS_COLORS='rs=0:di=34:ln=36:mh=0:pi=33:so=35:do=35:bd=33:cd=33:or=31:mi=31:su=30;41:sg=30;43:tw=34:ow=34:st=34:ex=32:*.tar=35:*.tgz=35:*.gz=35:*.zip=35:*.7z=35:*.xz=35:*.zst=35'
 export GREP_COLORS='mt=3;33'
 
 # --- completion ------------------------------------------------------------------------------
