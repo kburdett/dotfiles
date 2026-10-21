@@ -22,8 +22,6 @@
     renames = true
     renameLimit = 5000
 
-[commit]
-    verbose = true
 [help]
     autocorrect = prompt
 
