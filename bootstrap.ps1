@@ -140,7 +140,23 @@ if (Test-Path $localConfig) {
     Write-Host "  Create $localConfig with your [user] name and email (see config.local.example)"
 }
 
-if (Get-Command nvim -ErrorAction SilentlyContinue) {
+Write-Step 'Setting the profile'
+# Neovim loads plugins only when this file says "full" (see xdg\nvim\init.lua). Written the
+# first time; an existing file is left alone.
+$profileFile = Join-Path $Env:XDG_CONFIG_HOME 'dotfiles\profile'
+if ((Test-Path $profileFile) -and (Get-Item $profileFile).Length -gt 0) {
+    Write-Host "  ok      $profileFile"
+} else {
+    New-Item -ItemType Directory -Force -Path (Split-Path -Parent $profileFile) | Out-Null
+    [IO.File]::WriteAllText($profileFile, "full`n")
+    Write-Host "  wrote   $profileFile"
+}
+$dotfilesProfile = ([IO.File]::ReadAllText($profileFile)).Trim()
+Write-Host "  profile $dotfilesProfile"
+
+if ($dotfilesProfile -ne 'full') {
+    Write-Step "Skipping Neovim plugins, parsers and language servers ($dotfilesProfile profile)"
+} elseif (Get-Command nvim -ErrorAction SilentlyContinue) {
     Write-Step 'Installing Neovim plugins, parsers and language servers'
     nvim --headless "+lua require('install')" +qa
 }

@@ -30,6 +30,20 @@ ask for your Git name and email the first time (saved to `xdg/git/config.local`)
 after a pull also syncs plugins to `nvim-pack-lock.json` and removes plugins dropped from the
 config.
 
+## Profiles
+
+`~/.config/dotfiles/profile` (`$XDG_CONFIG_HOME\dotfiles\profile` on Windows) says how much
+Neovim loads:
+
+- `full`: plugins, Tree-sitter parsers and Mason language servers. The bootstrap scripts write
+  this the first time they run, so workstations get everything as before.
+- anything else, or no file: `minimal`. Options, mappings and commands only. No plugins load
+  and nothing is downloaded, and it also runs on Debian's Neovim 0.10.
+
+Servers don't run the bootstrap scripts: the infra repo's `shell` role installs these files from a
+pinned commit and writes the profile itself. Because a missing file means `minimal`, a server
+can't end up downloading plugins by accident.
+
 ## Layout
 
 | Path              | Linked to                                                              |

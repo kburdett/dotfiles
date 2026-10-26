@@ -6,6 +6,9 @@
 #   ./bootstrap.sh --packages   also install packages with apt, install Neovim and the
 #                               tree-sitter CLI, and make zsh the login shell (uses sudo)
 #
+# Neovim plugins are installed and loaded only under the "full" profile, which this script
+# sets the first time it runs (~/.config/dotfiles/profile). Servers use the infra repo instead.
+#
 # Existing files that would be replaced are moved aside as <name>.bak.<timestamp>.
 set -euo pipefail
 
@@ -19,7 +22,7 @@ packages=false
 for arg in "$@"; do
     case $arg in
         --packages) packages=true ;;
-        -h|--help) sed -n '2,9s/^# \{0,1\}//p' "$0"; exit 0 ;;
+        -h|--help) sed -n '2,12s/^# \{0,1\}//p' "$0"; exit 0 ;;
         *) echo "Unknown option: $arg" >&2; exit 1 ;;
     esac
 done
@@ -104,6 +107,21 @@ if [[ -f $HOME/.histfile && ! -e $XDG_STATE_HOME/zsh/history ]]; then
 fi
 rm -f "$HOME"/.zcompdump*   # now cached in $XDG_CACHE_HOME/zsh
 
+step "Setting the profile"
+# Neovim loads plugins only when this file says "full" (see xdg/nvim/init.lua). A workstation
+# gets "full" the first time; an existing file is left alone, so a server's "minimal" (written
+# by the infra repo) stays put.
+profile_file=$XDG_CONFIG_HOME/dotfiles/profile
+if [[ -s $profile_file ]]; then
+    echo "  ok      $profile_file"
+else
+    mkdir -p "${profile_file%/*}"
+    echo full > "$profile_file"
+    echo "  wrote   $profile_file"
+fi
+profile=$(<"$profile_file")
+echo "  profile $profile"
+
 step "Configuring Git"
 # config.os pulls in the settings for this OS; a regular file, so it works without symlinks
 os_config=$DOTFILES/xdg/git/config.os
@@ -128,7 +146,9 @@ else
     echo "  Create $local_config with your [user] name and email (see config.local.example)"
 fi
 
-if command -v nvim >/dev/null; then
+if [[ $profile != full ]]; then
+    step "Skipping Neovim plugins, parsers and language servers ($profile profile)"
+elif command -v nvim >/dev/null; then
     step "Installing Neovim plugins, parsers and language servers"
     nvim --headless "+lua require('install')" +qa
 fi
