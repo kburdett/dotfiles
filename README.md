@@ -31,7 +31,8 @@ It writes the `minimal` profile, so no Neovim plugins or language servers are do
 Also install the [Termux:API](https://wiki.termux.com/wiki/Termux:API) app, from the same source
 as Termux (F-Droid or GitHub): the `termux-api` commands, including the clipboard Neovim uses,
 hang without it. The bootstrap script warns when the app doesn't respond.
-If your user and host names are unhelpful in the prompt, set `_prompt_host=<name>` in `conf/local.sh`.
+Termux's user and host names (`u0_a123@localhost`) aren't much use in the prompt: set
+`_prompt_userhost=<text>` in `conf/local.sh` (e.g. `_prompt_userhost=kevin@s23`) to replace them.
 
 ## Windows
 

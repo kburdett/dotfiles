@@ -20,8 +20,9 @@ typeset -gA _prompt_colors=(
 )
 typeset -g _prompt_sep=$'\xee\x82\xb0'     # U+E0B0 powerline arrow (UTF-8 bytes work in any locale)
 typeset -g _prompt_branch=$'\xee\x82\xa0'  # U+E0A0 branch icon
-# The first block shows user@host unless _prompt_host is set, e.g. in conf/local.sh on a phone
-# whose user and host names aren't useful: _prompt_host=s23 (prompt escapes such as %n work).
+# The first block shows user@host unless _prompt_userhost is set, e.g. in conf/local.sh on a
+# phone whose names aren't useful (Termux: u0_a123@localhost): _prompt_userhost=kevin@s23
+# It replaces just that block, and takes prompt escapes (%n, %m), so write a literal % as %%.
 
 # Hex colors are sent as 24-bit; terminals without truecolor get the nearest 256-color match.
 [[ $COLORTERM == (truecolor|24bit) ]] || zmodload zsh/nearcolor 2>/dev/null
@@ -71,7 +72,7 @@ typeset -g _prompt_mode=insert
 _prompt_render() {
     local -A c=("${(@kv)_prompt_colors}")
     local mode=$c[$_prompt_mode] sep=$_prompt_sep
-    local p="%K{$mode}%F{$c[bg]}%B ${_prompt_host:-%n@%m} %b"      # user@host
+    local p="%K{$mode}%F{$c[bg]}%B ${_prompt_userhost:-%n@%m} %b"  # user@host
     p+="%K{$c[b]}%F{$mode}$sep%F{$c[fg]} %(4~|…/%3~|%~) "          # cwd, last 3 dirs when deep
     if [[ -n $_prompt_git ]]; then
         p+="%K{$c[c]}%F{$c[b]}$sep%F{$c[fg]} $_prompt_git %F{$c[c]}"  # git
