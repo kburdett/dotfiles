@@ -1,3 +1,7 @@
 # LF everywhere, so a Windows checkout also works from WSL and shell scripts never get CRLF.
 # (PowerShell, Git for Windows and Neovim all handle LF fine.)
 * text=auto eol=lf
+
+# fonts are binary: never touch their line endings
+*.otf binary
+*.ttf binary

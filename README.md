@@ -53,6 +53,7 @@ can't end up downloading plugins by accident.
 | `win/profile.ps1` | loaded by the PowerShell 7 and 5.1 profiles                            |
 | `conf/`           | sourced by `.zshenv` / `.zshrc`                                        |
 | `script/`         | `update-nvim`, `update-tree-sitter`, `update-git-credential-libsecret` |
+| `fonts/`          | `~/.local/share/fonts/dotfiles` (Windows: installed for the user)      |
 
 Per-machine settings that aren't checked in: `xdg/git/config.local`, `conf/local.sh` (zsh) and
 `win/local.ps1` (PowerShell).
@@ -71,4 +72,8 @@ Run `gh auth login` once for GitHub. For Forgejo, enter your username and a pers
 token (Settings → Applications) the first time Git asks. The bootstrap scripts pick the files
 for the OS: `xdg/git/config.win`, or `config.linux` plus `config.wsl` / `config.debian`.
 
-A [Nerd Font](https://www.nerdfonts.com/) is needed for the prompt glyphs.
+A [Nerd Font](https://www.nerdfonts.com/) is needed for the prompt glyphs. The bootstrap scripts
+install the fonts in `fonts/` (CommitMono Nerd Font): per user on Windows, with no admin rights,
+and by linking the folder into `~/.local/share/fonts` on Debian. WSL skips them, since Windows
+Terminal uses the fonts installed on Windows. Restart the terminal afterwards and pick the font
+in its settings.

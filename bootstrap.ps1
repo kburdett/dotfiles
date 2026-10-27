@@ -5,12 +5,13 @@ Set up these dotfiles on Windows. Safe to re-run at any time.
 .DESCRIPTION
 Points PowerShell 7 and Windows PowerShell 5.1 at the profile in this repo, links the XDG
 configs (git, nvim) into place, saves the XDG, DOTFILES and npm config variables for the user,
-and installs the Neovim plugins, parsers and language servers.
+installs the fonts in fonts\ for the user, and installs the Neovim plugins, parsers and
+language servers.
 Existing files that would be replaced are moved aside as <name>.bak.<timestamp>.
 
 Needs no admin rights or Developer Mode: folders are linked with directory junctions, the
-profiles are one-line files that load the repo's profile, and npm finds ~/.npmrc's settings
-through NPM_CONFIG_USERCONFIG.
+profiles are one-line files that load the repo's profile, npm finds ~/.npmrc's settings
+through NPM_CONFIG_USERCONFIG, and fonts are installed per user (Windows 10 1809 or later).
 
 .PARAMETER Packages
 Also install Git, the GitHub CLI, Neovim, Node.js, WinMerge and PowerShell 7 with winget.
@@ -123,6 +124,56 @@ foreach ($name in 'DOTFILES', 'XDG_CONFIG_HOME', 'XDG_DATA_HOME', 'XDG_STATE_HOM
     Set-UserEnv $name ([Environment]::GetEnvironmentVariable($name))
 }
 
+Write-Step 'Installing fonts'
+# Per-user install: copied into the user's font folder (Windows only loads fonts from there or
+# the system one) and registered under HKCU, so no admin rights are needed
+$fontDir = Join-Path $Env:LOCALAPPDATA 'Microsoft\Windows\Fonts'
+$fontKey = 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts'
+if (-not (Test-Path $fontDir)) { New-Item -ItemType Directory -Path $fontDir | Out-Null }
+if (-not (Test-Path $fontKey)) { New-Item -Path $fontKey -Force | Out-Null }
+if (-not ('Dotfiles.Fonts' -as [type])) {
+    Add-Type -Namespace Dotfiles -Name Fonts -MemberDefinition @'
+[DllImport("gdi32.dll", CharSet = CharSet.Unicode)]
+public static extern int AddFontResource(string path);
+[DllImport("user32.dll", CharSet = CharSet.Unicode)]
+public static extern IntPtr SendMessageTimeout(IntPtr hWnd, uint msg, UIntPtr wParam, IntPtr lParam,
+    uint flags, uint timeout, out UIntPtr result);
+'@
+}
+$fontsChanged = $false
+$fonts = Get-ChildItem -LiteralPath (Join-Path $DotfilesDir 'fonts') -File -ErrorAction SilentlyContinue |
+    Where-Object { $_.Extension -in '.otf', '.ttf' }
+foreach ($font in $fonts) {
+    $dest = Join-Path $fontDir $font.Name
+    $kind = if ($font.Extension -eq '.otf') { 'OpenType' } else { 'TrueType' }
+    $valueName = "$($font.BaseName) ($kind)"
+    $registered = (Get-ItemProperty -LiteralPath $fontKey -Name $valueName -ErrorAction SilentlyContinue).$valueName
+    $current = (Test-Path -LiteralPath $dest) -and
+        (Get-FileHash -LiteralPath $dest).Hash -eq (Get-FileHash -LiteralPath $font.FullName).Hash
+    if ($current -and $registered -eq $dest) {
+        Write-Host "  ok      $($font.Name)"
+        continue
+    }
+    if (-not $current) {
+        try {
+            Copy-Item -LiteralPath $font.FullName -Destination $dest -Force
+        } catch {
+            # an updated font can't replace one an open app has loaded
+            Write-Host "  skipped $($font.Name): in use, close the apps using it and re-run" -ForegroundColor Yellow
+            continue
+        }
+    }
+    Set-ItemProperty -LiteralPath $fontKey -Name $valueName -Value $dest
+    [void][Dotfiles.Fonts]::AddFontResource($dest)   # usable now, without signing out
+    $fontsChanged = $true
+    Write-Host "  copied  $dest"
+}
+if ($fontsChanged) {
+    # tell running apps (WM_FONTCHANGE to HWND_BROADCAST, giving up on hung windows)
+    $result = [UIntPtr]::Zero
+    [void][Dotfiles.Fonts]::SendMessageTimeout([IntPtr]0xffff, 0x1D, [UIntPtr]::Zero, [IntPtr]::Zero, 2, 1000, [ref]$result)
+}
+
 Write-Step 'Configuring Git'
 # config.os pulls in the settings for this OS
 Set-FileContent -Path (Join-Path $DotfilesDir 'xdg\git\config.os') `
@@ -166,4 +217,5 @@ if (Get-Command gh -ErrorAction SilentlyContinue) {
     gh auth status *> $null
     if ($LASTEXITCODE -ne 0) { Write-Host 'Sign in to GitHub: gh auth login' }
 }
+if ($fontsChanged) { Write-Host 'Restart Windows Terminal to pick up the new fonts.' }
 Write-Host 'Open a new terminal to load the profile.'

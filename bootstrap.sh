@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Set up these dotfiles on Debian or WSL (Debian). Safe to re-run at any time.
 #
-#   ./bootstrap.sh              link configs into $HOME and ~/.config, and install the
-#                               Neovim plugins, parsers and language servers
+#   ./bootstrap.sh              link configs into $HOME and ~/.config, link the fonts, and
+#                               install the Neovim plugins, parsers and language servers
 #   ./bootstrap.sh --packages   also install packages with apt, install Neovim and the
 #                               tree-sitter CLI, and make zsh the login shell (uses sudo)
 #
@@ -66,9 +66,10 @@ if $packages; then
     sudo apt-get update
     # zsh + plugins, git + GitHub CLI, compilers and archive tools for Mason and tree-sitter,
     # and node/npm for the npm-based language servers (gettext-base: git submodule needs envsubst).
-    # Native Debian also builds Git's libsecret credential helper (WSL uses GCM from Windows).
+    # Native Debian also builds Git's libsecret credential helper (WSL uses GCM from Windows)
+    # and needs fontconfig for the fonts.
     extra=()
-    [[ $os == debian ]] && extra=(pkg-config libsecret-1-dev)
+    [[ $os == debian ]] && extra=(pkg-config libsecret-1-dev fontconfig)
     sudo apt-get install -y \
         zsh zsh-autosuggestions zsh-syntax-highlighting \
         git git-lfs gh gettext-base \
@@ -97,6 +98,21 @@ link_children "$DOTFILES/home" "$HOME"
 
 step "Linking configs into $XDG_CONFIG_HOME"
 link_children "$DOTFILES/xdg" "$XDG_CONFIG_HOME"
+
+step "Installing fonts"
+if [[ $os == wsl ]]; then
+    # Windows Terminal draws WSL's text with Windows' fonts
+    echo "  skipped: on WSL, run bootstrap.ps1 on Windows to install them"
+else
+    # the whole folder is linked, so fonts added to the repo later show up after a pull
+    mkdir -p "$XDG_DATA_HOME/fonts"
+    link "$DOTFILES/fonts" "$XDG_DATA_HOME/fonts/dotfiles"
+    if command -v fc-cache >/dev/null; then
+        fc-cache "$XDG_DATA_HOME/fonts"   # quick when nothing changed
+    else
+        echo "  fc-cache not found: install fontconfig (or re-run with --packages)"
+    fi
+fi
 
 step "Creating XDG directories"
 mkdir -p "$XDG_DATA_HOME" "$XDG_STATE_HOME/zsh" "$XDG_CACHE_HOME/zsh"
