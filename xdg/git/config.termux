@@ -1,0 +1,9 @@
+# Termux (Android) only, loaded after config.linux
+
+# Forgejo: Android has no keyring for libsecret, so keep the access token in a file that only
+# Termux can read (Android's per-app sandbox; gh keeps its GitHub token in plain text here too).
+# The path is explicit: without --file, `store` would use ~/.config/git/credentials, and
+# ~/.config/git is a link into this repo. bootstrap.sh creates the folder.
+[credential "https://git.kevinburdett.com"]
+    helper =
+    helper = store --file ~/.local/state/git/credentials

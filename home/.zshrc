@@ -107,8 +107,13 @@ add-zle-hook-widget line-init _cursor_shape
 source "$DOTFILES/conf/prompt.zsh"
 
 # --- optional plugins (apt install zsh-autosuggestions zsh-syntax-highlighting) --------------
+# Debian's packages, Termux's $PREFIX, or clones in $XDG_DATA_HOME (bootstrap.sh on Termux).
 # syntax highlighting must be sourced last
-for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
-    [[ -r /usr/share/$plugin/$plugin.zsh ]] && source /usr/share/$plugin/$plugin.zsh
-done
-unset plugin
+() {
+    local plugin dir
+    for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
+        for dir in /usr/share/$plugin ${PREFIX:+$PREFIX/share/$plugin} $XDG_DATA_HOME/zsh/plugins/$plugin; do
+            [[ -r $dir/$plugin.zsh ]] && { source $dir/$plugin.zsh; break }
+        done
+    done
+}

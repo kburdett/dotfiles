@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-# Set up these dotfiles on Debian or WSL (Debian). Safe to re-run at any time.
+# Set up these dotfiles on Debian, WSL (Debian) or Termux (Android). Safe to re-run at any time.
 #
 #   ./bootstrap.sh              link configs into $HOME and ~/.config, link the fonts, and
 #                               install the Neovim plugins, parsers and language servers
-#   ./bootstrap.sh --packages   also install packages with apt, install Neovim and the
-#                               tree-sitter CLI, and make zsh the login shell (uses sudo)
+#   ./bootstrap.sh --packages   also install packages, install Neovim and the tree-sitter CLI,
+#                               and make zsh the login shell (apt with sudo; pkg on Termux)
 #
 # Neovim plugins are installed and loaded only under the "full" profile, which this script
-# sets the first time it runs (~/.config/dotfiles/profile). Servers use the infra repo instead.
+# sets the first time it runs (~/.config/dotfiles/profile). Termux gets "minimal" instead: a
+# phone used as an SSH client doesn't need language servers. Servers use the infra repo.
 #
 # Existing files that would be replaced are moved aside as <name>.bak.<timestamp>.
 set -euo pipefail
@@ -22,15 +23,31 @@ packages=false
 for arg in "$@"; do
     case $arg in
         --packages) packages=true ;;
-        -h|--help) sed -n '2,12s/^# \{0,1\}//p' "$0"; exit 0 ;;
+        -h|--help) sed -n '2,/^set /s/^# \{0,1\}//p' "$0"; exit 0 ;;
         *) echo "Unknown option: $arg" >&2; exit 1 ;;
     esac
 done
 
 step() { printf '\n\033[1;34m==>\033[0m %s\n' "$*"; }
 
-# WSL or native Debian: they differ in how Git stores the Forgejo token (xdg/git/config.<os>)
-if grep -qi microsoft /proc/sys/kernel/osrelease 2>/dev/null; then os=wsl; else os=debian; fi
+# Termux, WSL or native Debian: they differ in packages, fonts and how Git stores the Forgejo
+# token (xdg/git/config.<os>). Termux sets TERMUX_VERSION; its prefix is the fallback check.
+if [[ -n ${TERMUX_VERSION:-} || ${PREFIX:-} == */com.termux/* ]]; then
+    os=termux
+elif grep -qi microsoft /proc/sys/kernel/osrelease 2>/dev/null; then
+    os=wsl
+else
+    os=debian
+fi
+
+# Termux has its own chsh, which points ~/.termux/shell at the shell (no passwd entry, no sudo)
+login_shell_is_zsh() {
+    if [[ $os == termux ]]; then
+        [[ $(readlink "$HOME/.termux/shell" 2>/dev/null) == */zsh ]]
+    else
+        [[ $(getent passwd "${USER:-$(id -un)}" | cut -d: -f7) == */zsh ]]
+    fi
+}
 
 # link <target> <link>: point <link> at <target>, leaving it alone if it already does
 link() {
@@ -61,7 +78,30 @@ link_children() {
     done
 }
 
-if $packages; then
+if $packages && [[ $os == termux ]]; then
+    step "Installing packages"
+    # just enough for an SSH client with this shell and a minimal Neovim, plus the GitHub CLI
+    # and termux-api's commands (clipboard, notifications...; they need the Termux:API app)
+    pkg install -y zsh git openssh neovim gh termux-api
+
+    step "Installing zsh plugins"
+    # Termux doesn't package these; .zshrc also looks for them in $XDG_DATA_HOME/zsh/plugins
+    for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
+        dir=$XDG_DATA_HOME/zsh/plugins/$plugin
+        if [[ -d $dir/.git ]]; then
+            git -C "$dir" pull -q --ff-only
+            echo "  updated $dir"
+        else
+            git clone -q --depth 1 "https://github.com/zsh-users/$plugin.git" "$dir"
+            echo "  cloned  $dir"
+        fi
+    done
+
+    if ! login_shell_is_zsh; then
+        step "Making zsh the login shell"
+        chsh -s zsh
+    fi
+elif $packages; then
     step "Installing packages"
     sudo apt-get update
     # zsh + plugins, git + GitHub CLI, compilers and archive tools for Mason and tree-sitter,
@@ -87,9 +127,9 @@ if $packages; then
     step "Installing the tree-sitter CLI"
     "$DOTFILES/script/update-tree-sitter" || echo "Skipped: Neovim falls back to regex highlighting"
 
-    if [[ $(getent passwd "$USER" | cut -d: -f7) != */zsh ]]; then
+    if ! login_shell_is_zsh; then
         step "Making zsh the login shell"
-        sudo chsh -s "$(command -v zsh)" "$USER"
+        sudo chsh -s "$(command -v zsh)" "${USER:-$(id -un)}"
     fi
 fi
 
@@ -99,10 +139,19 @@ link_children "$DOTFILES/home" "$HOME"
 step "Linking configs into $XDG_CONFIG_HOME"
 link_children "$DOTFILES/xdg" "$XDG_CONFIG_HOME"
 
+if [[ $os == termux ]]; then
+    step "Linking Termux settings into ~/.termux"
+    # the files, not the folder: Termux keeps its own state in ~/.termux too (e.g. chsh's link)
+    link_children "$DOTFILES/termux" "$HOME/.termux"
+fi
+
 step "Installing fonts"
 if [[ $os == wsl ]]; then
     # Windows Terminal draws WSL's text with Windows' fonts
     echo "  skipped: on WSL, run bootstrap.ps1 on Windows to install them"
+elif [[ $os == termux ]]; then
+    # Termux draws everything with one file, ~/.termux/font.ttf (OpenType works despite the name)
+    link "$DOTFILES/fonts/CommitMonoNerdFont-Regular.otf" "$HOME/.termux/font.ttf"
 else
     # the whole folder is linked, so fonts added to the repo later show up after a pull
     mkdir -p "$XDG_DATA_HOME/fonts"
@@ -114,8 +163,13 @@ else
     fi
 fi
 
+if [[ $os == termux ]] && command -v termux-reload-settings >/dev/null; then
+    termux-reload-settings   # apply the font, colors and extra keys without restarting Termux
+fi
+
 step "Creating XDG directories"
 mkdir -p "$XDG_DATA_HOME" "$XDG_STATE_HOME/zsh" "$XDG_CACHE_HOME/zsh"
+[[ $os == termux ]] && mkdir -p "$XDG_STATE_HOME/git"   # Forgejo token (xdg/git/config.termux)
 # zsh history used to live in ~/.histfile
 if [[ -f $HOME/.histfile && ! -e $XDG_STATE_HOME/zsh/history ]]; then
     mv "$HOME/.histfile" "$XDG_STATE_HOME/zsh/history"
@@ -125,14 +179,14 @@ rm -f "$HOME"/.zcompdump*   # now cached in $XDG_CACHE_HOME/zsh
 
 step "Setting the profile"
 # Neovim loads plugins only when this file says "full" (see xdg/nvim/init.lua). A workstation
-# gets "full" the first time; an existing file is left alone, so a server's "minimal" (written
-# by the infra repo) stays put.
+# gets "full" the first time and Termux gets "minimal"; an existing file is left alone, so a
+# server's "minimal" (written by the infra repo) stays put. Edit the file to switch later.
 profile_file=$XDG_CONFIG_HOME/dotfiles/profile
 if [[ -s $profile_file ]]; then
     echo "  ok      $profile_file"
 else
     mkdir -p "${profile_file%/*}"
-    echo full > "$profile_file"
+    if [[ $os == termux ]]; then echo minimal; else echo full; fi > "$profile_file"
     echo "  wrote   $profile_file"
 fi
 profile=$(<"$profile_file")
@@ -170,10 +224,24 @@ elif command -v nvim >/dev/null; then
 fi
 
 step "Done"
-if [[ $SHELL != */zsh ]] && ! $packages; then
-    echo "zsh isn't your login shell yet: chsh -s \"\$(command -v zsh)\"  (or re-run with --packages)"
+if ! $packages && ! login_shell_is_zsh; then
+    if [[ $os == termux ]]; then
+        echo "zsh isn't your login shell yet: chsh -s zsh  (or re-run with --packages)"
+    else
+        echo "zsh isn't your login shell yet: chsh -s \"\$(command -v zsh)\"  (or re-run with --packages)"
+    fi
 fi
 command -v gh >/dev/null && ! gh auth status >/dev/null 2>&1 && echo "Sign in to GitHub: gh auth login"
+if [[ $os == termux ]]; then
+    # termux-api's commands talk to the separate Termux:API app and wait forever when it's missing
+    # (or from a different source than Termux), so ask it something harmless with a time limit
+    if ! command -v termux-battery-status >/dev/null; then
+        echo "termux-api isn't installed: pkg install termux-api (or re-run with --packages)"
+    elif ! timeout 10 termux-battery-status >/dev/null 2>&1; then
+        echo "The Termux:API app isn't responding: install it from the same place as Termux (F-Droid"
+        echo "or GitHub, not a mix). Until then, termux-clipboard-* and Neovim's clipboard will hang."
+    fi
+fi
 if [[ $os == debian && ! -x $HOME/.local/bin/git-credential-libsecret ]]; then
     echo "Git can't save the Forgejo token yet: re-run with --packages, or install pkg-config and"
     echo "libsecret-1-dev and run $DOTFILES/script/update-git-credential-libsecret"
