@@ -4,6 +4,9 @@
     autocrlf = true
     fsmonitor = true    # built-in file watcher: much faster status in big repos (Windows/macOS only)
 
+[http]
+    sslBackend = schannel
+
 [diff]
     tool = winmerge
 [difftool "winmerge"]
