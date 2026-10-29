@@ -105,8 +105,8 @@ elif $packages; then
     step "Installing packages"
     sudo apt-get update
     sudo apt-get install -y curl ca-certificates
-    curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
-    printf 'Package: nodejs\nPin: version 24.*\nPin-Priority: 1001\n' \
+    curl -fsSL https://deb.nodesource.com/setup_26.x | sudo -E bash -
+    printf 'Package: nodejs\nPin: version 26.*\nPin-Priority: 1001\n' \
         | sudo tee /etc/apt/preferences.d/nodejs >/dev/null
     sudo apt-get update
     # zsh + plugins, git + GitHub CLI, compilers and archive tools for Mason and tree-sitter,
