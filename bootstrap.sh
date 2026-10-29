@@ -251,7 +251,7 @@ if [[ $os == debian && ! -x $HOME/.local/bin/git-credential-libsecret ]]; then
     echo "Git can't save the Forgejo token yet: re-run with --packages, or install pkg-config and"
     echo "libsecret-1-dev and run $DOTFILES/script/update-git-credential-libsecret"
 fi
-if [[ $os == wsl && ! -x "/mnt/c/Program Files/Git/mingw64/bin/git-credential-manager.exe" ]]; then
+if [[ $os == wsl && ! -x '/mnt/c/Program Files/Git/ucrt64/bin/git-credential-manager.exe' ]]; then
     echo "Git can't save the Forgejo token yet: install Git for Windows (it includes Git Credential Manager)"
 fi
 echo "Start a new shell (exec zsh) to load the changes."
