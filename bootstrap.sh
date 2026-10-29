@@ -104,6 +104,11 @@ if $packages && [[ $os == termux ]]; then
 elif $packages; then
     step "Installing packages"
     sudo apt-get update
+    sudo apt-get install -y curl ca-certificates
+    curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+    printf 'Package: nodejs\nPin: version 24.*\nPin-Priority: 1001\n' \
+        | sudo tee /etc/apt/preferences.d/nodejs >/dev/null
+    sudo apt-get update
     # zsh + plugins, git + GitHub CLI, compilers and archive tools for Mason and tree-sitter,
     # and node/npm for the npm-based language servers (gettext-base: git submodule needs envsubst).
     # Native Debian also builds Git's libsecret credential helper (WSL uses GCM from Windows)
@@ -113,8 +118,8 @@ elif $packages; then
     sudo apt-get install -y \
         zsh zsh-autosuggestions zsh-syntax-highlighting \
         git git-lfs gh gettext-base \
-        curl ca-certificates build-essential unzip tar gzip \
-        nodejs npm "${extra[@]}"
+        build-essential unzip tar gzip \
+        nodejs "${extra[@]}"
 
     if [[ $os == debian ]]; then
         step "Building Git's libsecret credential helper"
