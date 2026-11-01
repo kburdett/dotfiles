@@ -65,7 +65,7 @@ zstyle ':completion:*' group-name ''
 }
 
 # --- key bindings (vi mode) ------------------------------------------------------------------
-export KEYTIMEOUT=1
+export KEYTIMEOUT=10
 bindkey -v
 # moving around in history
 bindkey -a 'gg' beginning-of-buffer-or-history
