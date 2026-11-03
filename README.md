@@ -83,7 +83,7 @@ Per-machine settings that aren't checked in: `xdg/git/config.local`, `conf/local
 
 HTTPS everywhere, with a credential helper per host and OS:
 
-|         | GitHub     | Forgejo (`git.kevinburdett.com`, access token)        |
+|         | GitHub     | Forgejo (`git.int.kevinburdett.com`, access token)        |
 | ------- | ---------- | ----------------------------------------------------- |
 | Windows | GitHub CLI | Git Credential Manager (Windows Credential Manager)   |
 | WSL     | GitHub CLI | Windows' Git Credential Manager (shared with Windows) |

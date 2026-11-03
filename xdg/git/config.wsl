@@ -4,6 +4,6 @@
 # Credential Manager and is shared with Windows (enter it once on either side). GCM is a Windows
 # program and reads the Windows Git config, which has the same Forgejo settings from ./config.
 # GitHub keeps using the GitHub CLI from config.linux.
-[credential "https://git.kevinburdett.com"]
+[credential "https://git.int.kevinburdett.com"]
     helper =
     helper = !'/mnt/c/Program Files/Git/ucrt64/bin/git-credential-manager.exe'

@@ -54,7 +54,7 @@
 # native Debian (config.debian). These settings are only read by GCM: they stop it using
 # Forgejo's OAuth flow, whose 1-hour tokens make the first command after expiry fail
 # (https://codeberg.org/forgejo/forgejo/issues/2809).
-[credential "https://git.kevinburdett.com"]
+[credential "https://git.int.kevinburdett.com"]
     oauthAuthorizeEndpoint = //
     provider = generic
 
