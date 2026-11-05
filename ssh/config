@@ -1,0 +1,17 @@
+# OpenSSH client config, shared by every platform. Linked as ~/.ssh/config by bootstrap.sh;
+# on Windows, bootstrap.ps1 writes a ~/.ssh/config that includes this file.
+#
+# For each option, ssh uses the first value it finds, so host-specific settings must come
+# before the "Host *" defaults at the end.
+
+# Per-machine hosts that aren't checked in. A relative path is resolved against ~/.ssh, and a
+# missing file is fine.
+Include config.local
+
+Host *
+    # WSL: the Hyper-V firewall forgets idle connections after a few minutes, which freezes or
+    # drops SSH sessions. Keepalives every 30s keep it from forgetting, and elsewhere they keep
+    # NAT/router timeouts from doing the same. After 4 missed replies (~2 min), ssh disconnects
+    # instead of hanging on a dead connection.
+    ServerAliveInterval 30
+    ServerAliveCountMax 4

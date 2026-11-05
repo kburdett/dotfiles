@@ -75,9 +75,10 @@ can't end up downloading plugins by accident.
 | `script/`         | `update-nvim`, `update-tree-sitter`, `update-git-credential-libsecret` |
 | `fonts/`          | `~/.local/share/fonts/dotfiles` (Windows: installed for the user)      |
 | `termux/*`        | `~/.termux` (Termux only; the regular font is linked as `font.ttf`)    |
+| `ssh/config`      | `~/.ssh/config` (Windows: a `~/.ssh/config` that includes it)          |
 
-Per-machine settings that aren't checked in: `xdg/git/config.local`, `conf/local.sh` (zsh) and
-`win/local.ps1` (PowerShell).
+Per-machine settings that aren't checked in: `xdg/git/config.local`, `conf/local.sh` (zsh),
+`win/local.ps1` (PowerShell) and `~/.ssh/config.local` (SSH hosts).
 
 ## Git credentials
 

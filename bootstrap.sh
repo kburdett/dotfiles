@@ -141,6 +141,11 @@ fi
 step "Linking dotfiles into $HOME"
 link_children "$DOTFILES/home" "$HOME"
 
+step "Linking the SSH config into ~/.ssh"
+# just the file: ~/.ssh also holds keys and known_hosts, which stay out of the repo
+mkdir -p -m 700 "$HOME/.ssh"
+link "$DOTFILES/ssh/config" "$HOME/.ssh/config"
+
 step "Linking configs into $XDG_CONFIG_HOME"
 link_children "$DOTFILES/xdg" "$XDG_CONFIG_HOME"
 
