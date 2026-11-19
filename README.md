@@ -45,6 +45,15 @@ git clone https://github.com/kburdett/dotfiles.git $HOME\dotfiles
 & $HOME\dotfiles\bootstrap.ps1             # later
 ```
 
+`bootstrap.ps1` also adds an **Update All** shortcut to the Start menu, which runs
+`win/update-all.ps1` in two passes. First, without admin rights, `winget upgrade --all --scope user`:
+winget won't upgrade user-scope portable packages such as ripgrep and tree-sitter from an elevated
+session. Then, in an elevated window (one UAC prompt), `winget upgrade --all` for machine-wide
+packages, `wsl --update`, and `apt-get update` / `full-upgrade` / `autoremove` as root in the
+Debian WSL distro (`-Distro <name>` for another). It runs in Windows PowerShell 5.1 and the classic
+console (`conhost`) rather than PowerShell 7 and Windows Terminal, so winget can upgrade both;
+close any other `pwsh` windows first.
+
 Both scripts install the Neovim plugins, Tree-sitter parsers and Mason language servers, and
 ask for your Git name and email the first time (saved to `xdg/git/config.local`). Re-running
 after a pull also syncs plugins to `nvim-pack-lock.json` and removes plugins dropped from the
@@ -66,16 +75,17 @@ can't end up downloading plugins by accident.
 
 ## Layout
 
-| Path              | Linked to                                                              |
-| ----------------- | ---------------------------------------------------------------------- |
-| `home/*`          | `~` (Windows: `NPM_CONFIG_USERCONFIG` instead)                         |
-| `xdg/*`           | `~/.config` (`%APPDATA%` on Windows)                                   |
-| `win/profile.ps1` | loaded by the PowerShell 7 and 5.1 profiles                            |
-| `conf/`           | sourced by `.zshenv` / `.zshrc`                                        |
-| `script/`         | `update-nvim`, `update-tree-sitter`, `update-git-credential-libsecret` |
-| `fonts/`          | `~/.local/share/fonts/dotfiles` (Windows: installed for the user)      |
-| `termux/*`        | `~/.termux` (Termux only; the regular font is linked as `font.ttf`)    |
-| `ssh/config`      | `~/.ssh/config` (Windows: a `~/.ssh/config` that includes it)          |
+| Path                 | Linked to                                                              |
+| -------------------- | ---------------------------------------------------------------------- |
+| `home/*`             | `~` (Windows: `NPM_CONFIG_USERCONFIG` instead)                         |
+| `xdg/*`              | `~/.config` (`%APPDATA%` on Windows)                                   |
+| `win/profile.ps1`    | loaded by the PowerShell 7 and 5.1 profiles                            |
+| `win/update-all.ps1` | run by the Start menu's **Update All** shortcut                        |
+| `conf/`              | sourced by `.zshenv` / `.zshrc`                                        |
+| `script/`            | `update-nvim`, `update-tree-sitter`, `update-git-credential-libsecret` |
+| `fonts/`             | `~/.local/share/fonts/dotfiles` (Windows: installed for the user)      |
+| `termux/*`           | `~/.termux` (Termux only; the regular font is linked as `font.ttf`)    |
+| `ssh/config`         | `~/.ssh/config` (Windows: a `~/.ssh/config` that includes it)          |
 
 Per-machine settings that aren't checked in: `xdg/git/config.local`, `conf/local.sh` (zsh),
 `win/local.ps1` (PowerShell) and `~/.ssh/config.local` (SSH hosts).
