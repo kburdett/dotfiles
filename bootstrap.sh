@@ -3,8 +3,8 @@
 #
 #   ./bootstrap.sh              link configs into $HOME and ~/.config, link the fonts, and
 #                               install the Neovim plugins, parsers and language servers
-#   ./bootstrap.sh --packages   also install packages, install Neovim and the tree-sitter CLI,
-#                               and make zsh the login shell (apt with sudo; pkg on Termux)
+#   ./bootstrap.sh --packages   also install packages, install Neovim, the tree-sitter CLI and
+#                               forgejo-cli, and make zsh the login shell (apt with sudo; pkg on Termux)
 #
 # Neovim plugins are installed and loaded only under the "full" profile, which this script
 # sets the first time it runs (~/.config/dotfiles/profile). Termux gets "minimal" instead: a
@@ -131,6 +131,9 @@ elif $packages; then
 
     step "Installing the tree-sitter CLI"
     "$DOTFILES/script/update-tree-sitter" || echo "Skipped: Neovim falls back to regex highlighting"
+
+    step "Installing forgejo-cli"
+    "$DOTFILES/script/update-forgejo-cli" || echo "Skipped: fj won't be available"
 
     if ! login_shell_is_zsh; then
         step "Making zsh the login shell"
