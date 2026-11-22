@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Install or update forgejo-cli (fj) from the latest Codeberg release.
+set -euo pipefail
+
+case "$(uname -m)" in
+    x86_64)        arch=x86_64 ;;
+    aarch64|arm64) arch=aarch64 ;;
+    *) echo "Unsupported architecture: $(uname -m)" >&2; exit 1 ;;
+esac
+
+# Codeberg (Forgejo) has no releases/latest/download redirect like GitHub, so ask the API for the tag
+repo=forgejo-contrib/forgejo-cli
+tag=$(curl -fsSL "https://codeberg.org/api/v1/repos/${repo}/releases/latest" \
+    | grep -o '"tag_name":"[^"]*"' | head -n1 | cut -d'"' -f4)
+[[ -n $tag ]] || { echo "Couldn't find the latest forgejo-cli release" >&2; exit 1; }
+
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+curl -fL "https://codeberg.org/${repo}/releases/download/${tag}/forgejo-cli-${arch}-linux.tar.gz" \
+    | tar -C "$tmp" -xzf - fj
+
+# The prebuilt binary needs a recent glibc (2.39+, so Debian 13 or newer) and libssl3.
+# Make sure it runs here before replacing the installed copy.
+if ! version=$("$tmp/fj" version 2>&1); then
+    echo "The prebuilt forgejo-cli doesn't run on this system:" >&2
+    echo "  $version" >&2
+    echo "On Debian 12 (bookworm), build it with Rust instead: cargo install --locked forgejo-cli" >&2
+    exit 1
+fi
+
+sudo install -m 755 "$tmp/fj" /usr/local/bin/fj
+/usr/local/bin/fj version | head -n1

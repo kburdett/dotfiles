@@ -10,7 +10,7 @@ everything into place and are safe to re-run; anything they would replace is mov
 
 ```bash
 git clone https://github.com/kburdett/dotfiles.git ~/dotfiles
-~/dotfiles/bootstrap.sh --packages   # first time: apt packages, Neovim, tree-sitter, zsh as login shell
+~/dotfiles/bootstrap.sh --packages   # first time: apt packages, Neovim, tree-sitter, forgejo-cli, zsh as login shell
 ~/dotfiles/bootstrap.sh              # later: just re-link and install anything new
 ```
 
@@ -75,17 +75,17 @@ can't end up downloading plugins by accident.
 
 ## Layout
 
-| Path                 | Linked to                                                              |
-| -------------------- | ---------------------------------------------------------------------- |
-| `home/*`             | `~` (Windows: `NPM_CONFIG_USERCONFIG` instead)                         |
-| `xdg/*`              | `~/.config` (`%APPDATA%` on Windows)                                   |
-| `win/profile.ps1`    | loaded by the PowerShell 7 and 5.1 profiles                            |
-| `win/update-all.ps1` | run by the Start menu's **Update All** shortcut                        |
-| `conf/`              | sourced by `.zshenv` / `.zshrc`                                        |
-| `script/`            | `update-nvim`, `update-tree-sitter`, `update-git-credential-libsecret` |
-| `fonts/`             | `~/.local/share/fonts/dotfiles` (Windows: installed for the user)      |
-| `termux/*`           | `~/.termux` (Termux only; the regular font is linked as `font.ttf`)    |
-| `ssh/config`         | `~/.ssh/config` (Windows: a `~/.ssh/config` that includes it)          |
+| Path                 | Linked to                                                                                    |
+| -------------------- | -------------------------------------------------------------------------------------------- |
+| `home/*`             | `~` (Windows: `NPM_CONFIG_USERCONFIG` instead)                                               |
+| `xdg/*`              | `~/.config` (`%APPDATA%` on Windows)                                                         |
+| `win/profile.ps1`    | loaded by the PowerShell 7 and 5.1 profiles                                                  |
+| `win/update-all.ps1` | run by the Start menu's **Update All** shortcut                                              |
+| `conf/`              | sourced by `.zshenv` / `.zshrc`                                                              |
+| `script/`            | `update-nvim`, `update-tree-sitter`, `update-forgejo-cli`, `update-git-credential-libsecret` |
+| `fonts/`             | `~/.local/share/fonts/dotfiles` (Windows: installed for the user)                            |
+| `termux/*`           | `~/.termux` (Termux only; the regular font is linked as `font.ttf`)                          |
+| `ssh/config`         | `~/.ssh/config` (Windows: a `~/.ssh/config` that includes it)                                |
 
 Per-machine settings that aren't checked in: `xdg/git/config.local`, `conf/local.sh` (zsh),
 `win/local.ps1` (PowerShell) and `~/.ssh/config.local` (SSH hosts).
